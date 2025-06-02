@@ -1,0 +1,11 @@
+.heroWrapper {
+  @apply relative w-full h-screen overflow-hidden;
+}
+
+.videoBackground {
+  @apply absolute top-0 left-0 w-full h-full object-cover z-[-1];
+}
+
+.content {
+  @apply relative z-10 flex flex-col items-center justify-center text-white text-center h-full;
+}
