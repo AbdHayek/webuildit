@@ -9,7 +9,7 @@ export default function Navbar() {
     <nav className="shadow-md fixed w-full z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-            
+
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="text-2xl font-bold text-purple-600">
@@ -22,7 +22,7 @@ export default function Navbar() {
             <button
               aria-label={isOpen ? "Close menu" : "Open menu"}
               onClick={() => setIsOpen(!isOpen)}
-              className="rounded-full border border-white p-2  bg-transparent flex items-center"
+              className="rounded-full border border-white p-2  bg-transparent flex items-center cursor-pointer"
             >
               <svg
                 className="w-6 h-6 text-white" // icon color
@@ -57,7 +57,7 @@ export default function Navbar() {
               <button
                 aria-label={isOpen ? "Close menu" : "Open menu"}
                 onClick={() => setIsOpen(false)}
-                className="absolute top-3 right-[10.5%] z-[70] p-2 rounded-full border border-white"
+                className="absolute top-3 right-[10.5%] z-[70] p-2 rounded-full border border-white cursor-pointer"
               >
                 <svg
                   className="w-6 h-6 text-white"
