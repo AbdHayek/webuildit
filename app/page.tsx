@@ -1,6 +1,9 @@
-import HeroSection from "./components/Hero/Hero";
-
+import HowWeWork from "./components/HowWeWork";
 
 export default function Home() {
-  return   <HeroSection />
+  return (
+    <div>
+      <HowWeWork />
+    </div>
+  );
 }
