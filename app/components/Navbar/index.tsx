@@ -61,7 +61,7 @@ export default function Navbar() {
               <button
                 aria-label={isOpen ? "Close menu" : "Open menu"}
                 onClick={() => setIsOpen(false)}
-                className="absolute top-10 right-[10.5%] z-[70] p-2  rounded-full border border-white cursor-pointer"
+                className="absolute top-[4%] right-[10%] z-[70] p-2  rounded-full border border-white cursor-pointer"
               >
                 <svg
                   className="w-6 h-6 text-white"
