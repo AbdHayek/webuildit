@@ -15,7 +15,7 @@ export default function HeroSection() {
         Your browser does not support the video tag.
       </video>
 
-      <div className="absolute top-[70%] left-0 w-full z-10 flex items-center justify-center text-center px-4">
+      <div className="absolute top-[65%] left-0 w-full z-10 flex items-center justify-center text-center px-4">
         <div className="mt-10 animate-bounce">
           <svg
             width="59"
