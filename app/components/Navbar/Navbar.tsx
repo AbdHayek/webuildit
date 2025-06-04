@@ -51,7 +51,7 @@ export default function Navbar() {
           </div>
 
           {isOpen && (
-            <div className="absolute inset-0 z-[60] w-full h-screen bg-[url('https://www.w3schools.com/howto/photographer.jpg')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center text-white text-[33px]">
+            <div className="absolute inset-0 z-[60] w-full h-screen bg-[url('/assets/Navbar/background-menu.png')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center text-white text-[33px]">
               
               {/* Close Button inside overlay */}
               <button
