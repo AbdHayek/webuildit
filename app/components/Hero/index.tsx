@@ -2,11 +2,11 @@ import Navbar from "../Navbar";
 
 export default function HeroSection() {
   return (
-    <section className="relative h-screen bg-cover bg-center bg-no-repeat text-white">
+    <section className="relative bg-cover bg-center bg-no-repeat text-white">
       <Navbar />
 
       <video
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        className="h-[100%]  w-full  object-cover"
         autoPlay
         muted
         loop
@@ -15,7 +15,7 @@ export default function HeroSection() {
         Your browser does not support the video tag.
       </video>
 
-      <div className="absolute top-[80%] left-0 w-full z-10 flex items-center justify-center text-center px-4">
+      <div className="absolute top-[70%] left-0 w-full z-10 flex items-center justify-center text-center px-4">
         <div className="mt-10 animate-bounce">
           <svg
             width="59"

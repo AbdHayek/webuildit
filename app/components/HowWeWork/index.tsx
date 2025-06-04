@@ -20,50 +20,129 @@ const steps = [
     number: "3",
   },
   {
-    title: "WE AGREE ON PRICING",
-    text: "Transparent and fair, no surprises",
-    number: "4",
+    title: "WE DELIVER ON TIME",
+    text: "Just as promised!",
+    number: "6",
   },
+
   {
     title: "WE DESIGN & DEVELOP",
     text: "Bringing your vision to life, step by step",
     number: "5",
   },
+
   {
-    title: "WE DELIVER ON TIME",
-    text: "Just as promised!",
-    number: "6",
+    title: "WE AGREE ON PRICING",
+    text: "Transparent and fair, no surprises",
+    number: "4",
   },
 ];
 
 export default function index() {
   return (
-    <section className="bg-[#0B0620] text-white py-20 px-6">
+    <section className="bg-[#070322] text-white px-6 py-20">
       <h2 className="text-center text-4xl font-bold mb-16">HOW DO WE WORK</h2>
-      <div className="relative h-32 w-32 bg-gray-900">
-        <div className="absolute top-8 left-0 w-1/2 h-1 bg-purple-500"></div>
-
-        <div className="absolute top-8 left-1/2 w-8 h-8 border-t-4 border-r-4 border-purple-500 rounded-tr-full"></div>
-
-        <div className="absolute top-8 left-[calc(50%+2rem)] w-1 h-16 bg-purple-500"></div>
-      </div>
-
       <div className="grid grid-cols-1 md:grid-cols-3 gap-y-20 relative">
         {steps.map((step, index) => (
           <div
             key={index}
-            className={`flex flex-col items-center text-center px-6 relative`}
+            className={` ${
+              (index === 1 || index === 4) && "top-[50%]"
+            } flex flex-col items-center text-center px-6 relative`}
           >
-            <div className="bg-[#1C1533] border border-purple-700 p-6 rounded-lg w-full max-w-[280px]">
-              <h3 className="text-lg font-bold">{step.title}</h3>
-              <p className="text-sm mt-2">{step.text}</p>
-              <div className="text-[90px] font-bold text-purple-700 opacity-20 -mt-4">
-                {step.number}
+            <div>
+              <div
+                className="absolute top-0 left-26 w-20 h-20 border-t border-l rounded-tl-md"
+                style={{
+                  borderTopColor: "rgba(146, 84, 236, 1)",
+                  borderLeftColor: "rgba(146, 84, 236, 0.5)",
+                }}
+              ></div>
+
+              <div
+                className="absolute bottom-0 right-26 w-20 h-20 border-b border-r border-[#9254EC] rounded-br-md"
+                style={{
+                  borderBottomColor: "rgba(146, 84, 236, 1)",
+                  borderRightColor: "rgba(146, 84, 236, 0.5)",
+                }}
+              ></div>
+
+              <div className="flex gap-5 bg-[#180F37] border border-[#180F37] text-left p-4 rounded-lg w-full max-w-[280px]">
+                <div>
+                  <h4 className="text-lg font-bold">{step.title}</h4>
+                  <p className="text-sm mt-2">{step.text}</p>
+                </div>
+
+                <div
+                  className="text-[90px] font-bold  opacity-50 -mt-4"
+                  style={{
+                    color: "#180F37", // Fill color
+                    WebkitTextStroke: "1px #9254EC", // Tailwind's purple-700
+                    fontSize: "7em",
+                  }}
+                >
+                  {step.number}
+                </div>
               </div>
             </div>
+
             {/* Line connector */}
-            {index !== steps.length - 2 && (
-              <div className="hidden md:block absolute right-[-80px] top-1/2 h-px w-20 bg-purple-500"></div>
+            {(index === 0 || index === 3) && (
+              <div className="text-purple-600 absolute left-[79%] top-[0%] bottom-[0%]">
+                <svg
+                  width="400"
+                  height="400"
+                  viewBox="0 0 300 300"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M 0 50 H 80 C 120 50, 120 150, 160 150"
+                    stroke="#2E1158"
+                    strokeWidth="3"
+                    fill="none"
+                  />
+                </svg>
+              </div>
+            )}
+
+            {(index === 2) && (
+              <div className="text-purple-600 absolute top-[100%] left-[0%] rotate-90">
+                <svg
+                  width="400"
+                  height="400"
+                  viewBox="0 0 300 300"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M 0 50 H 80 C 120 50, 120 150, 160 150"
+                    stroke="#2E1158"
+                    strokeWidth="3"
+                    fill="none"
+                  />
+                </svg>
+              </div>
+            )}
+
+            {(index === 1 || index ===4) && (
+              <div className="text-purple-600 absolute left-[40%] top-[-47%]">
+                <svg
+                  width="400"
+                  height="400"
+                  viewBox="0 0 300 300"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M 0 50 H 80 C 120 50, 120 150, 160 150"
+                    stroke="#2E1158"
+                    strokeWidth="3"
+                    fill="none"
+                    transform="scale(-1, 1) translate(-300,0)"
+                  />
+                </svg>
+              </div>
             )}
           </div>
         ))}
