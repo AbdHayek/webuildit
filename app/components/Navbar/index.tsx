@@ -9,7 +9,7 @@ export default function Navbar() {
   return (
     <nav className="shadow-md absolute w-full z-50">
       <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex  justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/">
@@ -61,7 +61,7 @@ export default function Navbar() {
               <button
                 aria-label={isOpen ? "Close menu" : "Open menu"}
                 onClick={() => setIsOpen(false)}
-                className="absolute top-[4%] right-[10%] z-[70] p-2  rounded-full border border-white cursor-pointer"
+                className="absolute top-[4%] right-[14%] z-[70] p-2 rounded-full border border-white cursor-pointer"
               >
                 <svg
                   className="w-6 h-6 text-white"

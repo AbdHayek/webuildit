@@ -1,7 +1,3 @@
-// app/components/HowWeWork/index.tsx
-
-"use client";
-import React from "react";
 
 const steps = [
   {
@@ -38,7 +34,7 @@ const steps = [
   },
 ];
 
-export default function index() {
+export default function HowWeWork() {
   return (
 <section className="bg-[#070322] text-white px-6 py-20 relative">
   {/* Right-side Gradient Background */}
