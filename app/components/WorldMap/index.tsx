@@ -1,10 +1,12 @@
+import Image from "next/image";
+
 export default function WorldMap() {
   const pins = [
-    { top: "43%", left: "23%" }, // USA
-    { top: "44%", left: "75%" }, // Russia
-    { top: "54%", left: "67%" }, // Middle East
-    { top: "63%", left: "55%" }, // Africa
-    { top: "52%", left: "78%" }, // Asia (e.g. India)
+    { top: "23%", left: "13%" }, // USA
+    { top: "24%", left: "75%" }, // Russia
+    { top: "44%", left: "67%" }, // Middle East
+    { top: "43%", left: "55%" }, // Africa
+    { top: "42%", left: "78%" }, // Asia (e.g. India)
   ];
 
   return (
@@ -19,8 +21,10 @@ export default function WorldMap() {
 
         <div className="relative mt-12">
           {/* World Map Image */}
-          <img
-            src="/assets/World/world.svg"
+          <Image
+            width="1200"
+            height="1200"
+            src="/assets/World/map.svg"
             alt="World Map"
             className="w-full object-cover"
           />
@@ -33,10 +37,16 @@ export default function WorldMap() {
               style={{ top: pin.top, left: pin.left }}
             >
               {/* Outer ping effect */}
-              <div className="absolute -top-2 -left-2 animate-ping w-6 h-6 bg-purple-500 rounded-full opacity-75"></div>
+              <div className="absolute   animate-ping w-6 h-6 bg-purple-500 rounded-full opacity-75"></div>
 
               {/* Inner glowing dot */}
-              <div className="relative w-4 h-4 bg-purple-400 rounded-full border-2 border-white"></div>
+              <Image
+                width="50"
+                height="50"
+                src="/assets/World/pin_location.svg"
+                alt="World Map"
+                className="relative w-7 h-7"
+              />
             </div>
           ))}
         </div>

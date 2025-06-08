@@ -4,33 +4,33 @@ const servicesData = [
   {
     title: "MOBILE APP DEVELOPMENT",
     description: "iOS & Android applications, cross-platform solutions.",
-    image: "/assets/Service/mobile_app.svg",
+    image: "/assets/Service/mobile_app.png",
     imageAlt: "Mobile App Illustration",
   },
   {
     title: "WEB DEVELOPMENT",
     description: "Scalable and secure web solutions, eCommerce, CMS platforms.",
-    image: "/assets/Service/web_development.svg",
+    image: "/assets/Service/web_development.png",
     imageAlt: "Web Development Illustration",
   },
   {
     title: "UI/UX DESIGN",
     description:
       "Creating seamless user experiences through wireframing & prototyping",
-    image: "/assets/Service/ux_design.svg",
+    image: "/assets/Service/ux_design.png",
     imageAlt: "UX Design Illustration",
   },
   {
     title: "CLOUND SOLUTIONS",
     description: "Optimized and secure cloud infrastructures DevOps services",
-    image: "/assets/Service/cloud_solution.svg",
+    image: "/assets/Service/cloud_solution.png",
     imageAlt: "Cloud Solutions Illustration",
   },
   {
     title: "CONSULTATION & STRATEGY",
     description:
       "Helping businesses shape their tech roadmap and digital transformation",
-    image: "/assets/Service/consultation.svg",
+    image: "/assets/Service/consultation.png",
     imageAlt: "Consultation Illustration",
   },
 ];
@@ -70,10 +70,10 @@ export default function Services() {
             <div className="md:w-1/2 flex justify-center">
               <Image
                 src={service.image}
-                width={300}
-                height={300}
+                width={250}
+                height={250}
                 alt={service.imageAlt}
-                className="w-80"
+                
               />
             </div>
           </div>
