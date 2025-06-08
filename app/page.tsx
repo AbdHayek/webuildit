@@ -1,4 +1,5 @@
 import Consultion from "./components/Consultion";
+import Footer from "./components/Footer";
 import HowWeWork from "./components/HowWeWork";
 import Partner from "./components/Partner";
 import Service from "./components/Service";
