@@ -1,0 +1,29 @@
+.react-datepicker {
+  border: unset;
+  box-shadow: unset;
+
+  .react-datepicker__navigation {
+    top: 6%;
+  }
+
+  .react-datepicker__header {
+    background-color: #ffffff;
+  }
+
+  .react-datepicker__current-month {
+    margin: 0px;
+    padding-bottom: 10%;
+    color: #786ade !important;
+  }
+
+  .react-datepicker__header {
+    border-bottom: unset;
+  }
+
+  @media (min-width: 1024px) {
+    .react-datepicker__day-name,
+    .react-datepicker__day {
+      margin: 0.5rem;
+    }
+  }
+}

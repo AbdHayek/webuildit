@@ -10,7 +10,7 @@ export default function WorldMap() {
   ];
 
   return (
-    <main className="bg-[#0b0423] min-h-screen text-white">
+    <main className="bg-[#0b0423] text-white">
       <div className="relative w-full max-w-7xl mx-auto">
         <div className="pb-16">
           <h2 className="text-3xl md:text-4xl text-center text-white">

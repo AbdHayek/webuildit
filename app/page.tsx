@@ -1,3 +1,4 @@
+import Consultion from "./components/Consultion";
 import HowWeWork from "./components/HowWeWork";
 import Partner from "./components/Partner";
 import Service from "./components/Service";
@@ -12,6 +13,7 @@ export default function Home() {
       <Testimonial />
       <Partner />
       <WorldMap />
+      <Consultion />
     </div>
   );
 }
