@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./Testimonial.scss";
+import BorderCard from "../Common/BorderCard";
 
 const testimonials = [
   {
@@ -49,8 +50,8 @@ export default function Testimonial() {
   return (
     <section className="text-white py-8">
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl">HEAR FROM OUR</h2>
-        <p className="text-2xl mt-2 text-gray-300">CUSTOMERS</p>
+        <h2 className="font-medium text-[40px]">HEAR FROM OUR</h2>
+        <p className="font-medium text-[40px] mt-2 text-gray-300">CUSTOMERS</p>
       </div>
 
       <div className="mx-auto px-4">
@@ -71,9 +72,10 @@ export default function Testimonial() {
         >
           {testimonials.map((item, idx) => (
             <SwiperSlide key={idx}>
-              <div className="bg-[#1a1042] rounded-2xl p-8 text-center border border-purple-500 shadow-lg">
-                <h3 className="text-2xl  mb-4">{item.title}</h3>
-                <p className="text-gray-300 mb-6">{item.content}</p>
+              <BorderCard />
+              <div className="bg-[#1a1042] rounded-2xl p-8 text-center shadow-lg">
+                <h3 className="text-3xl mb-4">{item.title}</h3>
+                <p className="text-gray-300 text-[16px] mb-6">{item.content}</p>
                 <hr className="border-gray-600 mb-4 w-1/2 mx-auto" />
                 <p className="text-lg">{item.author}</p>
               </div>

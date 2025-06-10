@@ -10,13 +10,21 @@ export default function WorldMap() {
   ];
 
   return (
-    <main className="bg-[#0b0423] text-white">
-      <div className="relative w-full max-w-7xl mx-auto">
-        <div className="pb-16">
-          <h2 className="text-3xl md:text-4xl text-center text-white">
+    <main className="relative">
+      <div
+        className="absolute left-[0%]  bottom-[30%] h-[70%] w-[5%] 
+            bg-gradient-to-b from-[#7300FF]/100 via-[#FF0084]/40 to-transparent 
+            filter blur-3xl"
+      ></div>
+      <div className="w-full max-w-7xl mx-auto">
+        {/* Left-side Gradient Background */}
+        <div>
+          <h2 className="text-3xl md:text-4xl font-medium text-center text-white">
             OUR CLIENTS AROUND
           </h2>
-          <p className="text-xl text-center text-white/80">THE WORLD</p>
+          <p className="text-3xl md:text-4xl text-center font-light text-white/80">
+            THE WORLD
+          </p>
         </div>
 
         <div className="relative mt-12">

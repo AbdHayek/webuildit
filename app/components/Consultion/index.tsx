@@ -24,7 +24,7 @@ export default function Consultion() {
   const [selected, setSelected] = useState(options[0]);
 
   return (
-    <div className="min-h-screen bg-[#0b0423] text-white flex flex-col md:flex-row items-center justify-center gap-[10%] lg:px-[10%] lg:py-[10%] md:px-[5%] md:py-[5%]">
+    <div className="min-h-screen text-white flex flex-col md:flex-row items-center justify-center gap-[10%] lg:px-[10%] lg:py-[10%] md:px-[5%] md:py-[5%]">
       {/* Left - Calendar */}
       <div className="bg-white text-center rounded-lg p-6 w-full md:w-[40%] text-black shadow-lg mb-[5%] mt-[5%]">
         <h3 className="text-3xl font-semibold text-[#4A148C] mb-4">

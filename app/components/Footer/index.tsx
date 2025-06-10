@@ -4,11 +4,8 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <div
-      className="relative rounded-[50px] border-b-[50px]
-     border-[#0b0423]
-    "
-    >
-      <footer className="relative bg-[#0b0423] text-white pb-10 lg:px-[10%]  md:px-[5%] overflow-hidden">
+      className="relative rounded-[50px] border-b-[50px]">
+      <footer className="relative  text-white pb-10 lg:px-[10%]  md:px-[5%] overflow-hidden">
         {/* Main Footer Content */}
         <div className="relative z-10 container mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10 text-white">
           {/* Logo & Socials */}

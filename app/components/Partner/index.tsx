@@ -1,13 +1,11 @@
-import Image from "next/image";
-
 export default function Partner() {
   return (
-    <section className=" py-[10%] text-white relative overflow-hidden">
+    <section className=" pt-[10%] pb-[10%] text-white relative overflow-hidden">
       <div className="text-center mb-12">
-        <h2 className="text-2xl md:text-4xl">OUR PARTNERS</h2>
+        <h2 className="text-[40px] font-medium md:text-4xl">OUR PARTNERS</h2>
       </div>
 
-      <div className="flex flex-wrap justify-center items-center gap-20 px-6 max-w-6xl mx-auto">
+      <div className="flex flex-wrap justify-center items-center gap-[5%] px-6 max-w-6xl mx-auto">
         <div>
           <svg
             width="198"
@@ -17,14 +15,14 @@ export default function Partner() {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M20.6449 74.4679C26.0093 74.4679 30.3581 70.1192 30.3581 64.7548C30.3581 59.3904 26.0093 55.0416 20.6449 55.0416H10.9318V64.7548C10.9318 70.1192 15.2805 74.4679 20.6449 74.4679ZM35.2147 64.7548C35.2147 72.8014 28.6916 79.3245 20.6449 79.3245C12.5983 79.3245 6.0752 72.8014 6.0752 64.7548V50.1851H20.6449C28.6916 50.1851 35.2147 56.7081 35.2147 64.7548Z"
               fill="white"
             />
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M20.6449 84.9587C26.0093 84.9587 30.3581 80.6099 30.3581 75.2455C30.3581 69.8811 26.0093 65.5324 20.6449 65.5324H10.9318V75.2455C10.9318 80.6099 15.2805 84.9587 20.6449 84.9587ZM35.2147 75.2455C35.2147 83.2922 28.6916 89.8152 20.6449 89.8152C12.5983 89.8152 6.0752 83.2922 6.0752 75.2455V60.6758H20.6449C28.6916 60.6758 35.2147 67.1989 35.2147 75.2455Z"
               fill="white"
             />
@@ -44,14 +42,14 @@ export default function Partner() {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M20.6449 74.4679C26.0093 74.4679 30.3581 70.1192 30.3581 64.7548C30.3581 59.3904 26.0093 55.0416 20.6449 55.0416H10.9318V64.7548C10.9318 70.1192 15.2805 74.4679 20.6449 74.4679ZM35.2147 64.7548C35.2147 72.8014 28.6916 79.3245 20.6449 79.3245C12.5983 79.3245 6.0752 72.8014 6.0752 64.7548V50.1851H20.6449C28.6916 50.1851 35.2147 56.7081 35.2147 64.7548Z"
               fill="white"
             />
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M20.6449 84.9587C26.0093 84.9587 30.3581 80.6099 30.3581 75.2455C30.3581 69.8811 26.0093 65.5324 20.6449 65.5324H10.9318V75.2455C10.9318 80.6099 15.2805 84.9587 20.6449 84.9587ZM35.2147 75.2455C35.2147 83.2922 28.6916 89.8152 20.6449 89.8152C12.5983 89.8152 6.0752 83.2922 6.0752 75.2455V60.6758H20.6449C28.6916 60.6758 35.2147 67.1989 35.2147 75.2455Z"
               fill="white"
             />
@@ -71,14 +69,14 @@ export default function Partner() {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M20.6449 74.4679C26.0093 74.4679 30.3581 70.1192 30.3581 64.7548C30.3581 59.3904 26.0093 55.0416 20.6449 55.0416H10.9318V64.7548C10.9318 70.1192 15.2805 74.4679 20.6449 74.4679ZM35.2147 64.7548C35.2147 72.8014 28.6916 79.3245 20.6449 79.3245C12.5983 79.3245 6.0752 72.8014 6.0752 64.7548V50.1851H20.6449C28.6916 50.1851 35.2147 56.7081 35.2147 64.7548Z"
               fill="white"
             />
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M20.6449 84.9587C26.0093 84.9587 30.3581 80.6099 30.3581 75.2455C30.3581 69.8811 26.0093 65.5324 20.6449 65.5324H10.9318V75.2455C10.9318 80.6099 15.2805 84.9587 20.6449 84.9587ZM35.2147 75.2455C35.2147 83.2922 28.6916 89.8152 20.6449 89.8152C12.5983 89.8152 6.0752 83.2922 6.0752 75.2455V60.6758H20.6449C28.6916 60.6758 35.2147 67.1989 35.2147 75.2455Z"
               fill="white"
             />
@@ -98,14 +96,14 @@ export default function Partner() {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M20.6449 74.4679C26.0093 74.4679 30.3581 70.1192 30.3581 64.7548C30.3581 59.3904 26.0093 55.0416 20.6449 55.0416H10.9318V64.7548C10.9318 70.1192 15.2805 74.4679 20.6449 74.4679ZM35.2147 64.7548C35.2147 72.8014 28.6916 79.3245 20.6449 79.3245C12.5983 79.3245 6.0752 72.8014 6.0752 64.7548V50.1851H20.6449C28.6916 50.1851 35.2147 56.7081 35.2147 64.7548Z"
               fill="white"
             />
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M20.6449 84.9587C26.0093 84.9587 30.3581 80.6099 30.3581 75.2455C30.3581 69.8811 26.0093 65.5324 20.6449 65.5324H10.9318V75.2455C10.9318 80.6099 15.2805 84.9587 20.6449 84.9587ZM35.2147 75.2455C35.2147 83.2922 28.6916 89.8152 20.6449 89.8152C12.5983 89.8152 6.0752 83.2922 6.0752 75.2455V60.6758H20.6449C28.6916 60.6758 35.2147 67.1989 35.2147 75.2455Z"
               fill="white"
             />
@@ -118,6 +116,13 @@ export default function Partner() {
       </div>
 
       <div className="mt-26 h-[2px] w-2/3 mx-auto bg-gradient-to-r from-transparent via-purple-600 to-transparent" />
+
+      {/* Right-side Gradient Background */}
+      <div
+        className="absolute right-0 top-[40%] h-[60%] w-[6%] 
+        bg-gradient-to-b from-[#7300FF]/100 via-[#FF0084]/40 to-transparent 
+        filter blur-3xl"
+      ></div>
     </section>
   );
 }

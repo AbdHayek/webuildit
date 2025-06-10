@@ -1,3 +1,5 @@
+import BorderCard from "../Common/BorderCard";
+
 const steps = [
   {
     title: "WE LISTEN TO YOUR IDEA",
@@ -37,12 +39,25 @@ export default function HowWeWork() {
   return (
     <section className="text-white px-6 py-20 relative bg-gradient-to-b from-[#050114] to-transparent">
       {/* Right-side Gradient Background */}
-      {/* <div className="absolute right-0 top-20 h-[50%] w-20 bg-gradient-to-l from-[#7300FF]/30 via-[#FF0084]/30 to-transparent pointer-events-none"></div> */}
+      <div
+        className="absolute right-0 top-[15%] h-[70%] w-[6%] 
+            bg-gradient-to-b from-[#7300FF]/100 via-[#FF0084]/40 to-transparent 
+            filter blur-3xl"
+      ></div>
+
+      {/* Left-side Gradient Background */}
+      <div
+        className="absolute left-0 bottom-[0%] h-[70%] w-[2.5%] 
+            bg-gradient-to-b  via-[#FF0084]/100 to-transparent 
+            filter blur-3xl"
+      ></div>
 
       <div className="max-w-7xl mx-auto">
         {" "}
         {/* CONTAINER ADDED */}
-        <h2 className="text-center text-[40px] font-medium mb-16">HOW DO WE WORK</h2>
+        <h2 className="text-center text-[40px] font-medium mb-16">
+          HOW DO WE WORK
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-y-20 relative">
           {steps.map((step, index) => (
             <div
@@ -52,29 +67,19 @@ export default function HowWeWork() {
               } flex flex-col items-center text-center px-4 sm:px-6 relative`}
             >
               <div className="relative w-[75%] z-[9999]  max-w-[90%] sm:max-w-[320px] lg:max-w-[360px]">
+                
                 {/* Corner Borders */}
-                <div
-                  className="hidden sm:block absolute top-0 left-[0%] w-[20%] h-[20%] border-t border-l rounded-tl-md"
-                  style={{
-                    borderTopColor: "rgba(146, 84, 236, 1)",
-                    borderLeftColor: "rgba(146, 84, 236, 0.5)",
-                  }}
-                />
-                <div
-                  className="hidden sm:block absolute bottom-0 right-[0%] w-[20%] h-[20%] border-b border-r rounded-br-md"
-                  style={{
-                    borderBottomColor: "rgba(146, 84, 236, 1)",
-                    borderRightColor: "rgba(146, 84, 236, 0.5)",
-                  }}
-                />
+               <BorderCard />
 
                 {/* Step Box */}
-                <div className="flex gap-4 sm:gap-2 bg-[#180F37] border border-[#180F37] text-left p-4 rounded-lg w-full">
+                <div className="flex gap-4 sm:gap-2 bg-[#180F37] border border-[#180F37] text-left p-[10%] rounded-2xl w-full">
                   <div className="flex-1">
                     <h4 className="text-base sm:text-lg font-bold text-[#FCFCFC] text-[18px]">
                       {step.title}
                     </h4>
-                    <p className="text-sm mt-2 text-[#FCFCFC] text-[14px] font-light">{step.text}</p>
+                    <p className="text-sm mt-2 text-[#FCFCFC] text-[14px] font-light pr-[10%]">
+                      {step.text}
+                    </p>
                   </div>
 
                   <div
@@ -91,50 +96,55 @@ export default function HowWeWork() {
 
               {/* Line connectors (shown only on large screens) */}
               {(index === 0 || index === 3) && (
-                <div className="hidden lg:block absolute left-[79%] top-0 bottom-0">
+                <div className="hidden lg:block absolute left-[80%] top-[50%] bottom-0">
                   <svg
-                    width="400"
-                    height="400"
-                    viewBox="0 0 300 300"
+                    width="181"
+                    height="112"
+                    viewBox="0 0 181 112"
                     fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      d="M 0 50 H 80 C 120 50, 120 150, 160 150"
-                      stroke="#2E1158"
+                      d="M0 2H74.7563C104.618 2 128.823 26.205 128.823 56.0671C128.823 85.9293 150.638 110.134 180.5 110.134"
+                      stroke="#9254EC"
                       strokeWidth="3"
+                      strokeMiterlimit="10"
                     />
                   </svg>
                 </div>
               )}
               {index === 2 && (
-                <div className="hidden lg:block absolute top-[50%] left-0 rotate-90">
+                <div className="hidden lg:block absolute top-[60%] right-[0%] left-[50%]">
                   <svg
-                    width="400"
-                    height="300"
-                    viewBox="0 0 300 300"
+                    width="83"
+                    height="176"
+                    viewBox="0 0 83 176"
                     fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      d="M 0 50 H 80 C 120 50, 120 150, 160 150"
-                      stroke="#2E1158"
+                      d="M81.3584 0L81.3584 54.6968C81.3584 76.6122 63.5947 94.3758 41.6793 94.3758C19.7639 94.3758 2.00025 112.14 2.00025 134.055L2.00025 176"
+                      stroke="#9254EC"
                       strokeWidth="3"
+                      strokeMiterlimit="10"
                     />
                   </svg>
                 </div>
               )}
               {(index === 1 || index === 4) && (
-                <div className="hidden lg:block absolute left-[27%] top-[-47%]">
+                <div className="hidden lg:block absolute left-[80%] top-[0%]">
                   <svg
-                    width="400"
-                    height="400"
-                    viewBox="0 0 300 300"
+                    width="181"
+                    height="112"
+                    viewBox="0 0 181 112"
                     fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      d="M 0 50 H 80 C 120 50, 120 150, 160 150"
-                      stroke="#2E1158"
+                      d="M180.5 2H101.595C71.7329 2 47.528 26.205 47.528 56.0671C47.528 85.9293 29.8621 110.134 0 110.134"
+                      stroke="#9254EC"
                       strokeWidth="3"
-                      transform="scale(-1, 1) translate(-300,0)"
+                      strokeMiterlimit="10"
                     />
                   </svg>
                 </div>
