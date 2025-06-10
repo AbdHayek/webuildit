@@ -13,11 +13,17 @@
   .react-datepicker__current-month {
     margin: 0px;
     padding-bottom: 10%;
-    color: #786ade !important;
+    font-weight: 500;
+    color: #CB97FF !important;
+    font-size: 18px !important;
   }
 
   .react-datepicker__header {
     border-bottom: unset;
+  }
+
+  .react-datepicker__navigation-icon:before{
+    border-color:  #4a148c !important;
   }
 
   @media (min-width: 1024px) {

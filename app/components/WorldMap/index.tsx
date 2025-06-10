@@ -2,17 +2,17 @@ import Image from "next/image";
 
 export default function WorldMap() {
   const pins = [
-    { top: "23%", left: "13%" }, // USA
-    { top: "24%", left: "75%" }, // Russia
-    { top: "44%", left: "67%" }, // Middle East
-    { top: "43%", left: "55%" }, // Africa
-    { top: "42%", left: "78%" }, // Asia (e.g. India)
+    { top: "23%", left: "13%", label: "New York, USA" }, // USA
+    { top: "24%", left: "75%", label: "New York, USA" }, // Russia
+    { top: "44%", left: "67%", label: "New York, USA" }, // Middle East
+    { top: "43%", left: "55%", label: "New York, USA" }, // Africa
+    { top: "42%", left: "78%", label: "New York, USA" }, // Asia (e.g. India)
   ];
 
   return (
     <main className="relative">
       <div
-        className="absolute left-[0%]  bottom-[30%] h-[70%] w-[5%] 
+        className="absolute left-[0%]  bottom-[25%] h-[70%] w-[5%] 
             bg-gradient-to-b from-[#7300FF]/100 via-[#FF0084]/40 to-transparent 
             filter blur-3xl"
       ></div>
@@ -41,11 +41,16 @@ export default function WorldMap() {
           {pins.map((pin, idx) => (
             <div
               key={idx}
-              className="absolute z-20"
+              className="absolute z-20 group" // group for hover behavior
               style={{ top: pin.top, left: pin.left }}
             >
+              {/* Tooltip text */}
+              <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white text-black text-xs font-bold px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                {pin.label}
+              </div>
+
               {/* Outer ping effect */}
-              <div className="absolute   animate-ping w-6 h-6 bg-purple-500 rounded-full opacity-75"></div>
+              <div className="absolute animate-ping w-6 h-6 bg-purple-500 rounded-full opacity-75"></div>
 
               {/* Inner glowing dot */}
               <Image

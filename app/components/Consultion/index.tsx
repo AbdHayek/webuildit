@@ -63,19 +63,26 @@ export default function Consultion() {
 
       {/* Right - Form */}
       <div className="w-full space-y-4 md:w-[60%] mb-[5%] mt-[5%]">
-        <h1 className="font-bold text-4xl">
+        <h1 className="font-bold text-4xl leading-tight">
           <span className="text-white text-6xl">CONSULTING</span> FOR
         </h1>
-        <h1 className="text-4xl font-semibold text-white/90">EVERY BUSINESS</h1>
-
+        <h1 className="text-4xl font-semibold text-white/90 leading-tight">
+          EVERY BUSINESS
+        </h1>
         <Listbox value={selected} onChange={setSelected}>
           <div className="relative w-full">
+            {/* Label */}
+            <label className="block mb-2 text-lg font-bold text-[#CB97FF]">
+              Consultation type
+            </label>
+
             <Listbox.Button className="w-full p-3 border rounded bg-transparent text-white flex justify-between items-center">
               <span className="flex items-center gap-2">
                 {selected.icon}
                 {selected.name}
               </span>
             </Listbox.Button>
+
             <Listbox.Options className="absolute mt-1 w-full bg-white text-black rounded shadow-lg z-10">
               {options.map((option, idx) => (
                 <Listbox.Option
@@ -104,9 +111,7 @@ export default function Consultion() {
           className="w-full p-3 rounded border bg-transparent text-white"
         />
 
-       <div className="h-[1px] bg-white mx-auto mt-8 mb-2" />
-
-
+        <div className="h-[1px] bg-white mx-auto mt-8 mb-2" />
         <div className="flex flex-col sm:flex-row items-center justify-between pt-4 gap-4">
           <p className="text-purple-400 text-2xl font-bold">$100</p>
           <Button className="group flex items-center rounded-full border-2 border-purple-500 overflow-hidden bg-transparent text-white transition-all duration-300 hover:bg-purple-600">
