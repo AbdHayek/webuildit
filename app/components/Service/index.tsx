@@ -1,4 +1,5 @@
 import Image from "next/image";
+import GradientLine from "../Common/GradientLine";
 
 const servicesData = [
   {
@@ -37,30 +38,27 @@ const servicesData = [
 
 export default function Services() {
   return (
-    <section
-      id="service"
-      className="bg-gradient-to-b from-[#070322] to-[#070322] text-white mt-[10%] px-4 md:px-20"
-    >
-      <h2 className="text-center text-3xl md:text-4xl font-bold mb-12">
+    <section id="service" className="text-white mt-[10%] px-4 md:px-20">
+      <h2 className="text-center text-[40px] font-medium mb-12">
         OUR SERVICES
       </h2>
 
       {servicesData.map((service, index) => (
         <div key={index}>
-          <div className=" h-[3px]  mx-auto bg-gradient-to-l from-transparent via-purple-900 to-transparent my-16" />
+          <GradientLine />
           <div className="flex flex-col md:flex-row items-center md:justify-between py-12 px-[5%]">
             {/* Text Content */}
             <div className="md:w-1/2 mb-10 md:mb-0">
-              <h3 className="text-3xl font-extrabold mb-4">{service.title}</h3>
-              <p className="mb-8 text-gray-300">{service.description}</p>
+              <h3 className="text-[40px] font-bold mb-4">{service.title}</h3>
+              <p className="mb-8 text-[#F6F3F8] text-[28px]">{service.description}</p>
 
               <div className="space-y-6">
                 {["30%", "50%", "70%"].map((percent, i) => (
-                  <div key={i} className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center font-bold text-lg">
+                  <div key={i} className="flex items-center gap-4">
+                    <div className="w-12 h-12 p-7 rounded-full border-3 border-[#7320E35E] flex items-center justify-center font-bold text-xl">
                       {percent}
                     </div>
-                    <p className="text-gray-400">
+                    <p className="text-[16px">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod.
                     </p>
@@ -81,7 +79,8 @@ export default function Services() {
           </div>
         </div>
       ))}
-      <div className=" h-[3px]  mx-auto bg-gradient-to-l from-transparent via-purple-900 to-transparent my-16" />
+
+      <GradientLine />
     </section>
   );
 }
