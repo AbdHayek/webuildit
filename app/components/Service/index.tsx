@@ -37,7 +37,10 @@ const servicesData = [
 
 export default function Services() {
   return (
-    <section className="bg-gradient-to-b from-[#070322] to-[#070322] text-white py-16 px-4 md:px-20">
+    <section
+      id="service"
+      className="bg-gradient-to-b from-[#070322] to-[#070322] text-white mt-[10%] px-4 md:px-20"
+    >
       <h2 className="text-center text-3xl md:text-4xl font-bold mb-12">
         OUR SERVICES
       </h2>
@@ -73,7 +76,6 @@ export default function Services() {
                 width={250}
                 height={250}
                 alt={service.imageAlt}
-                
               />
             </div>
           </div>

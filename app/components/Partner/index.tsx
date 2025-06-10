@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Partner() {
   return (
-    <section className="bg-[#070322] py-[10%] text-white relative overflow-hidden">
+    <section className=" py-[10%] text-white relative overflow-hidden">
       <div className="text-center mb-12">
         <h2 className="text-2xl md:text-4xl">OUR PARTNERS</h2>
       </div>
