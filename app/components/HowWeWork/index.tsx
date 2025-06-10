@@ -91,7 +91,7 @@ export default function HowWeWork() {
 
               {/* Line connectors (shown only on large screens) */}
               {(index === 0 || index === 3) && (
-                <div className="hidden lg:block text-purple-600 absolute left-[79%] top-0 bottom-0">
+                <div className="hidden lg:block absolute left-[79%] top-0 bottom-0">
                   <svg
                     width="400"
                     height="400"
@@ -107,7 +107,7 @@ export default function HowWeWork() {
                 </div>
               )}
               {index === 2 && (
-                <div className="hidden lg:block text-purple-600 absolute top-[50%] left-0 rotate-90">
+                <div className="hidden lg:block absolute top-[50%] left-0 rotate-90">
                   <svg
                     width="400"
                     height="300"
@@ -123,7 +123,7 @@ export default function HowWeWork() {
                 </div>
               )}
               {(index === 1 || index === 4) && (
-                <div className="hidden lg:block text-purple-600 absolute left-[27%] top-[-47%]">
+                <div className="hidden lg:block absolute left-[27%] top-[-47%]">
                   <svg
                     width="400"
                     height="400"
