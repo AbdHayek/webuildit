@@ -66,7 +66,7 @@ export default function HowWeWork() {
                 (index === 1 || index === 4) && "md:top-[50%]"
               } flex flex-col items-center text-center px-4 sm:px-6 relative`}
             >
-              <div className="relative w-[75%] z-[9999]  max-w-[90%] sm:max-w-[320px] lg:max-w-[360px]">
+              <div className="relative w-[75%] z-[10]  max-w-[90%] sm:max-w-[320px] lg:max-w-[360px]">
                 
                 {/* Corner Borders */}
                <BorderCard />

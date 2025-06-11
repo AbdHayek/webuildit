@@ -14,7 +14,7 @@ export default function Navbar() {
           <div className="flex-shrink-0">
             <Link href="/">
               <Image
-                src='/assets/Navbar/logo.png'
+                src="/assets/Navbar/logo.png"
                 alt="Site Logo"
                 width={200}
                 height={200}
@@ -56,7 +56,7 @@ export default function Navbar() {
           </div>
 
           {isOpen && (
-            <div className="absolute inset-0 z-[60] w-full h-screen bg-[#070322] bg-[url('/assets/Navbar/background-menu.png')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center text-white text-[33px]">
+            <div className="fixed  inset-0 z-[9999999] w-full h-screen bg-[#070322] bg-[url('/assets/Navbar/background-menu.png')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center text-white text-[33px]">
               {/* Close Button inside overlay */}
               <button
                 aria-label={isOpen ? "Close menu" : "Open menu"}
