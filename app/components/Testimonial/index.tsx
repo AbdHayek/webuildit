@@ -11,25 +11,25 @@ const testimonials = [
   {
     title: "That was incredible !",
     content:
-      "Exceptional service and stunning designs! The entire process was smooth and collaborative. The team took the time to understand our needs and provided insightful suggestions that truly enhanced our project. The project was delivered on time, and the quality was impeccable.",
+      "Exceptional service and stunning designs! The entire process was smooth and collaborative. The team took the time to understand our needs and provided insightful suggestions that truly enhanced our project. The project was delivered on time, and the quality was impeccable. The project was delivered on time, and the quality was impeccable.",
     author: "Byeon Wo Soek",
   },
   {
     title: "Amazing work!",
     content:
-      "Exceptional service and stunning designs! The entire process was smooth and collaborative. The team took the time to understand our needs and provided insightful suggestions that truly enhanced our project. The project was delivered on time, and the quality was impeccable.",
+      "Exceptional service and stunning designs! The entire process was smooth and collaborative. The team took the time to understand our needs and provided insightful suggestions that truly enhanced our project. The project was delivered on time, and the quality was impeccable. The project was delivered on time, and the quality was impeccable.",
     author: "Jane Smith",
   },
   {
     title: "Highly Recommend!",
     content:
-      "Exceptional service and stunning designs! The entire process was smooth and collaborative. The team took the time to understand our needs and provided insightful suggestions that truly enhanced our project. The project was delivered on time, and the quality was impeccable.",
+      "Exceptional service and stunning designs! The entire process was smooth and collaborative. The team took the time to understand our needs and provided insightful suggestions that truly enhanced our project. The project was delivered on time, and the quality was impeccable. The project was delivered on time, and the quality was impeccable.",
     author: "Alex Johnson",
   },
   {
     title: "That was incredible !",
     content:
-      "Exceptional service and stunning designs! The entire process was smooth and collaborative. The team took the time to understand our needs and provided insightful suggestions that truly enhanced our project. The project was delivered on time, and the quality was impeccable.",
+      "Exceptional service and stunning designs! The entire process was smooth and collaborative. The team took the time to understand our needs and provided insightful suggestions that truly enhanced our project. The project was delivered on time, and the quality was impeccable. The project was delivered on time, and the quality was impeccable.",
     author: "Byeon Wo Soek",
   },
   {
@@ -54,7 +54,7 @@ export default function Testimonial() {
         <p className="font-medium text-[40px] mt-2 text-gray-300">CUSTOMERS</p>
       </div>
 
-      <div className="mx-auto px-4">
+      <div className="mx-auto px-[5%]">
         <Swiper
           modules={[Pagination]}
           pagination={{ clickable: true }}
@@ -66,9 +66,9 @@ export default function Testimonial() {
           breakpoints={{
             320: { slidesPerView: 1 },
             768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
+            1024: { slidesPerView: 2 },
           }}
-          className="pb-12"
+         
         >
           {testimonials.map((item, idx) => (
             <SwiperSlide key={idx}>

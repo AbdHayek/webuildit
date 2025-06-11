@@ -15,7 +15,7 @@ export default function Hero() {
         Your browser does not support the video tag.
       </video>
 
-      <a href="#service" className="absolute top-[65%] left-0 w-full z-10 flex items-center justify-center text-center px-4">
+      <a href="#service" className="absolute top-[75%] left-0 w-full z-10 flex items-center justify-center text-center px-4">
         <div className="mt-10 animate-bounce">
           <svg
             width="59"
