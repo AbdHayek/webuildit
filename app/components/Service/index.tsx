@@ -46,9 +46,9 @@ export default function Services() {
       {servicesData.map((service, index) => (
         <div key={index}>
           <GradientLine />
-          <div className="flex flex-col md:flex-row items-center md:justify-between py-12 px-[5%]">
+          <div className="flex flex-col md:flex-row items-center md:justify-between gap-20 py-12 px-[5%]">
             {/* Text Content */}
-            <div className="md:w-1/2 mb-10 md:mb-0">
+            <div className="md:w-3/4 mb-10 md:mb-0">
               <h3 className="text-[40px] font-bold mb-4">{service.title}</h3>
               <p className="mb-8 text-[#F6F3F8] text-[28px]">{service.description}</p>
 
@@ -68,7 +68,7 @@ export default function Services() {
             </div>
 
             {/* Image */}
-            <div className="md:w-1/2 flex justify-center">
+            <div className="md:w-1/4 flex justify-center">
               <Image
                 src={service.image}
                 width={250}
