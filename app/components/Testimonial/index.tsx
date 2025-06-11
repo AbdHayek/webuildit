@@ -73,7 +73,7 @@ export default function Testimonial() {
           {testimonials.map((item, idx) => (
             <SwiperSlide key={idx}>
               <BorderCard />
-              <div className="bg-[#1a1042] rounded-2xl p-8 text-center shadow-lg">
+              <div className="bg-[#4935824A] rounded-2xl p-8 text-center shadow-lg">
                 <h3 className="text-3xl mb-4">{item.title}</h3>
                 <p className="text-gray-300 text-[16px] mb-6">{item.content}</p>
                 <hr className="border-gray-600 mb-4 w-1/2 mx-auto" />
