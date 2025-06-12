@@ -58,23 +58,7 @@ export default function Services() {
               <div className="space-y-6">
                 {["30%", "50%", "70%"].map((percent, i) => (
                   <div key={i} className="flex items-center gap-4">
-                    <div className="relative flex items-center justify-center font-bold text-xl">
-                      {/* Ring with conic-gradient */}
-                      <div
-                        className="absolute inset-0 rounded-full"
-                        style={{
-                          background: `conic-gradient(#CB97FF ${percent}, #7320E35E ${percent})`,
-                          maskImage:
-                            "radial-gradient(circle, transparent 60%, black 61%)",
-                          WebkitMaskImage:
-                            "radial-gradient(circle, transparent 60%, black 61%)",
-                        }}
-                      />
-
-                      {/* Center number */}
-                      <AnimatedPercent value={parseInt(percent)} />
-                    </div>
-
+                    <AnimatedPercent value={parseInt(percent)} />
                     <p className="text-[16px">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod.
