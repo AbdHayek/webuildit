@@ -1,5 +1,6 @@
 import Image from "next/image";
 import GradientLine from "../Common/GradientLine";
+import AnimatedPercent from "../Common/AnimatedPercent";
 
 const servicesData = [
   {
@@ -50,14 +51,30 @@ export default function Services() {
             {/* Text Content */}
             <div className="md:w-3/4 mb-10 md:mb-0">
               <h3 className="text-[40px] font-bold mb-4">{service.title}</h3>
-              <p className="mb-8 text-[#F6F3F8] text-[28px]">{service.description}</p>
+              <p className="mb-8 text-[#F6F3F8] text-[28px]">
+                {service.description}
+              </p>
 
               <div className="space-y-6">
                 {["30%", "50%", "70%"].map((percent, i) => (
                   <div key={i} className="flex items-center gap-4">
-                    <div className="w-12 h-12 p-7 rounded-full border-3 border-[#7320E35E] flex items-center justify-center font-bold text-xl">
-                      {percent}
+                    <div className="relative flex items-center justify-center font-bold text-xl">
+                      {/* Ring with conic-gradient */}
+                      <div
+                        className="absolute inset-0 rounded-full"
+                        style={{
+                          background: `conic-gradient(#CB97FF ${percent}, #7320E35E ${percent})`,
+                          maskImage:
+                            "radial-gradient(circle, transparent 60%, black 61%)",
+                          WebkitMaskImage:
+                            "radial-gradient(circle, transparent 60%, black 61%)",
+                        }}
+                      />
+
+                      {/* Center number */}
+                      <AnimatedPercent value={parseInt(percent)} />
                     </div>
+
                     <p className="text-[16px">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod.
