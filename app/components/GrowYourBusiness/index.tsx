@@ -61,14 +61,14 @@ export default function GrowYourBusiness() {
   }, [centerId]);
 
   return (
-    <div className="mt-[10%] mb-[50%] mx-auto">
+    <div className="my-[10%]  mx-auto min-h-[1400px]">
       {" "}
       {/* CONTAINER ADDED */}
       <div className="text-center mb-20">
         <h2 className="font-medium text-[40px]"> Grow Your Business</h2>
         <p className="font-medium text-[40px] mt-2 text-gray-300">With Us</p>
       </div>
-      <div className="h-screen relative">
+      <div className="h-screen relative ">
         <div className="absolute top-[0%] right-[10%] left-[10%]">
           <svg
             width="1216"
