@@ -41,9 +41,7 @@ export default function GrowYourBusiness() {
   });
 
   useEffect(() => {
-
     if (centerId === "how") {
-
       setPositions({
         how: "top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2",
         who: "right-[20%] top-1/3",
@@ -93,6 +91,7 @@ export default function GrowYourBusiness() {
         <p className="font-medium text-[40px] mt-2 text-gray-300">With Us</p>
       </div>
       <div className="h-screen relative">
+        {/* Animate small bubbles */}
         <motion.div
           className={`absolute ${positionsBubble.first} z-[999999] transition-all duration-500`}
         >
@@ -489,12 +488,13 @@ export default function GrowYourBusiness() {
             </defs>
           </svg>
         </motion.div>
+        {/* end small bubbles */}
 
         {/* outSide Line */}
         <div className="absolute top-[0%] right-[10%] left-[10%]">
           <svg
-            width="1216"
-            height="1216"
+            width="100%"
+            height="100%"
             viewBox="0 0 1216 1216"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -518,8 +518,8 @@ export default function GrowYourBusiness() {
         {/* inSide Line */}
         <div className="absolute top-[18%] right-[17%] left-[17%]">
           <svg
-            width="992"
-            height="968"
+            width="100%"
+            height="100%"
             viewBox="0 0 992 968"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
