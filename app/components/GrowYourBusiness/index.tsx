@@ -61,7 +61,23 @@ export default function GrowYourBusiness() {
   }, [centerId]);
 
   return (
-    <div className="mt-[10%] mx-auto min-h-[1500px] relative">
+    <div className="mt-[15%] mx-auto min-h-[1500px] relative">
+
+      {/* Right-side Gradient Background */}
+      <div
+        className="absolute right-0 top-[5%] h-[40%] w-[6%] 
+            bg-gradient-to-b from-[#7300FF]/100 via-[#FF0084]/40 to-transparent 
+            filter blur-3xl"
+      ></div>
+
+      {/* Left-side Gradient Background */}
+      <div
+        className="absolute left-0 top-[20%] h-[40%] w-[2.5%] 
+            bg-gradient-to-b  from-[#7300FF]/100 via-[#FF0084]/40 to-transparent
+            filter blur-3xl"
+      ></div>
+
+      {/* bottom-side Gradient Background */}
       <div className="absolute bottom-0 left-0 w-full h-1/3 z-[9999] bg-gradient-to-t from-[#070322]/100 via-[#070322]/75 to-[#070322]/75  backdrop-blur-xl pointer-events-none" />
 
       {/* CONTAINER ADDED */}
