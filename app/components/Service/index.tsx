@@ -39,7 +39,7 @@ const servicesData = [
 
 export default function Services() {
   return (
-    <section id="service" className="text-white mt-[10%] px-4 md:px-20">
+    <section id="service" className="text-white px-4 md:px-20">
       <h2 className="text-center text-[40px] font-medium mb-12">
         OUR SERVICES
       </h2>

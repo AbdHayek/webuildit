@@ -61,10 +61,14 @@ export default function GrowYourBusiness() {
   }, [centerId]);
 
   return (
-    <div className="my-[10%]  mx-auto min-h-[1400px]">
-      {" "}
+    <div className="mt-[10%] mx-auto min-h-[1500px] relative">
+      
+      <div
+        className="absolute bottom-0 left-0 w-full h-1/3 z-[9999] bg-gradient-to-t from-[#070322]/100 via-[#070322]/75 to-[#070322]/75  backdrop-blur-xl pointer-events-none"
+      />
+
       {/* CONTAINER ADDED */}
-      <div className="text-center mb-20">
+      <div className="text-center mb-30">
         <h2 className="font-medium text-[40px]"> Grow Your Business</h2>
         <p className="font-medium text-[40px] mt-2 text-gray-300">With Us</p>
       </div>
@@ -114,7 +118,7 @@ export default function GrowYourBusiness() {
           <motion.div
             key={bubble.id}
             onClick={() => setCenterId(bubble.id)}
-            style={{"borderColor":bubble.bordercolor}}
+            style={{ borderColor: bubble.bordercolor }}
             className={`absolute cursor-pointer p-2 w-[150px] h-[150px] rounded-full flex items-center justify-center text-[25px] font-semibold transition-all duration-500 bg-gradient-to-b ${
               bubble.background
             }  shadow-lg ${positions[bubble.id]}  ${
