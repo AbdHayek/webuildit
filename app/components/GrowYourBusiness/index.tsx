@@ -61,8 +61,7 @@ export default function GrowYourBusiness() {
   }, [centerId]);
 
   return (
-    <div className="mt-[15%] mx-auto min-h-[1500px] relative">
-
+    <div className="mt-[15%]  min-h-[1500px] relative">
       {/* Right-side Gradient Background */}
       <div
         className="absolute right-0 top-[5%] h-[40%] w-[6%] 
@@ -86,6 +85,381 @@ export default function GrowYourBusiness() {
         <p className="font-medium text-[40px] mt-2 text-gray-300">With Us</p>
       </div>
       <div className="h-screen relative ">
+
+        <div className="absolute top-[5%] left-[27%] z-[999999]">
+          <svg
+            width="98"
+            height="98"
+            viewBox="0 0 98 98"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="48.7963"
+              cy="48.7962"
+              r="39.8421"
+              transform="rotate(165 48.7963 48.7962)"
+              fill= {centerId === `how`
+                  ? "#DA59A6"
+                  : centerId === `who`
+                  ? "#8448F1"
+                  : "#408BEC"}
+              fillOpacity="0.25"
+            />
+            <g filter="url(#filter0_f_274_1429)">
+              <circle
+                cx="48.7966"
+                cy="48.7964"
+                r="26.5614"
+                transform="rotate(165 48.7966 48.7964)"
+                fill= {centerId === `how`
+                  ? "#DA59A6"
+                  : centerId === `who`
+                  ? "#8448F1"
+                  : "#408BEC"}
+                fillOpacity="0.76"
+              />
+            </g>
+            <g
+              style={{ mixBlendMode: "plus-lighter" }}
+              filter="url(#filter1_f_274_1429)"
+            >
+              <circle
+                cx="50.1515"
+                cy="49.579"
+                r="9.05877"
+                transform="rotate(165 50.1515 49.579)"
+                fill="white"
+                fillOpacity="0.76"
+              />
+            </g>
+            <defs>
+              <filter
+                id="filter0_f_274_1429"
+                x="19.2286"
+                y="19.2284"
+                width="59.136"
+                height="59.136"
+                filterUnits="userSpaceOnUse"
+                colorInterpolationFilters="sRGB"
+              >
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
+                />
+                <feGaussianBlur
+                  stdDeviation="1.5"
+                  result="effect1_foregroundBlur_274_1429"
+                />
+              </filter>
+              <filter
+                id="filter1_f_274_1429"
+                x="39.2906"
+                y="38.7179"
+                width="21.7219"
+                height="21.7221"
+                filterUnits="userSpaceOnUse"
+                colorInterpolationFilters="sRGB"
+              >
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
+                />
+                <feGaussianBlur
+                  stdDeviation="0.9"
+                  result="effect1_foregroundBlur_274_1429"
+                />
+              </filter>
+            </defs>
+          </svg>
+        </div>
+        <div className="absolute top-[50%] left-[11%] z-[999999]">
+          <svg
+            width="58"
+            height="58"
+            viewBox="0 0 98 98"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="48.7963"
+              cy="48.7962"
+              r="39.8421"
+              transform="rotate(165 48.7963 48.7962)"
+              fill= {centerId === `how`
+                  ? "#DA59A6"
+                  : centerId === `who`
+                  ? "#8448F1"
+                  : "#408BEC"}
+              fillOpacity="0.25"
+            />
+            <g filter="url(#filter0_f_274_1429)">
+              <circle
+                cx="48.7966"
+                cy="48.7964"
+                r="26.5614"
+                transform="rotate(165 48.7966 48.7964)"
+                fill= {centerId === `how`
+                  ? "#DA59A6"
+                  : centerId === `who`
+                  ? "#8448F1"
+                  : "#408BEC"}
+                fillOpacity="0.76"
+              />
+            </g>
+            <g
+              style={{ mixBlendMode: "plus-lighter" }}
+              filter="url(#filter1_f_274_1429)"
+            >
+              <circle
+                cx="50.1515"
+                cy="49.579"
+                r="9.05877"
+                transform="rotate(165 50.1515 49.579)"
+                fill="white"
+                fillOpacity="0.76"
+              />
+            </g>
+            <defs>
+              <filter
+                id="filter0_f_274_1429"
+                x="19.2286"
+                y="19.2284"
+                width="59.136"
+                height="59.136"
+                filterUnits="userSpaceOnUse"
+                colorInterpolationFilters="sRGB"
+              >
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
+                />
+                <feGaussianBlur
+                  stdDeviation="1.5"
+                  result="effect1_foregroundBlur_274_1429"
+                />
+              </filter>
+              <filter
+                id="filter1_f_274_1429"
+                x="39.2906"
+                y="38.7179"
+                width="21.7219"
+                height="21.7221"
+                filterUnits="userSpaceOnUse"
+                colorInterpolationFilters="sRGB"
+              >
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
+                />
+                <feGaussianBlur
+                  stdDeviation="0.9"
+                  result="effect1_foregroundBlur_274_1429"
+                />
+              </filter>
+            </defs>
+          </svg>
+        </div>
+        <div className="absolute top-[5%] right-[27%] z-[999999]">
+          <svg
+            width="98"
+            height="98"
+            viewBox="0 0 98 98"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="48.7963"
+              cy="48.7962"
+              r="39.8421"
+              transform="rotate(165 48.7963 48.7962)"
+              fill= {centerId === `how`
+                  ? "#DA59A6"
+                  : centerId === `who`
+                  ? "#8448F1"
+                  : "#408BEC"}
+              fillOpacity="0.25"
+            />
+            <g filter="url(#filter0_f_274_1429)">
+              <circle
+                cx="48.7966"
+                cy="48.7964"
+                r="26.5614"
+                transform="rotate(165 48.7966 48.7964)"
+                fill= {centerId === `how`
+                  ? "#DA59A6"
+                  : centerId === `who`
+                  ? "#8448F1"
+                  : "#408BEC"}
+                fillOpacity="0.76"
+              />
+            </g>
+            <g
+              style={{ mixBlendMode: "plus-lighter" }}
+              filter="url(#filter1_f_274_1429)"
+            >
+              <circle
+                cx="50.1515"
+                cy="49.579"
+                r="9.05877"
+                transform="rotate(165 50.1515 49.579)"
+                fill="white"
+                fillOpacity="0.76"
+              />
+            </g>
+            <defs>
+              <filter
+                id="filter0_f_274_1429"
+                x="19.2286"
+                y="19.2284"
+                width="59.136"
+                height="59.136"
+                filterUnits="userSpaceOnUse"
+                colorInterpolationFilters="sRGB"
+              >
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
+                />
+                <feGaussianBlur
+                  stdDeviation="1.5"
+                  result="effect1_foregroundBlur_274_1429"
+                />
+              </filter>
+              <filter
+                id="filter1_f_274_1429"
+                x="39.2906"
+                y="38.7179"
+                width="21.7219"
+                height="21.7221"
+                filterUnits="userSpaceOnUse"
+                colorInterpolationFilters="sRGB"
+              >
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
+                />
+                <feGaussianBlur
+                  stdDeviation="0.9"
+                  result="effect1_foregroundBlur_274_1429"
+                />
+              </filter>
+            </defs>
+          </svg>
+        </div>
+        <div className="absolute top-[50%] right-[11%] z-[999999]">
+          <svg
+            width="58"
+            height="58"
+            viewBox="0 0 98 98"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="48.7963"
+              cy="48.7962"
+              r="39.8421"
+              transform="rotate(165 48.7963 48.7962)"
+              fill= {centerId === `how`
+                  ? "#DA59A6"
+                  : centerId === `who`
+                  ? "#8448F1"
+                  : "#408BEC"}
+              fillOpacity="0.25"
+            />
+            <g filter="url(#filter0_f_274_1429)">
+              <circle
+                cx="48.7966"
+                cy="48.7964"
+                r="26.5614"
+                transform="rotate(165 48.7966 48.7964)"
+                fill= {centerId === `how`
+                  ? "#DA59A6"
+                  : centerId === `who`
+                  ? "#8448F1"
+                  : "#408BEC"}
+                fillOpacity="0.76"
+              />
+            </g>
+            <g
+              style={{ mixBlendMode: "plus-lighter" }}
+              filter="url(#filter1_f_274_1429)"
+            >
+              <circle
+                cx="50.1515"
+                cy="49.579"
+                r="9.05877"
+                transform="rotate(165 50.1515 49.579)"
+                fill="white"
+                fillOpacity="0.76"
+              />
+            </g>
+            <defs>
+              <filter
+                id="filter0_f_274_1429"
+                x="19.2286"
+                y="19.2284"
+                width="59.136"
+                height="59.136"
+                filterUnits="userSpaceOnUse"
+                colorInterpolationFilters="sRGB"
+              >
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
+                />
+                <feGaussianBlur
+                  stdDeviation="1.5"
+                  result="effect1_foregroundBlur_274_1429"
+                />
+              </filter>
+              <filter
+                id="filter1_f_274_1429"
+                x="39.2906"
+                y="38.7179"
+                width="21.7219"
+                height="21.7221"
+                filterUnits="userSpaceOnUse"
+                colorInterpolationFilters="sRGB"
+              >
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
+                />
+                <feGaussianBlur
+                  stdDeviation="0.9"
+                  result="effect1_foregroundBlur_274_1429"
+                />
+              </filter>
+            </defs>
+          </svg>
+        </div>
+
+        {/* outSide Line */}
         <div className="absolute top-[0%] right-[10%] left-[10%]">
           <svg
             width="1216"
@@ -109,6 +483,8 @@ export default function GrowYourBusiness() {
             />
           </svg>
         </div>
+
+        {/* inSide Line */}
         <div className="absolute top-[18%] right-[17%] left-[17%]">
           <svg
             width="992"
