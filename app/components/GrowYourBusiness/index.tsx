@@ -33,9 +33,17 @@ export default function GrowYourBusiness() {
     who: "right-[20%] top-1/3",
     why: "left-[20%] top-1/3",
   });
+  const [positionsBubble, setPositionsBubble] = useState({
+    first: "top-[5%] left-[27%]",
+    second: "top-[50%] left-[11%]",
+    third: "top-[5%] right-[27%]",
+    forth: "top-[50%] right-[11%]",
+  });
 
   useEffect(() => {
+
     if (centerId === "how") {
+
       setPositions({
         how: "top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2",
         who: "right-[20%] top-1/3",
@@ -85,8 +93,9 @@ export default function GrowYourBusiness() {
         <p className="font-medium text-[40px] mt-2 text-gray-300">With Us</p>
       </div>
       <div className="h-screen relative">
-
-        <div className="absolute top-[5%] left-[27%] z-[999999]">
+        <motion.div
+          className={`absolute ${positionsBubble.first} z-[999999] transition-all duration-500`}
+        >
           <svg
             width="98"
             height="98"
@@ -99,11 +108,13 @@ export default function GrowYourBusiness() {
               cy="48.7962"
               r="39.8421"
               transform="rotate(165 48.7963 48.7962)"
-              fill= {centerId === `how`
+              fill={
+                centerId === `how`
                   ? "#DA59A6"
                   : centerId === `who`
                   ? "#8448F1"
-                  : "#408BEC"}
+                  : "#408BEC"
+              }
               fillOpacity="0.25"
             />
             <g filter="url(#filter0_f_274_1429)">
@@ -112,11 +123,13 @@ export default function GrowYourBusiness() {
                 cy="48.7964"
                 r="26.5614"
                 transform="rotate(165 48.7966 48.7964)"
-                fill= {centerId === `how`
-                  ? "#DA59A6"
-                  : centerId === `who`
-                  ? "#8448F1"
-                  : "#408BEC"}
+                fill={
+                  centerId === `how`
+                    ? "#DA59A6"
+                    : centerId === `who`
+                    ? "#8448F1"
+                    : "#408BEC"
+                }
                 fillOpacity="0.76"
               />
             </g>
@@ -178,8 +191,10 @@ export default function GrowYourBusiness() {
               </filter>
             </defs>
           </svg>
-        </div>
-        <div className="absolute top-[50%] left-[11%] z-[999999]">
+        </motion.div>
+        <motion.div
+          className={`absolute ${positionsBubble.second} z-[999999] transition-all duration-500`}
+        >
           <svg
             width="58"
             height="58"
@@ -192,11 +207,13 @@ export default function GrowYourBusiness() {
               cy="48.7962"
               r="39.8421"
               transform="rotate(165 48.7963 48.7962)"
-              fill= {centerId === `how`
+              fill={
+                centerId === `how`
                   ? "#DA59A6"
                   : centerId === `who`
                   ? "#8448F1"
-                  : "#408BEC"}
+                  : "#408BEC"
+              }
               fillOpacity="0.25"
             />
             <g filter="url(#filter0_f_274_1429)">
@@ -205,11 +222,13 @@ export default function GrowYourBusiness() {
                 cy="48.7964"
                 r="26.5614"
                 transform="rotate(165 48.7966 48.7964)"
-                fill= {centerId === `how`
-                  ? "#DA59A6"
-                  : centerId === `who`
-                  ? "#8448F1"
-                  : "#408BEC"}
+                fill={
+                  centerId === `how`
+                    ? "#DA59A6"
+                    : centerId === `who`
+                    ? "#8448F1"
+                    : "#408BEC"
+                }
                 fillOpacity="0.76"
               />
             </g>
@@ -271,8 +290,10 @@ export default function GrowYourBusiness() {
               </filter>
             </defs>
           </svg>
-        </div>
-        <div className="absolute top-[5%] right-[27%] z-[999999]">
+        </motion.div>
+        <motion.div
+          className={`absolute ${positionsBubble.third} z-[999999] transition-all duration-500`}
+        >
           <svg
             width="98"
             height="98"
@@ -285,11 +306,13 @@ export default function GrowYourBusiness() {
               cy="48.7962"
               r="39.8421"
               transform="rotate(165 48.7963 48.7962)"
-              fill= {centerId === `how`
+              fill={
+                centerId === `how`
                   ? "#DA59A6"
                   : centerId === `who`
                   ? "#8448F1"
-                  : "#408BEC"}
+                  : "#408BEC"
+              }
               fillOpacity="0.25"
             />
             <g filter="url(#filter0_f_274_1429)">
@@ -298,11 +321,13 @@ export default function GrowYourBusiness() {
                 cy="48.7964"
                 r="26.5614"
                 transform="rotate(165 48.7966 48.7964)"
-                fill= {centerId === `how`
-                  ? "#DA59A6"
-                  : centerId === `who`
-                  ? "#8448F1"
-                  : "#408BEC"}
+                fill={
+                  centerId === `how`
+                    ? "#DA59A6"
+                    : centerId === `who`
+                    ? "#8448F1"
+                    : "#408BEC"
+                }
                 fillOpacity="0.76"
               />
             </g>
@@ -364,8 +389,10 @@ export default function GrowYourBusiness() {
               </filter>
             </defs>
           </svg>
-        </div>
-        <div className="absolute top-[50%] right-[11%] z-[999999]">
+        </motion.div>
+        <motion.div
+          className={`absolute ${positionsBubble.forth} z-[999999] transition-all duration-500`}
+        >
           <svg
             width="58"
             height="58"
@@ -378,11 +405,13 @@ export default function GrowYourBusiness() {
               cy="48.7962"
               r="39.8421"
               transform="rotate(165 48.7963 48.7962)"
-              fill= {centerId === `how`
+              fill={
+                centerId === `how`
                   ? "#DA59A6"
                   : centerId === `who`
                   ? "#8448F1"
-                  : "#408BEC"}
+                  : "#408BEC"
+              }
               fillOpacity="0.25"
             />
             <g filter="url(#filter0_f_274_1429)">
@@ -391,11 +420,13 @@ export default function GrowYourBusiness() {
                 cy="48.7964"
                 r="26.5614"
                 transform="rotate(165 48.7966 48.7964)"
-                fill= {centerId === `how`
-                  ? "#DA59A6"
-                  : centerId === `who`
-                  ? "#8448F1"
-                  : "#408BEC"}
+                fill={
+                  centerId === `how`
+                    ? "#DA59A6"
+                    : centerId === `who`
+                    ? "#8448F1"
+                    : "#408BEC"
+                }
                 fillOpacity="0.76"
               />
             </g>
@@ -457,7 +488,7 @@ export default function GrowYourBusiness() {
               </filter>
             </defs>
           </svg>
-        </div>
+        </motion.div>
 
         {/* outSide Line */}
         <div className="absolute top-[0%] right-[10%] left-[10%]">
