@@ -9,17 +9,20 @@ const bubbles = [
   {
     id: "how",
     label: "How It Works?",
-    background: "from-[#8448F1] to-[#442C70]",
+    background: "from-[#DA59A6] to-[#822E60]",
+    bordercolor: "#DA59A6",
   },
   {
     id: "who",
     label: "Who is this for?",
-    background: "from-[#408BEC] to-[#002A78]",
+    background: "from-[#8448F1] to-[#442C70]",
+    bordercolor: "#8448F1",
   },
   {
     id: "why",
     label: "Why Choose Us?",
-    background: "from-[#DA59A6] to-[#822E60]",
+    background: "from-[#408BEC] to-[#002A78]",
+    bordercolor: "#408BEC",
   },
 ];
 
@@ -27,31 +30,31 @@ export default function GrowYourBusiness() {
   const [centerId, setCenterId] = useState("who");
   const [positions, setPositions] = useState({
     how: "top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2",
-    who: "right-[18%] top-1/3",
-    why: "left-[18%] top-1/3",
+    who: "right-[20%] top-1/3",
+    why: "left-[20%] top-1/3",
   });
 
   useEffect(() => {
     if (centerId === "how") {
       setPositions({
         how: "top-[20%]  left-1/2 -translate-x-1/2 -translate-y-1/2",
-        who: "right-[18%] top-1/3",
-        why: "left-[18%] top-1/3",
+        who: "right-[20%] top-1/3",
+        why: "left-[20%] top-1/3",
       });
     }
 
     if (centerId === "who") {
       setPositions({
-        how: "left-[18%] top-1/3",
+        how: "left-[20%] top-1/3",
         who: "top-[20%]  left-1/2 -translate-x-1/2 -translate-y-1/2",
-        why: "right-[18%] top-1/3",
+        why: "right-[20%] top-1/3",
       });
     }
 
     if (centerId === "why") {
       setPositions({
-        how: "right-[18%] top-1/3",
-        who: "left-[18%] top-1/3",
+        how: "right-[20%] top-1/3",
+        who: "left-[20%] top-1/3",
         why: "top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2",
       });
     }
@@ -77,7 +80,7 @@ export default function GrowYourBusiness() {
             <circle cx="608" cy="608" r="607.5" stroke="#B929FF" />
           </svg>
         </div>
-        <div className="absolute top-[18%] right-[18%] left-[18%]">
+        <div className="absolute top-[18%] right-[17%] left-[17%]">
           <svg
             width="992"
             height="968"
@@ -88,7 +91,7 @@ export default function GrowYourBusiness() {
             <path
               d="M496 1C769.404 1 991 217.269 991 484C991 750.731 769.404 967 496 967C222.596 967 1 750.731 1 484C1 217.269 222.596 1 496 1Z"
               stroke="url(#paint0_linear_274_1420)"
-              stroke-width="2"
+              strokeWidth="2"
             />
             <defs>
               <linearGradient
@@ -99,8 +102,8 @@ export default function GrowYourBusiness() {
                 y2="376.38"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop stop-color="#8A4EF6" stop-opacity="0.5" />
-                <stop offset="1" stop-color="#AF04FF" stop-opacity="0.2" />
+                <stop stopColor="#8A4EF6" stopOpacity="0.5" />
+                <stop offset="1" stopColor="#AF04FF" stopOpacity="0.2" />
               </linearGradient>
             </defs>
           </svg>
@@ -111,9 +114,14 @@ export default function GrowYourBusiness() {
           <motion.div
             key={bubble.id}
             onClick={() => setCenterId(bubble.id)}
+            style={{"borderColor":bubble.bordercolor}}
             className={`absolute cursor-pointer p-2 w-[150px] h-[150px] rounded-full flex items-center justify-center text-[25px] font-semibold transition-all duration-500 bg-gradient-to-b ${
               bubble.background
-            }  shadow-lg ${positions[bubble.id]}`}
+            }  shadow-lg ${positions[bubble.id]}  ${
+              centerId === bubble.id
+                ? styles.bubble_active
+                : styles.bubble_inactive
+            }`}
             whileHover={{ scale: 1.1 }}
             layout
           >
@@ -133,14 +141,19 @@ export default function GrowYourBusiness() {
           >
             {centerId === "who" && (
               <section className="relative w-full flex items-center justify-center overflow-hidden">
-                <div className="relative w-[646px] h-[680px] rounded-full overflow-hidden">
+                <div className="relative rounded-full overflow-hidden">
+                  {/* Background Image */}
                   <img
-                    src="http://localhost:3000/_next/image?url=%2Fassets%2FService%2Fweb_development.png&w=640&q=75"
+                    src="/assets/GrowYourBusiness/who.png"
                     alt="Visual Process"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full  object-cover"
                   />
-                  <div className="absolute inset-0 bg-pink-500/50 mix-blend-multiply" />
-                  <div className="absolute inset-0 flex flex-col justify-center px-4 text-white text-center">
+
+                  {/* Overlay */}
+                  {/* <div className="absolute inset-0 bg-[#8448F1]/31" /> */}
+
+                  {/* Centered Text */}
+                  <div className="absolute inset-0 flex flex-col justify-center items-center px-4 text-white text-center">
                     <h2 className="text-2xl md:text-4xl font-bold uppercase tracking-wide">
                       Step-by-step
                       <br />
@@ -154,15 +167,19 @@ export default function GrowYourBusiness() {
             )}
             {centerId === "how" && (
               <section className="relative w-full flex items-center justify-center overflow-hidden">
-                {/* Circular cropped background image with pink overlay */}
-                <div className="relative w-[646px] h-[680px] rounded-full overflow-hidden">
+                <div className="relative  rounded-full overflow-hidden">
+                  {/* Background Image */}
                   <img
-                    src="http://localhost:3000/_next/image?url=%2Fassets%2FService%2Fweb_development.png&w=640&q=75"
+                    src="/assets/GrowYourBusiness/how.png"
                     alt="Visual Process"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full  object-cover"
                   />
-                  <div className="absolute inset-0 bg-pink-500/50 mix-blend-multiply" />
-                  <div className="absolute inset-0 flex flex-col  justify-center px-4 text-white text-center">
+
+                  {/* Overlay */}
+                  {/* <div className="absolute inset-0 bg-[#DA59A6]/31" /> */}
+
+                  {/* Centered Text */}
+                  <div className="absolute inset-0 flex flex-col justify-center items-center px-4 text-white text-center">
                     <h2 className="text-2xl md:text-4xl font-bold uppercase tracking-wide">
                       Step-by-step
                       <br />
@@ -176,15 +193,19 @@ export default function GrowYourBusiness() {
             )}
             {centerId === "why" && (
               <section className="relative w-full flex items-center justify-center overflow-hidden">
-                {/* Circular cropped background image with pink overlay */}
-                <div className="relative w-[646px] h-[680px] rounded-full overflow-hidden">
+                <div className="relative overflow-hidden rounded-full">
+                  {/* Background Image */}
                   <img
-                    src="http://localhost:3000/_next/image?url=%2Fassets%2FService%2Fweb_development.png&w=640&q=75"
+                    src="/assets/GrowYourBusiness/why.png"
                     alt="Visual Process"
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-pink-500/50 mix-blend-multiply" />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-white text-center">
+
+                  {/* Overlay */}
+                  {/* <div className="absolute inset-0 bg-[#408BEC]/31" /> */}
+
+                  {/* Centered Text */}
+                  <div className="absolute inset-0 flex flex-col justify-center items-center px-4 text-white text-center">
                     <h2 className="text-2xl md:text-4xl font-bold uppercase tracking-wide">
                       Step-by-step
                       <br />

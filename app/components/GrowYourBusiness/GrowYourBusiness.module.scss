@@ -1,3 +1,14 @@
-.circle {
-  border-radius: 9999px;
+.bubble_active {
+  width: 215px;
+  height: 215px;
+  font-weight: 600;
+  font-size: 40px;
+  border-style: solid;
+  border-width:2px;
+}
+
+.bubble_inactive {
+  width: 125.64px;
+  height: 125.64px;
+  font-size: 23px;
 }
