@@ -37,7 +37,7 @@ export default function GrowYourBusiness() {
   useEffect(() => {
     if (centerId === "how") {
       setPositions({
-        how: "top-[20%]  left-1/2 -translate-x-1/2 -translate-y-1/2",
+        how: "top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2",
         who: "right-[20%] top-1/3",
         why: "left-[20%] top-1/3",
       });
@@ -84,7 +84,7 @@ export default function GrowYourBusiness() {
         <h2 className="font-medium text-[40px]"> Grow Your Business</h2>
         <p className="font-medium text-[40px] mt-2 text-gray-300">With Us</p>
       </div>
-      <div className="h-screen relative ">
+      <div className="h-screen relative">
 
         <div className="absolute top-[5%] left-[27%] z-[999999]">
           <svg
