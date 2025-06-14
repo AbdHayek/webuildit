@@ -79,42 +79,39 @@ export default function Navbar() {
                 </svg>
               </button>
 
-              {/* Mobile Menu */}
-              <Link
-                onClick={() => setIsOpen(false)}
+              {/*  Menu */}
+              <a
                 href="/"
+                onClick={() => setIsOpen(false)}
                 className="block py-2  hover:text-purple-300"
               >
                 Home
-              </Link>
-              <Link
-                onClick={() => setIsOpen(false)}
+              </a>
+              <a
                 href="/#service"
+                onClick={() => setIsOpen(false)}
                 className="block py-2  hover:text-purple-300"
               >
                 Services
-              </Link>
-              <Link
-                onClick={() => setIsOpen(false)}
+              </a>
+              <a
                 href="/about_us"
                 className="block py-2  hover:text-purple-300"
               >
                 About US
-              </Link>
-              <Link
-                onClick={() => setIsOpen(false)}
+              </a>
+              <a
                 href="/contact_us"
                 className="block py-2  hover:text-purple-300"
               >
                 Contact
-              </Link>
-              <Link
-                onClick={() => setIsOpen(false)}
+              </a>
+              <a
                 href="/blog"
                 className="block py-2  hover:text-purple-300"
               >
                 Blog
-              </Link>
+              </a>
             </div>
           )}
         </div>

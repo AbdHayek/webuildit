@@ -8,7 +8,7 @@ import Service from "./components/Service";
 import Testimonial from "./components/Testimonial";
 import WorldMap from "./components/WorldMap";
 
-export default function Home() {
+export default  function Home() {
   return (
     <div>
       <Hero content={<Video />} />

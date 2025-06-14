@@ -2,7 +2,7 @@ import Image from "next/image";
 import Hero from "../components/Common/Hero";
 import AboutBg from "../components/Hero/AboutBg";
 
-export default function AboutPage() {
+export default  function AboutPage() {
   return (
     <div>
       <Hero content={<AboutBg />} />
