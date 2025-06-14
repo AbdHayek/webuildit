@@ -8,8 +8,9 @@ export default function AboutPage() {
       <Hero content={<AboutBg />} />
 
       {/* Content Section */}
-      <div className="pb-[10%] px-[10%] pt-[5%] relative border-t-1 border-gray-400">
+      <div className="pb-[10%] px-[10%] pt-[5%] relative border-t border-gray-700">
 
+        {/* Right-side Gradient Background */}
         <div
           className="absolute right-0 top-[15%] h-[70%] w-[6%] 
             bg-gradient-to-b from-[#7300FF]/100 via-[#FF0084]/40 to-transparent 

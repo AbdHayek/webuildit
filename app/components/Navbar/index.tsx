@@ -103,14 +103,14 @@ export default function Navbar() {
               </Link>
               <Link
                 onClick={() => setIsOpen(false)}
-                href="/contact"
+                href="/contact_us"
                 className="block py-2  hover:text-purple-300"
               >
                 Contact
               </Link>
               <Link
                 onClick={() => setIsOpen(false)}
-                href="/contact"
+                href="/blog"
                 className="block py-2  hover:text-purple-300"
               >
                 Blog
