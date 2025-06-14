@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Hero from "../components/Common/Hero";
 import AboutBg from "../components/Hero/AboutBg";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Us | Your Brand Name",
+  description: "Learn about our mission, team, and how we help clients launch successful projects within budget using agile development practices.",
+};
 
 export default  function AboutPage() {
   return (

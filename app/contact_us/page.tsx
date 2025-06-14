@@ -1,6 +1,12 @@
 import Hero from "../components/Common/Hero";
 import ContactBg from "../components/Hero/ContactBg";
 import Form from "./Form";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact Us | Your Brand Name",
+  description: "Get in touch with our team to discuss your project, join our team, or for general inquiries.",
+};
 
 export default  function ContactPage() {
 
@@ -9,7 +15,7 @@ export default  function ContactPage() {
       <Hero content={<ContactBg />} />
 
       {/* Content Section */}
-      <section className="text-white px-[10%] py-[10%] border-t border-gray-700 relative">
+      <section className="text-white px-[10%] py-[10%] relative">
 
         {/* Right-side Gradient Background */}
         <div
