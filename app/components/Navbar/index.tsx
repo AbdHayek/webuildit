@@ -1,13 +1,13 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="shadow-md absolute w-full z-50">
+    <nav className="absolute w-full z-50">
       <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex  justify-between items-center h-16">
           {/* Logo */}
@@ -56,7 +56,7 @@ export default function Navbar() {
           </div>
 
           {isOpen && (
-            <div className="fixed  inset-0 z-[9999999] w-full h-screen bg-[#070322] bg-[url('/assets/Navbar/background-menu.png')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center text-white text-[33px]">
+            <div className="fixed  inset-0 z-[9999999] font-medium leading-normal w-full h-screen bg-[#070322]  bg-[url('/assets/Navbar/background-menu.png')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center text-white text-[33px] uppercase">
               {/* Close Button inside overlay */}
               <button
                 aria-label={isOpen ? "Close menu" : "Open menu"}
@@ -81,28 +81,39 @@ export default function Navbar() {
 
               {/* Mobile Menu */}
               <Link
+                onClick={() => setIsOpen(false)}
                 href="/"
-                className="block py-2 text-white hover:text-purple-300"
+                className="block py-2  hover:text-purple-300"
               >
                 Home
               </Link>
               <Link
-                href="/about"
-                className="block py-2 text-white hover:text-purple-300"
-              >
-                About
-              </Link>
-              <Link
-                href="/services"
-                className="block py-2 text-white hover:text-purple-300"
+                onClick={() => setIsOpen(false)}
+                href="/#service"
+                className="block py-2  hover:text-purple-300"
               >
                 Services
               </Link>
               <Link
+                onClick={() => setIsOpen(false)}
+                href="/about_us"
+                className="block py-2  hover:text-purple-300"
+              >
+                About US
+              </Link>
+              <Link
+                onClick={() => setIsOpen(false)}
                 href="/contact"
-                className="block py-2 text-white hover:text-purple-300"
+                className="block py-2  hover:text-purple-300"
               >
                 Contact
+              </Link>
+              <Link
+                onClick={() => setIsOpen(false)}
+                href="/contact"
+                className="block py-2  hover:text-purple-300"
+              >
+                Blog
               </Link>
             </div>
           )}

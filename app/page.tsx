@@ -1,3 +1,5 @@
+import Hero from "./components/Common/Hero";
+import Video from "./components/Hero/Video";
 import Consultion from "./components/Consultion";
 import GrowYourBusiness from "./components/GrowYourBusiness";
 import HowWeWork from "./components/HowWeWork";
@@ -9,9 +11,10 @@ import WorldMap from "./components/WorldMap";
 export default function Home() {
   return (
     <div>
+      <Hero content={<Video />} />
       <HowWeWork />
       <GrowYourBusiness />
-      <Service  />
+      <Service />
       <Testimonial />
       <Partner />
       <WorldMap />
