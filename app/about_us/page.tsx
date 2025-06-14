@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Hero from "../components/Common/Hero";
-import AboutBg from "../components/Hero/AboutBg";
 import { Metadata } from "next";
+import Background from "../components/Hero/Background";
 
 export const metadata: Metadata = {
   title: "About Us | Your Brand Name",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default  function AboutPage() {
   return (
     <div>
-      <Hero content={<AboutBg />} />
+      <Hero content={<Background title="About Us" img="/assets/AboutUs/cover.jpg" />} />
 
       {/* Content Section */}
       <div className="pb-[10%] px-[10%] pt-[5%] relative border-t border-gray-700">

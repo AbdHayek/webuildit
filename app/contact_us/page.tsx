@@ -1,5 +1,5 @@
 import Hero from "../components/Common/Hero";
-import ContactBg from "../components/Hero/ContactBg";
+import Background from "../components/Hero/Background";
 import Form from "./Form";
 import { Metadata } from "next";
 
@@ -12,7 +12,7 @@ export default  function ContactPage() {
 
   return (
     <div>
-      <Hero content={<ContactBg />} />
+      <Hero content={<Background title="Contact Us" img="/assets/ContactUs/cover.jpg" />} />
 
       {/* Content Section */}
       <section className="text-white px-[10%] py-[10%] relative">
