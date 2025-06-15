@@ -587,7 +587,7 @@ export default function GrowYourBusiness() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.7 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-[40%] z-[99] bottom-0 left-1/2 transform -translate-x-1/2 text-center"
+            className="absolute top-[30%] z-[99] bottom-0 left-1/2 transform -translate-x-1/2 text-center"
           >
             {centerId === "who" && (
               <section className="relative w-full flex items-center justify-center overflow-hidden">
