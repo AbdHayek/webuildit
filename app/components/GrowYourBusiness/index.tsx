@@ -28,14 +28,14 @@ const bubbles = [
 export default function GrowYourBusiness() {
 
   const [positionsBubble, setPositionsBubble] = useState({
-    first: "top-[5%] left-[27%]",
-    second: "top-[50%] left-[11%]",
-    third: "top-[5%] right-[27%]",
-    forth: "top-[50%] right-[11%]",
+    first: "top-[0%] left-[27%]",
+    second: "top-[50%] left-[10%]",
+    third: "top-[0%] right-[27%]",
+    forth: "top-[50%] right-[10%]",
   });
 
   const CONTAINER_WIDTH = 1100;
-  const CONTAINER_HEIGHT = 1200;
+  const CONTAINER_HEIGHT = 1300;
   const RADIUS = 400;
   const CENTER = { x: CONTAINER_WIDTH / 2, y: CONTAINER_HEIGHT / 2 };
 
@@ -67,7 +67,7 @@ export default function GrowYourBusiness() {
 
 
   return (
-    <div className="mt-[15%]  min-h-[1500px] relative">
+    <div className="mt-[10%]  min-h-[1500px] relative">
       {/* Right-side Gradient Background */}
       <div
         className="absolute right-0 top-[5%] h-[40%] w-[6%] 
@@ -492,7 +492,7 @@ export default function GrowYourBusiness() {
         {/* end small bubbles */}
 
         {/* outSide Line */}
-        <div className="absolute top-[0%] right-[10%] left-[10%]">
+        <div className="absolute top-[-5%] right-[10%] left-[10%]">
           <svg
             width="100%"
             height="100%"
@@ -565,7 +565,7 @@ export default function GrowYourBusiness() {
                 borderColor: bubble.bordercolor,
                 position: "absolute"
               }}
-              className={`cursor-pointer p-2 w-[150px] h-[150px]  rounded-full flex items-center justify-center text-[25px] font-semibold transform -translate-x-1/2 -translate-y-1/2 duration-800 bg-gradient-to-b ${bubble.background
+              className={`cursor-pointer rounded-full flex items-center justify-center  transform -translate-x-1/2 -translate-y-3/4 duration-1000 bg-gradient-to-b ${bubble.background
                 }  shadow-lg ${centerId === bubble.id
                   ? styles.bubble_active
                   : styles.bubble_inactive
