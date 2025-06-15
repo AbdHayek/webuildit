@@ -61,7 +61,7 @@ export default function GrowYourBusiness() {
 
     return {
       left: `${leftPercent}%`,
-      top: `${topPercent}%`
+      top: `${topPercent}%`,
     };
   };
 
@@ -91,6 +91,7 @@ export default function GrowYourBusiness() {
         <p className="font-medium text-[40px] mt-2 text-gray-300">With Us</p>
       </div>
       <div className="h-screen relative">
+        
         {/* Animate small bubbles */}
         <motion.div
           className={`absolute ${positionsBubble.first} z-[999999] transition-all duration-500`}
@@ -564,7 +565,7 @@ export default function GrowYourBusiness() {
                 borderColor: bubble.bordercolor,
                 position: "absolute"
               }}
-              className={`cursor-pointer p-2 w-[150px] h-[150px]  rounded-full flex items-center justify-center text-[25px] font-semibold transform -translate-x-1/2 -translate-y-1/2 duration-500 bg-gradient-to-b ${bubble.background
+              className={`cursor-pointer p-2 w-[150px] h-[150px]  rounded-full flex items-center justify-center text-[25px] font-semibold transform -translate-x-1/2 -translate-y-1/2 duration-800 bg-gradient-to-b ${bubble.background
                 }  shadow-lg ${centerId === bubble.id
                   ? styles.bubble_active
                   : styles.bubble_inactive
