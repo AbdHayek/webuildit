@@ -1,4 +1,3 @@
-// components/GrowYourBusiness.tsx
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
@@ -27,12 +26,7 @@ const bubbles = [
 ];
 
 export default function GrowYourBusiness() {
-  const [centerId, setCenterId] = useState("who");
-  const [positions, setPositions] = useState({
-    how: "top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2",
-    who: "right-[20%] top-1/3",
-    why: "left-[20%] top-1/3",
-  });
+
   const [positionsBubble, setPositionsBubble] = useState({
     first: "top-[5%] left-[27%]",
     second: "top-[50%] left-[11%]",
@@ -40,31 +34,37 @@ export default function GrowYourBusiness() {
     forth: "top-[50%] right-[11%]",
   });
 
-  useEffect(() => {
-    if (centerId === "how") {
-      setPositions({
-        how: "top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2",
-        who: "right-[20%] top-1/3",
-        why: "left-[20%] top-1/3",
-      });
-    }
+  const CONTAINER_WIDTH = 1100;
+  const CONTAINER_HEIGHT = 1200;
+  const RADIUS = 400;
+  const CENTER = { x: CONTAINER_WIDTH / 2, y: CONTAINER_HEIGHT / 2 };
 
-    if (centerId === "who") {
-      setPositions({
-        how: "left-[20%] top-1/3",
-        who: "top-[20%]  left-1/2 -translate-x-1/2 -translate-y-1/2",
-        why: "right-[20%] top-1/3",
-      });
-    }
+  const ids = ["how", "who", "why"];
+  const [centerId, setCenterId] = useState("who");
 
-    if (centerId === "why") {
-      setPositions({
-        how: "right-[20%] top-1/3",
-        who: "left-[20%] top-1/3",
-        why: "top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2",
-      });
-    }
-  }, [centerId]);
+  const getAngle = (id: string) => {
+    const centerIndex = ids.indexOf(centerId);
+    const currentIndex = ids.indexOf(id);
+    const angleStep = (2 * Math.PI) / ids.length;
+    const relativeIndex = (currentIndex - centerIndex + ids.length) % ids.length;
+    return -Math.PI / 2 + relativeIndex * angleStep;
+  };
+
+  const calculatePosition = (id: string) => {
+    const angle = getAngle(id);
+    const x = CENTER.x + RADIUS * Math.cos(angle);
+    const y = CENTER.y + RADIUS * Math.sin(angle);
+
+    // Convert to percentage
+    const leftPercent = (x / CONTAINER_WIDTH) * 100;
+    const topPercent = (y / CONTAINER_HEIGHT) * 100;
+
+    return {
+      left: `${leftPercent}%`,
+      top: `${topPercent}%`
+    };
+  };
+
 
   return (
     <div className="mt-[15%]  min-h-[1500px] relative">
@@ -111,8 +111,8 @@ export default function GrowYourBusiness() {
                 centerId === `how`
                   ? "#DA59A6"
                   : centerId === `who`
-                  ? "#8448F1"
-                  : "#408BEC"
+                    ? "#8448F1"
+                    : "#408BEC"
               }
               fillOpacity="0.25"
             />
@@ -126,8 +126,8 @@ export default function GrowYourBusiness() {
                   centerId === `how`
                     ? "#DA59A6"
                     : centerId === `who`
-                    ? "#8448F1"
-                    : "#408BEC"
+                      ? "#8448F1"
+                      : "#408BEC"
                 }
                 fillOpacity="0.76"
               />
@@ -210,8 +210,8 @@ export default function GrowYourBusiness() {
                 centerId === `how`
                   ? "#DA59A6"
                   : centerId === `who`
-                  ? "#8448F1"
-                  : "#408BEC"
+                    ? "#8448F1"
+                    : "#408BEC"
               }
               fillOpacity="0.25"
             />
@@ -225,8 +225,8 @@ export default function GrowYourBusiness() {
                   centerId === `how`
                     ? "#DA59A6"
                     : centerId === `who`
-                    ? "#8448F1"
-                    : "#408BEC"
+                      ? "#8448F1"
+                      : "#408BEC"
                 }
                 fillOpacity="0.76"
               />
@@ -309,8 +309,8 @@ export default function GrowYourBusiness() {
                 centerId === `how`
                   ? "#DA59A6"
                   : centerId === `who`
-                  ? "#8448F1"
-                  : "#408BEC"
+                    ? "#8448F1"
+                    : "#408BEC"
               }
               fillOpacity="0.25"
             />
@@ -324,8 +324,8 @@ export default function GrowYourBusiness() {
                   centerId === `how`
                     ? "#DA59A6"
                     : centerId === `who`
-                    ? "#8448F1"
-                    : "#408BEC"
+                      ? "#8448F1"
+                      : "#408BEC"
                 }
                 fillOpacity="0.76"
               />
@@ -408,8 +408,8 @@ export default function GrowYourBusiness() {
                 centerId === `how`
                   ? "#DA59A6"
                   : centerId === `who`
-                  ? "#8448F1"
-                  : "#408BEC"
+                    ? "#8448F1"
+                    : "#408BEC"
               }
               fillOpacity="0.25"
             />
@@ -423,8 +423,8 @@ export default function GrowYourBusiness() {
                   centerId === `how`
                     ? "#DA59A6"
                     : centerId === `who`
-                    ? "#8448F1"
-                    : "#408BEC"
+                      ? "#8448F1"
+                      : "#408BEC"
                 }
                 fillOpacity="0.76"
               />
@@ -508,8 +508,8 @@ export default function GrowYourBusiness() {
                 centerId === `how`
                   ? "#DA59A6"
                   : centerId === `who`
-                  ? "#8448F1"
-                  : "#408BEC"
+                    ? "#8448F1"
+                    : "#408BEC"
               }
             />
           </svg>
@@ -531,8 +531,8 @@ export default function GrowYourBusiness() {
                 centerId === `how`
                   ? "#DA59A6"
                   : centerId === `who`
-                  ? "#8448F1"
-                  : "#408BEC"
+                    ? "#8448F1"
+                    : "#408BEC"
               }
               strokeWidth="2"
             />
@@ -553,24 +553,30 @@ export default function GrowYourBusiness() {
         </div>
 
         {/* Animate bubbles */}
-        {bubbles.map((bubble) => (
-          <motion.div
-            key={bubble.id}
-            onClick={() => setCenterId(bubble.id)}
-            style={{ borderColor: bubble.bordercolor }}
-            className={`absolute cursor-pointer p-2 w-[150px] h-[150px] rounded-full flex items-center justify-center text-[25px] font-semibold transition-all duration-500 bg-gradient-to-b ${
-              bubble.background
-            }  shadow-lg ${positions[bubble.id]}  ${
-              centerId === bubble.id
-                ? styles.bubble_active
-                : styles.bubble_inactive
-            }`}
-            whileHover={{ scale: 1.1 }}
-            layout
-          >
-            <span className="px-2 text-center">{bubble.label}</span>
-          </motion.div>
-        ))}
+        {bubbles.map((bubble) => {
+          const pos = calculatePosition(bubble.id);
+          return (
+            <motion.div
+              key={bubble.id}
+              onClick={() => setCenterId(bubble.id)}
+              style={{
+                ...pos,
+                borderColor: bubble.bordercolor,
+                position: "absolute"
+              }}
+              className={`cursor-pointer p-2 w-[150px] h-[150px]  rounded-full flex items-center justify-center text-[25px] font-semibold transform -translate-x-1/2 -translate-y-1/2 duration-500 bg-gradient-to-b ${bubble.background
+                }  shadow-lg ${centerId === bubble.id
+                  ? styles.bubble_active
+                  : styles.bubble_inactive
+                }`}
+              whileHover={{ scale: 1.1 }}
+              layout
+            >
+              <span className="px-2 text-center">{bubble.label}</span>
+            </motion.div>
+          );
+        })}
+
 
         {/* Center Content */}
         <AnimatePresence mode="wait">
@@ -580,7 +586,7 @@ export default function GrowYourBusiness() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.7 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-[40%] bottom-0 left-1/2 transform -translate-x-1/2 text-center"
+            className="absolute top-[40%] z-[99] bottom-0 left-1/2 transform -translate-x-1/2 text-center"
           >
             {centerId === "who" && (
               <section className="relative w-full flex items-center justify-center overflow-hidden">
