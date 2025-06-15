@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./GrowYourBusiness.module.scss";
 
 const bubbles = [
