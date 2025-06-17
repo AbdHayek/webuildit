@@ -111,7 +111,7 @@ export default function Form() {
                 <div>
                     <label className="block text-sm mb-1">Message</label>
                     <textarea
-                        rows="4"
+                        rows={4}
                         name="message"
                         placeholder="Write your message.."
                         value={formData.message}
