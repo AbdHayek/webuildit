@@ -5,7 +5,7 @@ export default function SmallBubbles({ positionsBubble, centerId }: { positionsB
     return (
         <>
             <motion.div
-                className={`absolute ${positionsBubble.first} z-[999999] transition-all duration-500`}
+                className={`absolute ${positionsBubble.first} z-[10] transition-all duration-500`}
             >
                 <svg
                     width="98"
@@ -104,7 +104,7 @@ export default function SmallBubbles({ positionsBubble, centerId }: { positionsB
                 </svg>
             </motion.div>
             <motion.div
-                className={`absolute ${positionsBubble.second} z-[999999] transition-all duration-500`}
+                className={`absolute ${positionsBubble.second} z-[10] transition-all duration-500`}
             >
                 <svg
                     width="58"
@@ -203,7 +203,7 @@ export default function SmallBubbles({ positionsBubble, centerId }: { positionsB
                 </svg>
             </motion.div>
             <motion.div
-                className={`absolute ${positionsBubble.third} z-[999999] transition-all duration-500`}
+                className={`absolute ${positionsBubble.third} z-[10] transition-all duration-500`}
             >
                 <svg
                     width="98"
@@ -302,7 +302,7 @@ export default function SmallBubbles({ positionsBubble, centerId }: { positionsB
                 </svg>
             </motion.div>
             <motion.div
-                className={`absolute ${positionsBubble.forth} z-[999999] transition-all duration-500`}
+                className={`absolute ${positionsBubble.forth} z-[10] transition-all duration-500`}
             >
                 <svg
                     width="58"

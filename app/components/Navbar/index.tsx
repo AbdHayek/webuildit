@@ -13,7 +13,7 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/">
-              <Image
+              <img
                 src="/assets/Navbar/logo.png"
                 alt="Site Logo"
                 width={200}
@@ -55,65 +55,76 @@ export default function Navbar() {
             </button>
           </div>
 
-          {isOpen && (
-            <div className="fixed  inset-0 z-[9999999] font-medium leading-normal w-full h-screen bg-[#070322]  bg-[url('/assets/Navbar/background-menu.png')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center text-white text-[33px] uppercase">
-              {/* Close Button inside overlay */}
-              <button
-                aria-label={isOpen ? "Close menu" : "Open menu"}
-                onClick={() => setIsOpen(false)}
-                className="absolute top-[4%] right-[14%] z-[70] p-2 rounded-full border border-white cursor-pointer"
-              >
-                <svg
-                  className="w-6 h-6 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
+          {/* Animated Overlay Menu */}
+          <div
+            className={`
+                  fixed inset-0 z-[9999999] 
+                  transition-opacity transition-transform duration-500 ease-in-out
+                  origin-top-right transform
+                  ${isOpen ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-0 pointer-events-none"}
+                  font-medium leading-normal w-full h-screen
+                  bg-[#070322] bg-[url('/assets/Navbar/background-menu.png')] bg-cover bg-center bg-no-repeat
+                  flex flex-col items-center justify-center text-white text-[33px] uppercase
+                `}>
 
-              {/*  Menu */}
-              <a
-                href="/"
-                onClick={() => setIsOpen(false)}
-                className="block py-2  hover:text-purple-300"
+
+            {/* Close Button inside overlay */}
+            <button
+              aria-label="Close menu"
+              onClick={() => setIsOpen(false)}
+              className="absolute top-[4%] right-[10%] z-[70] p-2 rounded-full border border-white cursor-pointer"
+            >
+              <svg
+                className="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                Home
-              </a>
-              <a
-                href="/#service"
-                onClick={() => setIsOpen(false)}
-                className="block py-2  hover:text-purple-300"
-              >
-                Services
-              </a>
-              <a
-                href="/about_us"
-                className="block py-2  hover:text-purple-300"
-              >
-                About US
-              </a>
-              <a
-                href="/contact_us"
-                className="block py-2  hover:text-purple-300"
-              >
-                Contact
-              </a>
-              <a
-                href="/blog"
-                className="block py-2  hover:text-purple-300"
-              >
-                Blog
-              </a>
-            </div>
-          )}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+
+            {/* Menu Items */}
+            <a
+              href="/"
+              onClick={() => setIsOpen(false)}
+              className="block py-2 hover:text-purple-300"
+            >
+              Home
+            </a>
+            <a
+              href="/#service"
+              onClick={() => setIsOpen(false)}
+              className="block py-2 hover:text-purple-300"
+            >
+              Services
+            </a>
+            <a
+              href="/about_us"
+              className="block py-2 hover:text-purple-300"
+            >
+              About US
+            </a>
+            <a
+              href="/contact_us"
+              className="block py-2 hover:text-purple-300"
+            >
+              Contact
+            </a>
+            <a
+              href="/blog"
+              className="block py-2 hover:text-purple-300"
+            >
+              Blog
+            </a>
+          </div>
+
         </div>
       </div>
     </nav>
