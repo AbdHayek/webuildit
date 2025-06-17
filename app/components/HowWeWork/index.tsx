@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import BorderCard from "../Common/BorderCard";
 
 const steps = [
@@ -36,6 +39,28 @@ const steps = [
 ];
 
 export default function HowWeWork() {
+
+
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setIsVisible(true);
+      },
+      {
+        threshold: 0.3,
+      }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+
+    return () => {
+      if (ref.current) observer.unobserve(ref.current);
+    };
+  }, []);
+
   return (
     <section className="text-white px-6 py-20 relative bg-gradient-to-b from-[#050114] to-transparent">
       {/* Right-side Gradient Background */}
@@ -52,24 +77,28 @@ export default function HowWeWork() {
             filter blur-3xl"
       ></div>
 
-      <div className="max-w-7xl mx-auto">
+      <div
+        className={`max-w-7xl mx-auto`}>
         {" "}
         {/* CONTAINER ADDED */}
         <h2 className="text-center text-[40px] font-medium mb-16">
           HOW DO WE WORK
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-y-20 relative">
+        <div ref={ref}
+          className={`transition-opacity duration-2000 ease-in-out transform 
+          ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"} 
+          grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-y-20 relative`}>
+
           {steps.map((step, index) => (
             <div
               key={index}
-              className={`${
-                (index === 1 || index === 4) && "md:top-[50%]"
-              } flex flex-col items-center text-center px-4 sm:px-6 relative`}
+              className={`${(index === 1 || index === 4) && "md:top-[50%]"
+                } flex flex-col items-center text-center px-4 sm:px-6 relative`}
             >
               <div className="relative w-[75%] z-[10]  max-w-[90%] sm:max-w-[320px] lg:max-w-[360px]">
-                
+
                 {/* Corner Borders */}
-               <BorderCard />
+                <BorderCard />
 
                 {/* Step Box */}
                 <div className="flex gap-4 sm:gap-2 bg-[#180F37] border border-[#180F37] text-left p-[10%] rounded-2xl w-full">
