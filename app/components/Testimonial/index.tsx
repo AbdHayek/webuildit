@@ -6,6 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./Testimonial.scss";
 import BorderCard from "../Common/BorderCard";
+import { useRef } from "react";
 
 const testimonials = [
   {
@@ -47,6 +48,8 @@ const testimonials = [
 ];
 
 export default function Testimonial() {
+  const swiperRef = useRef<any>(null);
+
   return (
     <section className="text-white py-16">
       <div className="text-center mb-12">
@@ -56,9 +59,18 @@ export default function Testimonial() {
 
       <div className="mx-auto relative ">
 
+        <div
+          className="absolute left-0 top-0 h-full w-[20%] z-10 cursor-pointer"
+          onClick={() => swiperRef.current?.slidePrev()}
+        />
+        <div
+          className="absolute right-0 top-0 h-full  w-[20%] z-10 cursor-pointer"
+          onClick={() => swiperRef.current?.slideNext()}
+        />
         <div className="absolute left-0 top-0 h-full w-[5%] bg-gradient-to-r from-[#070322]  via-[#070322]/500 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 h-full w-[5%] bg-gradient-to-l from-[#070322] via-[#070322]/500 to-transparent z-10 pointer-events-none" />
         <Swiper
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
           modules={[Pagination]}
           pagination={{ clickable: true }}
           spaceBetween={10}

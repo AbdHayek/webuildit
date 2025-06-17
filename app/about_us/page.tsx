@@ -30,9 +30,9 @@ export default  function AboutPage() {
             filter blur-3xl"
         ></div>
 
-        <div className="flex flex-col md:flex-row items-center md:justify-between">
+        <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-3/4 p-20">
-            <p className="text-lg leading-loose text-left">
+            <p className="text-lg leading-loose text-justify">
               We help our clients launch their projects within their budgets by breaking down complex development processes into achievable milestones. This method not only reduces costs but ensures visible progress at every stage.
             </p>
           </div>
@@ -42,12 +42,12 @@ export default  function AboutPage() {
         </div>
 
 
-        <div className="flex flex-col md:flex-row items-center md:justify-between">
-          <div className=" md:w-1/4">
+        <div className="flex flex-col md:flex-row items-center">
+          <div className="md:w-1/4">
             <Image src="/assets/AboutUs/shape-2.png" alt="Shape-2" width={208} height={178} />
           </div>
           <div className="md:w-3/4 p-20">
-            <p className="text-lg leading-loose text-right">
+            <p className="text-lg leading-loose text-justify">
               Our team is composed of seasoned professionals who thrive in a remote-first environment. We believe that creativity and productivity flourish with flexible working hours and freedom from location constraints. Specializing in mobile apps, websites, backend development, UI/UX design, and project planning, we offer end-to-end solutions to meet your unique needs.
             </p>
           </div>
