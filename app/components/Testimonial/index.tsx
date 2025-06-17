@@ -54,7 +54,10 @@ export default function Testimonial() {
         <p className="font-medium text-[40px] mt-2 text-gray-300">CUSTOMERS</p>
       </div>
 
-      <div className="mx-auto px-[5%]">
+      <div className="mx-auto relative ">
+
+        <div className="absolute left-0 top-0 h-full w-[5%] bg-gradient-to-r from-[#070322]  via-[#070322]/500 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 h-full w-[5%] bg-gradient-to-l from-[#070322] via-[#070322]/500 to-transparent z-10 pointer-events-none" />
         <Swiper
           modules={[Pagination]}
           pagination={{ clickable: true }}
@@ -68,7 +71,7 @@ export default function Testimonial() {
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 2 },
           }}
-         
+
         >
           {testimonials.map((item, idx) => (
             <SwiperSlide key={idx}>
