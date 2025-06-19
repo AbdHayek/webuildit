@@ -44,7 +44,7 @@ export default function BlogTable() {
         {
             header: 'Content',
             accessorKey: 'content',
-            cell: info => info.getValue().toString().slice(0, 100) + '...',
+            cell: info => (info.getValue() as string).toString().slice(0, 100) + '...',
         },
         {
             header: 'Image',

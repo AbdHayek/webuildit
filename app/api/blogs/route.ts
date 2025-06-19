@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 export async function GET() {
     try {
-        const blogs = await prisma.blog.findMany({
+        const blogs = await prisma.blogs.findMany({
             include: {
                 user: {
                     select: {
