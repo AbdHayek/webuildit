@@ -26,7 +26,7 @@ model Blogs {
   id        Int      @id @default(autoincrement())
   title     String
   sub_title String?
-  content   String
+  content   String  @db.Text
   img       String?
 
   user   Users @relation(fields: [userId], references: [id])
