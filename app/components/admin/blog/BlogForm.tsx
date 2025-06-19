@@ -11,18 +11,29 @@ import CodeBlock from '@tiptap/extension-code-block'
 import Image from '@tiptap/extension-image'
 import { useEditor } from '@tiptap/react';
 import EditorComponent from './EditorComponent';
+import { Dispatch, SetStateAction } from 'react';
+import '../../../admin/dashboard/blog/create/Blog.scss';
 
-type BlogFormProps = {
-  initialData?: {
-    id: number;
-    title: string;
-    sub_title: string;
-    content: string;
-    img: string;
-  };
+type Blog = {
+  id: number;
+  title: string;
+  sub_title: string;
+  content: string;
+  img: string;
 };
 
-export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: { initialData: BlogFormProps, setEditData: any, setBlogs: any, blogs: any }) {
+type BlogFormProps = {
+  initialData?: Blog;
+};
+
+interface BlogFormComponentProps {
+  initialData: BlogFormProps | null;
+  setEditData: Dispatch<SetStateAction<BlogFormProps | null>>;
+  setBlogs: Dispatch<SetStateAction<Blog[]>>;
+  blogs: Blog[];
+}
+
+export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: BlogFormComponentProps)  {
   const [title, setTitle] = useState('');
   const [subTitle, setSubTitle] = useState('');
   const [content, setContent] = useState('');
@@ -32,7 +43,7 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: 
   const [file, setFile] = useState(null)
   const [preview, setPreview] = useState<string | ArrayBuffer | null>(null)
   const route = useRouter();
-
+  
   const handleBackToDashboard = () => {
     if (setEditData) setEditData(null)
     else
@@ -201,12 +212,12 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: 
           {loading ? 'Saving...' : initialData ? 'Update' : 'Create'}
         </button>
 
-        <button
-          onClick={() => handleBackToDashboard()}
+        <p
+          onClick={handleBackToDashboard}
           className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 cursor-pointer disabled:opacity-50"
         >
           Back
-        </button>
+        </p>
       </div>
 
     </form>

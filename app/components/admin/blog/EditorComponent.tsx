@@ -12,6 +12,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
     <div className="menu-bar">
       {/* Existing buttons */}
       <button
+        type="button"  
         onClick={() => editor.chain().focus().toggleBold().run()}
         className={editor.isActive('bold') ? 'font-bold text-blue-600' : ''}
       >
@@ -19,6 +20,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
       </button>
 
       <button
+        type="button"  
         onClick={() => editor.chain().focus().toggleItalic().run()}
         className={editor.isActive('italic') ? 'italic text-blue-600' : ''}
       >
@@ -26,6 +28,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
       </button>
 
       <button
+        type="button"  
         onClick={() => editor.chain().focus().toggleHighlight().run()}
         className={editor.isActive('highlight') ? 'bg-yellow-300' : ''}
       >
@@ -34,6 +37,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
 
       {/* New: Underline */}
       <button
+        type="button"  
         onClick={() => editor.chain().focus().toggleUnderline().run()}
         className={editor.isActive('underline') ? 'underline text-blue-600' : ''}
       >
@@ -42,6 +46,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
 
       {/* New: Link */}
       <button
+        type="button"  
         onClick={() => {
           const previousUrl = editor.getAttributes('link').href
           const url = window.prompt('Enter the URL', previousUrl || '')
@@ -59,6 +64,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
 
       {/* New: Code Block */}
       <button
+        type="button"  
         onClick={() => editor.chain().focus().toggleCodeBlock().run()}
         className={editor.isActive('codeBlock') ? 'bg-gray-800 text-white' : ''}
       >
@@ -67,6 +73,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
 
       {/* New: Image - insert a sample image */}
       <button
+        type="button"  
         onClick={() => {
           const url = window.prompt('Enter image URL')
           if (url) editor.chain().focus().setImage({ src: url }).run()
@@ -76,21 +83,21 @@ const MenuBar = ({ editor }: MenuBarProps) => {
       </button>
 
       {/* Existing heading buttons */}
-      <button onClick={() => editor.chain().focus().setParagraph().run()}>P</button>
-      <button onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}>H1</button>
-      <button onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}>H2</button>
-      <button onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}>H3</button>
+      <button type="button" onClick={() => editor.chain().focus().setParagraph().run()}>P</button>
+      <button type="button"  onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}>H1</button>
+      <button type="button"  onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}>H2</button>
+      <button type="button"  onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}>H3</button>
 
       {/* Text alignment */}
-      <button onClick={() => editor.chain().focus().setTextAlign('left').run()}>Align Left</button>
-      <button onClick={() => editor.chain().focus().setTextAlign('center').run()}>Center</button>
-      <button onClick={() => editor.chain().focus().setTextAlign('right').run()}>Align Right</button>
+      <button type="button"  onClick={() => editor.chain().focus().setTextAlign('left').run()}>Align Left</button>
+      <button type="button"  onClick={() => editor.chain().focus().setTextAlign('center').run()}>Center</button>
+      <button type="button"  onClick={() => editor.chain().focus().setTextAlign('right').run()}>Align Right</button>
 
     </div>
   )
 }
 
-export default function EditorComponent ({ editor }: MenuBarProps) {
+export default function EditorComponent({ editor }: MenuBarProps) {
 
   if (!editor) return null
 
