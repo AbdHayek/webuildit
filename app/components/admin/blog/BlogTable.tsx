@@ -9,6 +9,7 @@ import {
 } from '@tanstack/react-table';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 type Blog = {
     id: number;
@@ -27,6 +28,7 @@ type Blog = {
 export default function BlogTable() {
     const [blogs, setBlogs] = useState<Blog[]>([]);
     const [loading, setLoading] = useState(true);
+    const route = useRouter();
 
     useEffect(() => {
         fetch('/api/blogs', { credentials: 'include' })
@@ -71,9 +73,7 @@ export default function BlogTable() {
         getPaginationRowModel: getPaginationRowModel(),
     });
 
-    const handleAddNewBlog = () => {
-
-    }
+    const handleAddNewBlog = () =>  route.push('/admin/dashboard/blog/create');
 
     return (
         <div className="p-4">
@@ -98,8 +98,6 @@ export default function BlogTable() {
                         Add +
                     </button>
                 </div>
-
-
             </div>
 
 
@@ -119,7 +117,7 @@ export default function BlogTable() {
                     {table.getRowModel().rows.map((row, rowIdx) => (
                         <tr
                             key={row.id}
-                         
+
                         >
                             {row.getVisibleCells().map(cell => (
                                 <td className="p-3 border-b border-gray-200" key={cell.id}>

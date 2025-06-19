@@ -1,0 +1,65 @@
+/* styles.css */
+.my-editor {
+  min-height: 300px;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Styling paragraphs */
+.my-editor p {
+  margin-bottom: 1em;
+}
+
+/* Styling bold text */
+.my-editor strong {
+  color: #d6336c;
+}
+
+/* Example: Highlight text background */
+.my-editor mark {
+  background-color: #fffb8f;
+}
+
+.blog-content {
+  div {
+    padding: 1%;
+    background-color: white;
+    min-height: 200px;
+  }
+}
+
+.menu-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: #f3f4f6; /* gray-100 */
+  padding: 12px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+  margin-top: 1rem;
+}
+
+.menu-bar button {
+  padding: 6px 12px;
+  border: 1px solid #d1d5db; /* gray-300 */
+  border-radius: 4px;
+  background: white;
+  color: #374151; /* gray-700 */
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.menu-bar button:hover {
+  background-color: #3b82f6; /* blue-500 */
+  color: white;
+  border-color: #3b82f6;
+}
+
+.menu-bar button.active {
+  background-color: #2563eb; /* blue-600 */
+  color: white;
+  border-color: #2563eb;
+}

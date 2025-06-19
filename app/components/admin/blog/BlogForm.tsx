@@ -1,6 +1,10 @@
 'use client';
-
+import React from 'react';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEditor } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit'
+import EditorComponent from './EditorComponent';
 
 type BlogFormProps = {
   initialData?: {
@@ -20,6 +24,27 @@ export default function BlogForm({ initialData, onSuccess }: BlogFormProps) {
   const [img, setImg] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [file, setFile] = useState(null)
+  const [preview, setPreview] = useState<string | ArrayBuffer | null>(null)
+  const route = useRouter();
+  const editor = useEditor({
+    extensions: [StarterKit],
+    content: '<p>Hello <strong>world</strong>!</p>',
+  });
+
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0]
+    setFile(selectedFile)
+
+    if (selectedFile) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setPreview(reader.result)
+      }
+      reader.readAsDataURL(selectedFile)
+    }
+  }
 
   useEffect(() => {
     if (initialData) {
@@ -62,8 +87,10 @@ export default function BlogForm({ initialData, onSuccess }: BlogFormProps) {
     }
   };
 
+  const handleBackToDashboard = () => route.push("/admin/dashboard");
+
   return (
-    <form onSubmit={handleSubmit} className="max-w-xl mx-auto p-6 bg-white shadow-md rounded-md space-y-4">
+    <form onSubmit={handleSubmit} className="max-w-7xl mx-auto p-6 rounded-md space-y-4">
       <h2 className="text-xl font-semibold">{initialData ? 'Update Blog' : 'Create Blog'}</h2>
 
       <div>
@@ -88,37 +115,55 @@ export default function BlogForm({ initialData, onSuccess }: BlogFormProps) {
         />
       </div>
 
+
       <div>
-        <label className="block text-sm font-medium">Content</label>
-        <textarea
-          value={content}
-          onChange={e => setContent(e.target.value)}
-          required
-          rows={5}
+        <label className="block text-sm font-medium">Upload Image</label>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
           className="mt-1 w-full border rounded px-3 py-2"
         />
+
+        {preview && (
+          <div className="mt-4">
+            <p className="text-sm  mb-1">Preview:</p>
+            <img src={preview} alt="Preview" className="max-w-full h-auto rounded" />
+          </div>
+        )}
       </div>
 
       <div>
-        <label className="block text-sm font-medium">Image URL</label>
-        <input
-          type="text"
-          value={img}
-          onChange={e => setImg(e.target.value)}
-          required
-          className="mt-1 w-full border rounded px-3 py-2"
-        />
+        <label className="block text-sm font-medium">Content</label>
+        <EditorComponent />
       </div>
+
+
 
       {error && <p className="text-red-600">{error}</p>}
 
-      <button
-        type="submit"
-        disabled={loading}
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
-      >
-        {loading ? 'Saving...' : initialData ? 'Update' : 'Create'}
-      </button>
+      <div className='gap-2 flex'>
+        <button
+          type="submit"
+          disabled={loading}
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 cursor-pointer disabled:opacity-50"
+        >
+          {loading ? 'Saving...' : initialData ? 'Update' : 'Create'}
+        </button>
+
+        <button
+          onClick={() => handleBackToDashboard()}
+          className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 cursor-pointer disabled:opacity-50"
+        >
+          Back
+        </button>
+      </div>
+
     </form>
   );
 }
+
+
+
+
+

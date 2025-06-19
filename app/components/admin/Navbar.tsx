@@ -1,7 +1,7 @@
 'use client';
 import { useRouter } from 'next/navigation';
 
-export default function Dashboard() {
+export default function Navbar() {
     const router = useRouter();
 
     async function handleLogout() {
