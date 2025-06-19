@@ -1,5 +1,6 @@
 'use client';
 import { useRouter } from 'next/navigation';
+import { FiLogOut } from 'react-icons/fi';
 
 export default function Navbar() {
     const router = useRouter();
@@ -30,14 +31,18 @@ export default function Navbar() {
                 <button
                     onClick={() => handleLogout()}
                     style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
                         padding: '8px 16px',
-                        backgroundColor: '#e53e3e',
                         color: 'white',
+                  
                         border: 'none',
                         borderRadius: '4px',
-                        cursor: 'pointer'
+                        cursor: 'pointer',
                     }}
                 >
+                    <FiLogOut  size={18} />
                     Logout
                 </button>
             </nav>

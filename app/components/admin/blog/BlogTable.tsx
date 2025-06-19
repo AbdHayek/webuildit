@@ -10,6 +10,7 @@ import {
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import BlogForm from './BlogForm';
 
 type Blog = {
     id: number;
@@ -28,8 +29,9 @@ type Blog = {
 export default function BlogTable() {
     const [blogs, setBlogs] = useState<Blog[]>([]);
     const [loading, setLoading] = useState(true);
+    const [editData, setEditData] = useState<Blog | null>(null);
     const route = useRouter();
- 
+
     useEffect(() => {
         fetch('/api/blogs?admin=1', { credentials: 'include' })
             .then(res => res.json())
@@ -41,11 +43,6 @@ export default function BlogTable() {
         { header: 'Id', accessorKey: 'id' },
         { header: 'Title', accessorKey: 'title' },
         { header: 'Subtitle', accessorKey: 'sub_title' },
-        {
-            header: 'Content',
-            accessorKey: 'content',
-            cell: info => (info.getValue() as string).toString().slice(0, 100) + '...',
-        },
         {
             header: 'Image',
             accessorKey: 'img',
@@ -65,6 +62,29 @@ export default function BlogTable() {
             accessorKey: 'updatedAt',
             cell: info => new Date(info.getValue() as string).toLocaleString(),
         },
+
+        {
+            header: 'Action',
+            accessorKey: 'action',
+            cell: info => {
+                const blogId = info.row.original.id;
+
+                return (
+                    <div className='flex gap-5'>
+                        <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 cursor-pointer disabled:opacity-50"
+                            onClick={() => handleUpdate(blogId)}>
+                            Update
+                        </button>
+                        <button
+                            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 cursor-pointer disabled:opacity-50"
+                            onClick={() => handleDelete(blogId)}
+                        >
+                            Delete
+                        </button>
+                    </div>
+                );
+            },
+        },
     ];
 
     const table = useReactTable({
@@ -76,82 +96,114 @@ export default function BlogTable() {
 
     const handleAddNewBlog = () => route.push('/admin/dashboard/blog/create');
 
-    return (
-        <div className="p-4">
+    const handleUpdate = async (id: number) => {
+        const editData = blogs.find((val) => val.id === id);
+        setEditData(editData as Blog)
+    };
 
-            <div className='flex py-5 gap-[2%]'>
-                <div>
-                    <h1 className="text-2xl font-bold mb-4">Blog List:</h1>
+    const handleDelete = async (id: number) => {
+        if (!confirm('Are you sure you want to delete this blog?')) return;
+
+        try {
+            const res = await fetch(`/api/blogs?id=${id}`, {
+                method: 'DELETE',
+                credentials: 'include',
+            });
+
+            if (!res.ok) {
+                const errorData = await res.json();
+                alert('Failed to delete blog: ' + (errorData.error || res.statusText));
+                return;
+            }
+
+            // On success, remove the blog from state to update UI immediately
+            setBlogs(prev => prev.filter(blog => blog.id !== id));
+        } catch (error) {
+            alert('Error deleting blog');
+            console.error(error);
+        }
+    };
+
+
+    return (editData !== null ?
+        <BlogForm initialData={editData} setEditData={setEditData}  blogs={blogs}  setBlogs={setBlogs} /> :
+        (
+            <div className="p-4">
+
+                <div className='flex py-5 gap-[2%]'>
+                    <div>
+                        <h1 className="text-2xl font-bold mb-4">Blog List:</h1>
+                    </div>
+
+                    <div>
+                        <button
+                            onClick={() => handleAddNewBlog()}
+                            style={{
+                                padding: '8px 16px',
+                                backgroundColor: 'blue',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '4px',
+                                cursor: 'pointer'
+                            }}
+                        >
+                            Add +
+                        </button>
+                    </div>
                 </div>
 
-                <div>
+
+                <table className="w-full text-sm text-left border border-gray-300 rounded-lg overflow-hidden shadow-sm">
+                    <thead className="bg-gray-100 text-gray-700">
+                        {table.getHeaderGroups().map(headerGroup => (
+                            <tr key={headerGroup.id}>
+                                {headerGroup.headers.map(header => (
+                                    <th className="p-3 border-b border-gray-300 font-semibold" key={header.id}>
+                                        {flexRender(header.column.columnDef.header, header.getContext())}
+                                    </th>
+                                ))}
+                            </tr>
+                        ))}
+                    </thead>
+                    <tbody>
+                        {table.getRowModel().rows.map((row, rowIdx) => (
+                            <tr
+                                key={row.id}
+
+                            >
+                                {row.getVisibleCells().map(cell => (
+                                    <td className="p-3 border-b border-gray-200" key={cell.id}>
+                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                    </td>
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+
+
+                {/* Pagination Controls */}
+                <div className="mt-4 flex gap-4 items-center">
                     <button
-                        onClick={() => handleAddNewBlog()}
-                        style={{
-                            padding: '8px 16px',
-                            backgroundColor: 'blue',
-                            color: 'white',
-                            border: 'none',
-                            borderRadius: '4px',
-                            cursor: 'pointer'
-                        }}
+                        onClick={() => table.previousPage()}
+                        disabled={!table.getCanPreviousPage()}
+                        className="bg-blue-500 cursor-pointer text-white px-3 py-1 rounded disabled:opacity-50"
                     >
-                        Add +
+                        Prev
+                    </button>
+                    <span>
+                        Page {table.getState().pagination.pageIndex + 1} of{' '}
+                        {table.getPageCount()}
+                    </span>
+                    <button
+                        onClick={() => table.nextPage()}
+                        disabled={!table.getCanNextPage()}
+                        className="bg-blue-500 cursor-pointer text-white px-3 py-1 rounded disabled:opacity-50"
+                    >
+                        Next
                     </button>
                 </div>
             </div>
-
-
-            <table className="w-full text-sm text-left border border-gray-300 rounded-lg overflow-hidden shadow-sm">
-                <thead className="bg-gray-100 text-gray-700">
-                    {table.getHeaderGroups().map(headerGroup => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map(header => (
-                                <th className="p-3 border-b border-gray-300 font-semibold" key={header.id}>
-                                    {flexRender(header.column.columnDef.header, header.getContext())}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody>
-                    {table.getRowModel().rows.map((row, rowIdx) => (
-                        <tr
-                            key={row.id}
-
-                        >
-                            {row.getVisibleCells().map(cell => (
-                                <td className="p-3 border-b border-gray-200" key={cell.id}>
-                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-
-
-            {/* Pagination Controls */}
-            <div className="mt-4 flex gap-4 items-center">
-                <button
-                    onClick={() => table.previousPage()}
-                    disabled={!table.getCanPreviousPage()}
-                    className="bg-blue-500 cursor-pointer text-white px-3 py-1 rounded disabled:opacity-50"
-                >
-                    Prev
-                </button>
-                <span>
-                    Page {table.getState().pagination.pageIndex + 1} of{' '}
-                    {table.getPageCount()}
-                </span>
-                <button
-                    onClick={() => table.nextPage()}
-                    disabled={!table.getCanNextPage()}
-                    className="bg-blue-500 cursor-pointer text-white px-3 py-1 rounded disabled:opacity-50"
-                >
-                    Next
-                </button>
-            </div>
-        </div>
+        )
     );
 }

@@ -1,10 +1,18 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { NextRequest, NextResponse } from 'next/server'
+import { PrismaClient } from '@prisma/client'
 import formidable from 'formidable'
 import path from 'path'
 import { Readable } from 'stream'
+import jwt from 'jsonwebtoken'
+import { cookies } from 'next/headers'
 
 const prisma = new PrismaClient();
+const JWT_SECRET = process.env.JWT_SECRET as string;
+
+if (!JWT_SECRET) {
+    throw new Error('JWT_SECRET is not set in environment variables');
+}
+
 export const config = {
     api: {
         bodyParser: false, // Disable Next.js body parsing so multer can handle it
@@ -39,6 +47,23 @@ export async function parseForm(req: Request): Promise<{ fields: any; files: any
     })
 }
 
+export async function checkValidToken(): Promise<number | null> {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('token')?.value;
+
+    if (!token) {
+        console.error('No token provided');
+        return null;
+    }
+
+    try {
+        const decoded = jwt.verify(token, JWT_SECRET) as { id: number };
+        return decoded.id;
+    } catch (err) {
+        console.error('Invalid token', err);
+        return null;
+    }
+}
 
 export async function GET(req: NextRequest) {
     try {
@@ -67,7 +92,7 @@ export async function GET(req: NextRequest) {
             : await prisma.blogs.findMany({
                 ...baseQuery,
                 skip: offset,
-                take: limit,
+                take: limit
             });
 
         return NextResponse.json(blogs);
@@ -79,11 +104,14 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: Request) {
 
+    // check token valid
+    const userId = await checkValidToken();
+    if (userId === null) return NextResponse.json({ error: 'Unauthorized: No token provided' }, { status: 401 });
+
     try {
         const { fields, files } = await parseForm(req)
         const {
             id,
-            user_id,
             title,
             subtitle,
             content,
@@ -92,7 +120,7 @@ export async function POST(req: Request) {
         } = fields
 
         // Validation
-        if (!user_id || (title === undefined || String(title)?.trim() === "") || (content === undefined || String(content)?.trim() === "")) {
+        if ((title === undefined || String(title)?.trim() === "") || (content === undefined || String(content)?.trim() === "")) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
         }
 
@@ -100,7 +128,7 @@ export async function POST(req: Request) {
         const imagePath = imageFile ? `/uploads/${path.basename(imageFile.filepath)}` : null
 
         const data = {
-            userId: parseInt(user_id),
+            userId: userId,
             title: String(title),
             sub_title: String(subtitle) || null,
             content: String(content),
@@ -121,6 +149,11 @@ export async function POST(req: Request) {
 }
 
 export async function DELETE(req: NextRequest) {
+
+    // check token valid
+    const userId = await checkValidToken();
+    if (userId === null) return NextResponse.json({ error: 'Unauthorized: No token provided' }, { status: 401 });
+
     const { searchParams } = new URL(req.url);
     const id = searchParams.get('id');
 

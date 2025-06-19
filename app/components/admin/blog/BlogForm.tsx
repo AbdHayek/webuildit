@@ -20,10 +20,9 @@ type BlogFormProps = {
     content: string;
     img: string;
   };
-  onSuccess?: () => void;
 };
 
-export default function BlogForm({ initialData, onSuccess }: BlogFormProps) {
+export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: { initialData: BlogFormProps, setEditData: any, setBlogs: any, blogs: any }) {
   const [title, setTitle] = useState('');
   const [subTitle, setSubTitle] = useState('');
   const [content, setContent] = useState('');
@@ -33,7 +32,13 @@ export default function BlogForm({ initialData, onSuccess }: BlogFormProps) {
   const [file, setFile] = useState(null)
   const [preview, setPreview] = useState<string | ArrayBuffer | null>(null)
   const route = useRouter();
-  const handleBackToDashboard = () => route.push("/admin/dashboard");
+
+  const handleBackToDashboard = () => {
+    if (setEditData) setEditData(null)
+    else
+      route.push("/admin/dashboard");
+  }
+
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -88,7 +93,6 @@ export default function BlogForm({ initialData, onSuccess }: BlogFormProps) {
     if (initialData)  // for update case
       formData.append('id', initialData?.id)
 
-    formData.append('user_id', '1');
     formData.append('title', title);
     formData.append('subtitle', subTitle);
     formData.append('created_at', new Date().toISOString());
@@ -103,10 +107,6 @@ export default function BlogForm({ initialData, onSuccess }: BlogFormProps) {
     if (editor) formData.append('content', editor.getHTML());
     if (file) formData.append('image', file);
 
-    for (const [key, value] of formData.entries()) {
-      console.log(`${key}`, value)
-    }
-
     try {
       const res = await fetch("/api/blogs", {
         method: 'POST',
@@ -119,9 +119,20 @@ export default function BlogForm({ initialData, onSuccess }: BlogFormProps) {
         throw new Error(errorData.error || 'Unknown error occurred');
       }
 
+      if (initialData?.id) {
+        setBlogs(blogs => blogs.map(blog => blog.id === initialData?.id ? {
+          ...blog,
+          title: formData.get('title'),
+          sub_title: formData.get('subtitle'),
+          content: formData.get('content'),
+          img: formData.get('image'),
+          updatedAt: formData.get('updated_at'),
+        } : blog));
+      }
+
       setTimeout(() => {
         handleBackToDashboard();
-      },100)
+      }, 100)
 
     } catch (err) {
       setError((err as Error).message);
@@ -129,6 +140,8 @@ export default function BlogForm({ initialData, onSuccess }: BlogFormProps) {
       setLoading(false);
     }
   };
+
+
 
   return (
     <form onSubmit={handleSubmit} className="max-w-7xl mx-auto p-6 rounded-md space-y-4">
@@ -176,8 +189,6 @@ export default function BlogForm({ initialData, onSuccess }: BlogFormProps) {
         <label className="block text-sm font-medium">Content</label>
         <EditorComponent editor={editor} />
       </div>
-
-
 
       {error && <p className="text-red-600">{error}</p>}
 
