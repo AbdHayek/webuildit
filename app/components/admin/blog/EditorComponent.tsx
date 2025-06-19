@@ -1,12 +1,5 @@
-import Highlight from '@tiptap/extension-highlight'
-import TextAlign from '@tiptap/extension-text-align'
-import Underline from '@tiptap/extension-underline'
-import Link from '@tiptap/extension-link'
-import CodeBlock from '@tiptap/extension-code-block'
-import Image from '@tiptap/extension-image'
-import { useEditor, EditorContent, Editor } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit'
 
+import { EditorContent, Editor } from '@tiptap/react';
 
 type MenuBarProps = {
   editor: Editor | null
@@ -97,34 +90,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
   )
 }
 
-export default function EditorComponent () {
-  const editor = useEditor({
-    extensions: [
-      StarterKit.configure({
-        heading: { levels: [1, 2, 3] },
-      }),
-      Highlight,
-      TextAlign.configure({
-        types: ['heading', 'paragraph'],
-      }),
-      Underline,
-      Link.configure({
-        openOnClick: false,
-      }),
-      CodeBlock,
-      Image,
-    ],
-    content: `
-      <h3 style="text-align:center">Devs Just Want to Have Fun by Cyndi Lauper</h3>
-      <p style="text-align:center">
-        I come home in the morning light<br />
-        My mother says, <mark>“When you gonna live your life right?”</mark><br />
-        Oh mother dear we’re not the fortunate ones<br />
-        And devs, they wanna have fun<br />
-        Oh devs just want to have fun
-      </p>
-    `,
-  })
+export default function EditorComponent ({ editor }: MenuBarProps) {
 
   if (!editor) return null
 

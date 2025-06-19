@@ -29,9 +29,9 @@ export default function BlogTable() {
     const [blogs, setBlogs] = useState<Blog[]>([]);
     const [loading, setLoading] = useState(true);
     const route = useRouter();
-
+ 
     useEffect(() => {
-        fetch('/api/blogs', { credentials: 'include' })
+        fetch('/api/blogs?admin=1', { credentials: 'include' })
             .then(res => res.json())
             .then(data => setBlogs(data))
             .finally(() => setLoading(false));
@@ -50,7 +50,8 @@ export default function BlogTable() {
             header: 'Image',
             accessorKey: 'img',
             cell: info => (
-                <Image src={info.getValue() as string} alt="blog" width={200} height={200} />
+                info.getValue() as string ?
+                    (<Image src={info.getValue() as string} alt="blog" width={200} height={200} />) : ('')
             ),
         },
         { header: 'Author', accessorFn: row => row.user?.name },
@@ -73,7 +74,7 @@ export default function BlogTable() {
         getPaginationRowModel: getPaginationRowModel(),
     });
 
-    const handleAddNewBlog = () =>  route.push('/admin/dashboard/blog/create');
+    const handleAddNewBlog = () => route.push('/admin/dashboard/blog/create');
 
     return (
         <div className="p-4">

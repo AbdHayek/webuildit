@@ -2,72 +2,77 @@ import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import formidable from 'formidable'
 import path from 'path'
+import { Readable } from 'stream'
 
 const prisma = new PrismaClient();
+export const config = {
+    api: {
+        bodyParser: false, // Disable Next.js body parsing so multer can handle it
+    },
+}
 
-async function parseForm(req: Request): Promise<{ fields: any; files: any }> {
+export async function parseForm(req: Request): Promise<{ fields: any; files: any }> {
     const form = formidable({
         uploadDir: path.join(process.cwd(), 'public/uploads'),
         keepExtensions: true,
-        filename: (name, ext, part) => {
-            return `${Date.now()}-${part.originalFilename}`
-        },
+        filename: (name, ext, part) => `${Date.now()}-${part.originalFilename}`,
     })
 
+    // Get raw body as buffer
+    const buffer = Buffer.from(await req.arrayBuffer())
+
+    // Create a fake Node.js IncomingMessage from the Web Request
+    const nodeReq = new Readable()
+    nodeReq.push(buffer)
+    nodeReq.push(null) // signal EOF
+
+    // Add headers & method to mimic IncomingMessage
+    nodeReq.headers = Object.fromEntries(req.headers.entries())
+    nodeReq.method = req.method || 'POST'
+    nodeReq.url = ''
+
     return new Promise((resolve, reject) => {
-        const chunks: Buffer[] = []
-        req.body
-            ?.getReader()
-            .read()
-            .then(async ({ done, value }) => {
-                if (value) chunks.push(value)
-                const buffer = Buffer.concat(chunks)
-
-                // Convert Request to a mock Node.js req
-                const readable = new ReadableStream({
-                    start(controller) {
-                        controller.enqueue(buffer)
-                        controller.close()
-                    },
-                })
-
-                const mockReq: any = new ReadableStream()
-                Object.assign(mockReq, readable)
-
-                form.parse(mockReq, (err, fields, files) => {
-                    if (err) reject(err)
-                    else resolve({ fields, files })
-                })
-            })
+        form.parse(nodeReq, (err, fields, files) => {
+            if (err) reject(err)
+            else resolve({ fields, files })
+        })
     })
 }
 
-export async function GET(req: NextRequest) {
 
+export async function GET(req: NextRequest) {
     try {
         const { searchParams } = new URL(req.url);
-        const limit = parseInt(searchParams.get('limit') || '10') // default 10
-        const offset = parseInt(searchParams.get('offset') || '0') // default 0
 
-        const blogs = await prisma.blogs.findMany({
-            skip: offset,
-            take: limit,
+        const isAdmin = parseInt(searchParams.get('admin') || '0') === 1;
+        const limit = parseInt(searchParams.get('limit') || '10'); // default 10
+        const offset = parseInt(searchParams.get('offset') || '0'); // default 0
+
+        const baseQuery = {
             include: {
                 user: {
                     select: {
                         id: true,
-                        name: true, // adjust based on your User model
+                        name: true, // Adjust if your User model changes
                     },
                 },
             },
             orderBy: {
-                createdAt: 'desc',
+                id: 'desc',
             },
-        });
-        return NextResponse.json(blogs);
+        };
 
+        const blogs = isAdmin
+            ? await prisma.blogs.findMany(baseQuery)
+            : await prisma.blogs.findMany({
+                ...baseQuery,
+                skip: offset,
+                take: limit,
+            });
+
+        return NextResponse.json(blogs);
     } catch (error) {
-        console.log(error)
+        console.error('Error fetching blogs:', error);
         return NextResponse.json({ error: 'Failed to fetch blogs' }, { status: 500 });
     }
 }
@@ -75,7 +80,6 @@ export async function GET(req: NextRequest) {
 export async function POST(req: Request) {
 
     try {
-
         const { fields, files } = await parseForm(req)
         const {
             id,
@@ -88,7 +92,7 @@ export async function POST(req: Request) {
         } = fields
 
         // Validation
-        if (!user_id || !title || !content) {
+        if (!user_id || (title === undefined || String(title)?.trim() === "") || (content === undefined || String(content)?.trim() === "")) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
         }
 
@@ -97,9 +101,9 @@ export async function POST(req: Request) {
 
         const data = {
             userId: parseInt(user_id),
-            title,
-            sub_title: subtitle || null,
-            content,
+            title: String(title),
+            sub_title: String(subtitle) || null,
+            content: String(content),
             img: imagePath,
             updatedAt: updated_at ? new Date(updated_at) : new Date(),
             createdAt: created_at ? new Date(created_at) : new Date(),
@@ -135,10 +139,3 @@ export async function DELETE(req: NextRequest) {
         return NextResponse.json({ error: 'Failed to delete blog' }, { status: 500 });
     }
 }
-
-export const config = {
-    api: {
-        bodyParser: false, // Disable Next.js body parsing so multer can handle it
-    },
-}
-
