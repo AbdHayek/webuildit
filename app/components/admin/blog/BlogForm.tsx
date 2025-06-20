@@ -33,23 +33,21 @@ interface BlogFormComponentProps {
   blogs: Blog[];
 }
 
-export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: BlogFormComponentProps)  {
+export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: BlogFormComponentProps) {
   const [title, setTitle] = useState('');
   const [subTitle, setSubTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState(' <h3>Typing something...</h3>');
   const [img, setImg] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [file, setFile] = useState(null)
   const [preview, setPreview] = useState<string | ArrayBuffer | null>(null)
   const route = useRouter();
-  
   const handleBackToDashboard = () => {
     if (setEditData) setEditData(null)
     else
       route.push("/admin/dashboard");
   }
-
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -66,9 +64,7 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: 
       CodeBlock,
       Image,
     ],
-    content: `
-      <h3>Typing something...</h3>
-    `,
+    content: content
   })
 
   const handleFileChange = (e: any) => {
@@ -86,12 +82,18 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: 
 
   useEffect(() => {
     if (initialData) {
+      console.log(initialData)
       setTitle(initialData.title);
       setSubTitle(initialData.sub_title);
       setContent(initialData.content);
       setImg(initialData.img);
+        
+      console.log(initialData)
+      if (editor) {
+        editor.commands.setContent(initialData.content);  
+      }
     }
-  }, [initialData]);
+  }, [initialData,editor]);
 
   const handleSubmit = async (e: React.FormEvent) => {
 
