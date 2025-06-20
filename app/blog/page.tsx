@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Hero from "../components/Common/Hero";
 import Background from "../components/Hero/Background";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 export const metadata = {
   title: "Blog | Your Brand Name",
@@ -77,17 +78,22 @@ export default async function BlogPage({
           )))}
         </div>
 
-        <div className="mt-10 flex font-bold justify-center gap-10">
+        <div className="mt-[15%] flex font-bold justify-center gap-10">
           <a
-            href={`?limit=${limit}&offset=${Math.max(offset - limit, 0)}`}
-            className="px-4 py-2 bg-[#FF0084] rounded-full hover:bg-[#070322]"
+            href={offset === 0 ? undefined : `?limit=${limit}&offset=${Math.max(offset - limit, 0)}`}
+            className={`flex items-center gap-2 px-4 py-2 rounded-full transition-colors ${offset === 0
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-[#FF0084] hover:bg-[#070322]"
+              }`}
           >
+            <ArrowLeft size={18} />
             Prev
           </a>
           <a
             href={`?limit=${limit}&offset=${offset + limit}`}
-            className="px-4 py-2 bg-[#FF0084] rounded-full hover:bg-[#070322]"
+            className="flex items-center gap-2 px-4 py-2 rounded-full transition-colors bg-[#FF0084] l hover:bg-[#070322]"
           >
+            <ArrowRight size={18} />
             Next
           </a>
         </div>
