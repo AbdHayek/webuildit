@@ -126,30 +126,19 @@ export default function BlogTable() {
 
 
     return (editData !== null ?
-        <BlogForm initialData={editData} setEditData={setEditData}  blogs={blogs}  setBlogs={setBlogs} /> :
+        <BlogForm initialData={editData} setEditData={setEditData} blogs={blogs} setBlogs={setBlogs} /> :
         (
             <div className="p-4">
 
-                <div className='flex py-5 gap-[2%]'>
-                    <div>
-                        <h1 className="text-2xl font-bold mb-4">Blog List:</h1>
-                    </div>
+                <div className="flex items-center justify-between py-5">
+                    <h1 className="text-2xl font-bold mb-4">Blog List:</h1>
 
-                    <div>
-                        <button
-                            onClick={() => handleAddNewBlog()}
-                            style={{
-                                padding: '8px 16px',
-                                backgroundColor: 'blue',
-                                color: 'white',
-                                border: 'none',
-                                borderRadius: '4px',
-                                cursor: 'pointer'
-                            }}
-                        >
-                            Add +
-                        </button>
-                    </div>
+                    <button
+                        onClick={handleAddNewBlog}
+                        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 cursor-pointer"
+                    >
+                        Add +
+                    </button>
                 </div>
 
 

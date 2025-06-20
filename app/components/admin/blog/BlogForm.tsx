@@ -216,7 +216,7 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: 
 
         <p
           onClick={handleBackToDashboard}
-          className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 cursor-pointer disabled:opacity-50"
+          className="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 cursor-pointer disabled:opacity-50"
         >
           Back
         </p>
