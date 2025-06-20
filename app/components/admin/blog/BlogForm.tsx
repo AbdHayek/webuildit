@@ -87,19 +87,17 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: 
       setSubTitle(initialData.sub_title);
       setContent(initialData.content);
       setImg(initialData.img);
-        
+
       console.log(initialData)
       if (editor) {
-        editor.commands.setContent(initialData.content);  
+        editor.commands.setContent(initialData.content);
       }
     }
-  }, [initialData,editor]);
+  }, [initialData, editor]);
 
   const handleSubmit = async (e: React.FormEvent) => {
 
     e.preventDefault();
-    setLoading(true);
-    setError('');
 
     const formData = new FormData();
 
@@ -120,6 +118,8 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: 
     if (editor) formData.append('content', editor.getHTML());
     if (file) formData.append('image', file);
 
+    setLoading(true);
+    setError('');
     try {
       const res = await fetch("/api/blogs", {
         method: 'POST',
@@ -139,7 +139,7 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: 
           sub_title: formData.get('subtitle'),
           content: formData.get('content'),
           img: formData.get('image'),
-          updatedAt: formData.get('updated_at'),
+          updatedAt: formData.get('updated_at')
         } : blog));
       }
 
