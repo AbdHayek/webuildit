@@ -77,6 +77,7 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: 
         setPreview(reader.result)
       }
       reader.readAsDataURL(selectedFile)
+      setImg('')
     }
   }
 
@@ -99,8 +100,13 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: 
 
     e.preventDefault();
 
-    const formData = new FormData();
+    const textContent = editor?.getText().trim();
+    if (!textContent) {
+      setError("Content is required.");
+      return;
+    }
 
+    const formData = new FormData();
     if (initialData)  // for update case
       formData.append('id', initialData?.id)
 
@@ -108,12 +114,6 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: 
     formData.append('subtitle', subTitle);
     formData.append('created_at', new Date().toISOString());
     formData.append('updated_at', new Date().toISOString());
-
-    const textContent = editor?.getText().trim();
-    if (!textContent) {
-      setError("Content is required.");
-      return;
-    }
 
     if (editor) formData.append('content', editor.getHTML());
     if (file) formData.append('image', file);
@@ -133,13 +133,14 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: 
       }
 
       if (initialData?.id) {
+        const result = await res.json()
         setBlogs(blogs => blogs.map(blog => blog.id === initialData?.id ? {
           ...blog,
-          title: formData.get('title'),
-          sub_title: formData.get('subtitle'),
-          content: formData.get('content'),
-          img: formData.get('image'),
-          updatedAt: formData.get('updated_at')
+          title: result.blog.title,
+          sub_title: result.blog.sub_title,
+          content: result.blog.content,
+          img: result.blog.img,
+          updatedAt: result.blog.updatedAt
         } : blog));
       }
 
@@ -190,10 +191,16 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: 
           className="mt-1 w-full border rounded px-3 py-2"
         />
 
-        {preview && (
+        {preview && ( // show image preview
           <div className="mt-4 max-w-[50%] max-h-[50%]">
             <p className="text-sm  mb-1">Preview:</p>
             <img src={preview} alt="Preview" className="max-w-full h-auto rounded" />
+          </div>
+        )}
+        {img && ( // show image for update
+          <div className="mt-4 max-w-[50%] max-h-[50%]">
+            <p className="text-sm  mb-1">Image:</p>
+            <img src={img} alt="Preview" className="max-w-full h-auto rounded" />
           </div>
         )}
       </div>

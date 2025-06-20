@@ -20,6 +20,7 @@ export const config = {
 }
 
 export async function parseForm(req: Request): Promise<{ fields: any; files: any }> {
+
     const form = formidable({
         uploadDir: path.join(process.cwd(), 'public/uploads'),
         keepExtensions: true,
@@ -127,15 +128,18 @@ export async function POST(req: Request) {
         const imageFile = files.image?.[0]
         const imagePath = imageFile ? `/uploads/${path.basename(imageFile.filepath)}` : null
 
-        const data = {
+        let data = {
             userId: userId,
             title: String(title),
             sub_title: String(subtitle) || null,
-            content: String(content),
-            img: imagePath,
+            content: String(content),   
             updatedAt: updated_at ? new Date(updated_at) : new Date(),
             createdAt: created_at ? new Date(created_at) : new Date(),
         }
+
+        // upload image
+        if (imagePath)
+            data = { ...data, img: imagePath }
 
         const blog = id
             ? await prisma.blogs.update({ where: { id: parseInt(id) }, data })
