@@ -12,7 +12,7 @@ import Image from '@tiptap/extension-image'
 import { useEditor } from '@tiptap/react';
 import EditorComponent from './EditorComponent';
 import { Dispatch, SetStateAction } from 'react';
-import '../../../admin/dashboard/blog/create/Blog.scss';
+import '../../../admin/dashboard/Blog.scss';
 
 type Blog = {
   id: number;
@@ -20,6 +20,7 @@ type Blog = {
   sub_title: string;
   content: string;
   img: string;
+  user: any;
 };
 
 type BlogFormProps = {
@@ -29,11 +30,12 @@ type BlogFormProps = {
 interface BlogFormComponentProps {
   initialData: BlogFormProps | null;
   setEditData: Dispatch<SetStateAction<BlogFormProps | null>>;
+  setCreateNewBlog: Dispatch<SetStateAction<Boolean | null>>;
   setBlogs: Dispatch<SetStateAction<Blog[]>>;
   blogs: Blog[];
 }
 
-export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: BlogFormComponentProps) {
+export default function BlogForm({ initialData, setEditData, setBlogs, blogs, setCreateNewBlog }: BlogFormComponentProps) {
   const [title, setTitle] = useState('');
   const [subTitle, setSubTitle] = useState('');
   const [content, setContent] = useState(' <h3>Typing something...</h3>');
@@ -45,8 +47,7 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: 
   const route = useRouter();
   const handleBackToDashboard = () => {
     if (setEditData) setEditData(null)
-    else
-      route.push("/admin/dashboard");
+    else setCreateNewBlog(false)
   }
   const editor = useEditor({
     extensions: [
@@ -132,8 +133,8 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: 
         throw new Error(errorData.error || 'Unknown error occurred');
       }
 
+      const result = await res.json()
       if (initialData?.id) {
-        const result = await res.json()
         setBlogs(blogs => blogs.map(blog => blog.id === initialData?.id ? {
           ...blog,
           title: result.blog.title,
@@ -142,6 +143,19 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs }: 
           img: result.blog.img,
           updatedAt: result.blog.updatedAt
         } : blog));
+      } else {
+        setBlogs([
+          {
+            title: result.blog.title,
+            sub_title: result.blog.sub_title,
+            content: result.blog.content,
+            img: result.blog.img,
+            user: result.blog.user,
+            createdAt: result.blog.createdAt,
+            updatedAt: result.blog.updatedAt
+          },
+          ...blogs
+        ]);
       }
 
       setTimeout(() => {

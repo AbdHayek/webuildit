@@ -132,7 +132,7 @@ export async function POST(req: Request) {
             userId: userId,
             title: String(title),
             sub_title: String(subtitle) || null,
-            content: String(content),   
+            content: String(content),
             updatedAt: updated_at ? new Date(updated_at) : new Date(),
             createdAt: created_at ? new Date(created_at) : new Date(),
         }
@@ -143,7 +143,17 @@ export async function POST(req: Request) {
 
         const blog = id
             ? await prisma.blogs.update({ where: { id: parseInt(id) }, data })
-            : await prisma.blogs.create({ data })
+            : await prisma.blogs.create({
+                data,
+                include: {
+                    user: {
+                        select: {
+                            id: true,
+                            name: true, 
+                        },
+                    },
+                },
+            })
 
         return NextResponse.json({ blog })
     } catch (err) {
