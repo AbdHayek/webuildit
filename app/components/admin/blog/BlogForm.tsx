@@ -212,8 +212,11 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs, se
           </div>
         )}
         {img && ( // show image for update
-          <div className="mt-4 max-w-[50%] max-h-[50%]">
-            <p className="text-sm  mb-1">Image:</p>
+          <div className="my-4 max-w-[50%] max-h-[50%]">
+            <p className="text-sm  mb-1">Image:
+              <small className="text-white-500 text-sm ml-2 mr-2">
+                (Recommended size: 367.500px × 225.887px)
+              </small></p>
             <img src={img} alt="Preview" className="max-w-full h-auto rounded" />
           </div>
         )}
