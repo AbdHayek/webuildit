@@ -227,8 +227,8 @@ function ServiceBlock({ service }: { service: any }) {
       <GradientLine />
       <div className="flex flex-col md:flex-row items-center md:justify-between gap-20 py-12 px-[5%] bg-[#070322]">
         <div className="md:w-3/4 mb-10 md:mb-0">
-          <h3 className="text-[40px] font-bold mb-4">{service.title}</h3>
-          <p className="mb-8 text-[#F6F3F8] text-[28px]">
+          <h3 className="text-[30px]  xl:text-[40px] lg:text-[40px] md:text-[30px]  sm:text-[30px] font-bold mb-4">{service.title}</h3>
+          <p className="mb-8 text-[#F6F3F8] text-[18px]  xl:text-[28px] lg:text-[28px] md:text-[18px]  sm:text-[18px]">
             {service.description}
           </p>
           <div className="space-y-6">
@@ -243,7 +243,7 @@ function ServiceBlock({ service }: { service: any }) {
             ))}
           </div>
         </div>
-        <div className="md:w-1/4 flex justify-center self-end">
+        <div className="md:w-1/4 hidden justify-center self-end xl:flex lg:flex  md:hidden sm:hidden ">
           <Image
             src={service.image}
             width={250}
