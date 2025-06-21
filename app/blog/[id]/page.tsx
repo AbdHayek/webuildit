@@ -9,10 +9,44 @@ type Props = {
   params: { id: string };
 };
 
-export const metadata = {
-  title: "Blog Detail | Your Brand Name",
-  description: "Detailed view of a blog post.",
-};
+export async function generateMetadata({ params }: Props) {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE}/api/blogs/${params.id}`,
+      { next: { revalidate: 60 } }
+    );
+    
+    if (!res.ok) {
+      return {
+        title: "Blog Not Found | Your Brand Name",
+        description: "The blog you're looking for could not be found.",
+      };
+    }
+
+    const blog = await res.json();
+
+    return {
+      title: `${blog.title} | Your Brand Name`,
+      description: blog.sub_title || blog.content?.slice(0, 150),
+      openGraph: {
+        title: blog.title,
+        description: blog.sub_title || "",
+        images: [blog.img || "/assets/Blog/default.png"],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: blog.title,
+        description: blog.sub_title || "",
+        images: [blog.img || "/assets/Blog/default.png"],
+      },
+    };
+  } catch (error) {
+    return {
+      title: "Error Loading Blog | Your Brand Name",
+      description: "There was an error while fetching the blog post.",
+    };
+  }
+}
 
 export default async function BlogDetailPage({ params }: Props) {
   const { id } = params;
