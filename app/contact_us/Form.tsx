@@ -39,6 +39,45 @@ export default function Form() {
         }));
     };
 
+
+    // Handle form submission
+    const handleSubmit = async (e: React.FormEvent) => {
+
+        e.preventDefault();
+
+        const dataToSend = {
+            ...formData,
+            subject: selectedOption,
+        };
+
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(dataToSend),
+            });
+
+            if (!res.ok) {
+                throw new Error("Failed to send message");
+            }
+
+            alert("Message sent successfully!");
+            // Optionally reset form here
+            setFormData({
+                firstName: "",
+                lastName: "",
+                email: "",
+                phone: "",
+                message: "",
+            });
+        } catch (error) {
+            alert("Error sending message. Please try again.");
+            console.error(error);
+        }
+    };
+
     return (
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-16">
             {/* Left Side */}
@@ -61,7 +100,8 @@ export default function Form() {
             </div>
 
             {/* Right Side (Form) */}
-            <div className={`md:w-1/2 space-y-6 transition-opacity duration-500  ${showForm ? "opacity-100" : "opacity-0"}`}>
+            <form
+                onSubmit={handleSubmit} className={`md:w-1/2 space-y-6 transition-opacity duration-500  ${showForm ? "opacity-100" : "opacity-0"}`}>
                 <div className="flex flex-col md:flex-row gap-6">
                     <div className="w-full">
                         <label className="block text-sm mb-1">First Name</label>
@@ -70,6 +110,7 @@ export default function Form() {
                             name="firstName"
                             value={formData.firstName}
                             onChange={handleChange}
+                            required
                             className="w-full bg-transparent border-b border-gray focus:outline-none py-2"
                         />
                     </div>
@@ -80,6 +121,7 @@ export default function Form() {
                             name="lastName"
                             value={formData.lastName}
                             onChange={handleChange}
+                            required
                             className="w-full bg-transparent border-b border-gray focus:outline-none py-2"
                         />
                     </div>
@@ -93,6 +135,7 @@ export default function Form() {
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
+                            required
                             className="w-full bg-transparent border-b border-gray focus:outline-none py-2"
                         />
                     </div>
@@ -103,6 +146,7 @@ export default function Form() {
                             name="phone"
                             value={formData.phone}
                             onChange={handleChange}
+                            required
                             className="w-full bg-transparent border-b border-gray focus:outline-none py-2"
                         />
                     </div>
@@ -116,6 +160,7 @@ export default function Form() {
                         placeholder="Write your message.."
                         value={formData.message}
                         onChange={handleChange}
+                        required
                         className="w-full bg-transparent border-b border-gray focus:outline-none py-2 resize-none"
                     ></textarea>
                 </div>
@@ -125,7 +170,7 @@ export default function Form() {
                         Send message
                     </button>
                 </div>
-            </div>
-        </div>
+            </form>
+        </div >
     );
 }
