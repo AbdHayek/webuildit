@@ -156,9 +156,6 @@ export default function Services() {
     const handleScroll = () => {
       const currentScroll = window.scrollY;
 
-      // If scrolled up significantly (tweak as needed)
-      console.log("currentScroll :",currentScroll)
-      console.log("lastScrollY :",lastScrollY)
       if (currentScroll < lastScrollY - 100) {
         setVisibleCount(1);
       }
