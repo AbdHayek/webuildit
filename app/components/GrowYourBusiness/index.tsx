@@ -69,7 +69,7 @@ export default function GrowYourBusiness() {
 
 
   return (
-    <div className="mt-[10%]  h-[1600px] relative">
+    <div className="mt-[10%]  h-[1450px] relative">
       {/* Right-side Gradient Background */}
       <div
         className="absolute right-0 top-[5%] h-[40%] w-[6%] 
