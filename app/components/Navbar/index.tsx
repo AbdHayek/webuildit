@@ -91,38 +91,38 @@ export default function Navbar() {
             </button>
 
             {/* Menu Items */}
-            <a
+            <Link
               href="/"
               onClick={() => setIsOpen(false)}
               className="block py-2 hover:text-purple-300"
             >
               Home
-            </a>
-            <a
+            </Link>
+            <Link
               href="/#service"
               onClick={() => setIsOpen(false)}
               className="block py-2 hover:text-purple-300"
             >
               Services
-            </a>
-            <a
+            </Link>
+            <Link
               href="/about_us"
               className="block py-2 hover:text-purple-300"
             >
               About US
-            </a>
-            <a
+            </Link>
+            <Link
               href="/contact_us"
               className="block py-2 hover:text-purple-300"
             >
               Contact
-            </a>
-            <a
+            </Link>
+            <Link
               href="/blog"
               className="block py-2 hover:text-purple-300"
             >
               Blog
-            </a>
+            </Link>
           </div>
 
         </div>

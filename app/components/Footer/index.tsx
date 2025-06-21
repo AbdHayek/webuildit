@@ -5,6 +5,7 @@ import Image from "next/image";
 import React from "react";
 import "./Footer.scss";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 export default function index() {
 
   const pathname = usePathname();
@@ -35,21 +36,24 @@ export default function index() {
 
           <div></div>
 
-          {/* Company Links */}
+          {/* Pages Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Company</h3>
+            <h3 className="text-lg font-semibold mb-4">Pages</h3>
             <ul className="space-y-2 text-sm text-white/70">
               <li>
-                <a href="#">About Us</a>
+                <Link href="/">Home</Link>
               </li>
               <li>
-                <a href="#">Contact Us</a>
+                <Link href="/#service">Services</Link>
               </li>
               <li>
-                <a href="#">Career Tips</a>
+                <Link href="/about_us">About US</Link>
               </li>
               <li>
-                <a href="#">Career</a>
+                <Link href="/contact_us">Contact</Link>
+              </li>
+              <li>
+                <Link href="/blog">Blog</Link>
               </li>
             </ul>
           </div>
