@@ -48,11 +48,11 @@ export default async function BlogPage({
         <div className="absolute right-0 top-[15%] h-[70%] w-[4%] bg-gradient-to-b from-[#7300FF]/100 via-[#FF0084]/40 to-transparent filter blur-3xl" />
         <div className="absolute left-0 bottom-[0%] h-[70%] w-[2%] bg-gradient-to-b via-[#FF0084]/100 to-transparent filter blur-3xl" />
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1  xl:grid-cols-3  lg:grid-cols-2 md:grid-cols-2 gap-8    ">
           {blogs.length === 0 ? (
             <p className="text-center text-lg text-white-500">No blog posts found or failed to load.</p>
           ) : (blogs.map((blog: any) => (
-            <div key={blog.id}>
+            <div className="m-auto" key={blog.id}>
               <Image
                 src={blog.img || "/assets/Blog/default.png"}
                 alt={blog.title}

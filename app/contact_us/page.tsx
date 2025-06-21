@@ -15,7 +15,7 @@ export default  function ContactPage() {
       <Hero content={<Background title="Contact Us" img="/assets/ContactUs/cover.jpg" />} />
 
       {/* Content Section */}
-      <section className="text-white px-[10%] py-[10%] relative">
+      <section className="text-white px-[10%] py-[15%] lg:py[10%] md:py[10%] relative   lg:block md:block    flex flex-col items-center">
 
         {/* Right-side Gradient Background */}
         <div

@@ -14,11 +14,11 @@ export default function index() {
 
   return (
     <div className="relative">
-      <footer className="relative  text-white pb-20 px-6 rounded-b-full">
+      <footer className="relative  text-white pb-20 px-6 text-center  lg:text-left md:text-left rounded-b-full">
         {/* Main Footer Content */}
         <div className="relative  rounded-b-[50px] border-b-[0.5px] border-transparent z-10 container mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10 text-white pb-[10%] lg:px-[10%]  md:px-[5%] ">
           {/* Logo & Socials */}
-          <div>
+          <div className="lg:block md:block    flex flex-col items-center">
             <div>
               <Image
                 width={500}

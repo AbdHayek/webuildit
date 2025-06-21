@@ -30,7 +30,7 @@ export default  function AboutPage() {
             filter blur-3xl"
         ></div>
 
-        <div className="flex flex-col md:flex-row items-center">
+        <div className="flex flex-col md:flex-row items-center lg:mb-0  sm:mb-[25%] ">
           <div className="md:w-3/4 p-20">
             <p className="text-lg leading-loose text-justify">
               We help our clients launch their projects within their budgets by breaking down complex development processes into achievable milestones. This method not only reduces costs but ensures visible progress at every stage.
