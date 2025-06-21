@@ -111,8 +111,10 @@ export default function GrowYourBusiness() {
                 borderColor: bubble.bordercolor,
                 position: "absolute"
               }}
-              className={`cursor-pointer rounded-full flex items-center justify-center  transform -translate-x-1/2 -translate-y-3/4 duration-1000 bg-gradient-to-b ${bubble.background
-                }  shadow-lg ${centerId === bubble.id
+              className={`cursor-pointer rounded-full flex items-center justify-center  transform
+                 -translate-x-1/2 -translate-y-1/2  2xl:-translate-y-3/4  xl:-translate-y-3/4  lg:-translate-y-1/2  duration-1000
+                  bg-gradient-to-b ${bubble.background
+                  }  shadow-lg ${centerId === bubble.id
                   ? styles.bubble_active
                   : styles.bubble_inactive
                 }`}
