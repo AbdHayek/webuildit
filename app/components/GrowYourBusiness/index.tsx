@@ -116,7 +116,7 @@ export default function GrowYourBusiness() {
                   ? styles.bubble_active
                   : styles.bubble_inactive
                 }`}
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.2 }}
               layout
             >
               <span className="px-2 text-center">{bubble.label}</span>
