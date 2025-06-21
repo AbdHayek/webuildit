@@ -3,26 +3,29 @@ import nodemailer from 'nodemailer';
 
 export async function POST(req: Request) {
   try {
-    const { subject , firstName, lastName, email, phone, message } = await req.json();
+    const { subject, firstName, lastName, email, phone, message } = await req.json();
 
     // Basic validation
-    if (!subject || !firstName  || !lastName || !email || !phone || !message) {
+    if (!subject || !firstName || !lastName || !email || !phone || !message) {
       return NextResponse.json({ error: 'All fields are required' }, { status: 400 });
     }
 
     // Create transporter using env variables
     const transporter = nodemailer.createTransport({
-      service: 'gmail', // works with Gmail
+      host: 'mail.webuildit.ae',     // SMTP server from the image
+      port: 465,                     // Secure SMTP port
+      secure: true,                  // Use SSL
       auth: {
-        user: process.env.EMAIL_USER,
+        user: "contact@webuildit.ae",
         pass: process.env.EMAIL_PASS,
       },
     });
 
     // Define mail options
     const mailOptions = {
-      from: `"${firstName} ${lastName}" <${email}>`,
-      to: process.env.EMAIL_USER,
+      from: `"${firstName} ${lastName}" <contact@webuildit.ae>`, // must match authenticated user
+      replyTo: email, // use this instead of setting `from` to user's email
+      to: "info@webuildit.ae",
       subject: subject,
       html: `
         <h2>New Contact Message</h2>
