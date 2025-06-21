@@ -199,7 +199,7 @@ function AnimatedServiceBlock({ service, position }: { service: any; position: n
         zIndex: 10,
         transition: {
           delay: 0,
-          duration: 0.6,
+          duration: 1,
           ease: "easeOut",
         },
       });
