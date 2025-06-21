@@ -4,7 +4,7 @@ export default function Orbit({ centerId }: { centerId: string }) {
     return (
         <>
             {/* outSide Line */}
-            <div className="absolute top-[-5%] right-[10%] left-[10%]">
+            <div className="absolute top-[-5%] right-[10%] left-[10%] hidden 2xl:block xl:block lg:block">
                 <svg
                     width="100%"
                     height="100%"
@@ -29,7 +29,7 @@ export default function Orbit({ centerId }: { centerId: string }) {
             </div>
 
             {/* inSide Line */}
-            <div className="absolute top-[18%] right-[17%] left-[17%]">
+            <div className="absolute top-[18%] right-[17%] left-[17%] hidden 2xl:block xl:block lg:block">
                 <svg
                     width="100%"
                     height="100%"
