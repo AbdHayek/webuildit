@@ -18,7 +18,7 @@ export default function index() {
         {/* Main Footer Content */}
         <div className="relative  rounded-b-[50px] border-b-[0.5px] border-transparent z-10 container mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10 text-white pb-[10%] lg:px-[10%]  md:px-[5%] ">
           {/* Logo & Socials */}
-          <div className="lg:block md:block    flex flex-col items-center">
+          <div className="lg:block md:block  flex flex-col items-center">
             <div>
               <Image
                 width={500}
