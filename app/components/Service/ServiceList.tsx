@@ -19,7 +19,7 @@ const servicesData = [
         description: "Scalable and secure web solutions, eCommerce, CMS platforms.",
         image: "/assets/Service/web_development.png",
         imageAlt: "Web Development Illustration",
-        top: "17%"
+        top: "14%"
     },
     {
         title: "UI/UX DESIGN",
@@ -27,14 +27,14 @@ const servicesData = [
             "Creating seamless user experiences through wireframing & prototyping",
         image: "/assets/Service/ux_design.png",
         imageAlt: "UX Design Illustration",
-        top: "34%"
+        top: "29%"
     },
     {
         title: "CLOUND SOLUTIONS",
         description: "Optimized and secure cloud infrastructures DevOps services",
         image: "/assets/Service/cloud_solution.png",
         imageAlt: "Cloud Solutions Illustration",
-        top: "52%"
+        top: "43%"
     },
     {
         title: "CONSULTATION & STRATEGY",
@@ -42,7 +42,7 @@ const servicesData = [
             "Helping businesses shape their tech roadmap and digital transformation",
         image: "/assets/Service/consultation.png",
         imageAlt: "Consultation Illustration",
-        top: "70%"
+        top: "0%"
     }
 ];
 
@@ -81,7 +81,7 @@ export default function ServiceList() {
                 window.scrollBy({ top: pixels, behavior: "smooth" });
                 setHasScrolled(true);
             } else if (scrollDir === "up") {
-                const percent = 75;
+                const percent = 65;
                 const pixels = (percent / 100) * window.innerHeight;
                 window.scrollBy({ top: -pixels, behavior: "smooth" });
                 setHasScrolled(true);
@@ -107,7 +107,7 @@ export default function ServiceList() {
                             zIndex: 10 + index
                         }}>
                         <GradientLine />
-                        <div className="flex flex-col md:flex-row items-center md:justify-between gap-20 py-12 px-[5%]">
+                        <div className="flex flex-col md:flex-row items-center md:justify-between gap-20 py-[2%] px-[5%]">
                             {/* Text Content */}
                             <div className="md:w-3/4 mb-10 md:mb-0">
                                 <h3 className="text-[40px] font-bold mb-4">{service.title}</h3>
