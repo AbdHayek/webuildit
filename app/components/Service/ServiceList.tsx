@@ -76,10 +76,14 @@ export default function ServiceList() {
     useEffect(() => {
         if (isLastInView && !hasScrolled) {
             if (scrollDir === "down") {
-                window.scrollBy({ top: 700, behavior: "smooth" });
+                const percent = 100;
+                const pixels = (percent / 100) * window.innerHeight;
+                window.scrollBy({ top: pixels, behavior: "smooth" });
                 setHasScrolled(true);
             } else if (scrollDir === "up") {
-                window.scrollBy({ top: -700, behavior: "smooth" });
+                const percent = 90;
+                const pixels = (percent / 100) * window.innerHeight;
+                window.scrollBy({ top: -pixels, behavior: "smooth" });
                 setHasScrolled(true);
             }
         }
