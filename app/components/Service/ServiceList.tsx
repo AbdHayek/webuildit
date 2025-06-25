@@ -53,45 +53,45 @@ export default function ServiceList() {
     const [hasScrolled, setHasScrolled] = useState(false);
     const isLastInView = useInView(lastSectionRef, { margin: "0px 0px -25% 0px" }); // triggers near bottom
 
-    useEffect(() => {
-        let lastScrollY = window.scrollY;
+    // useEffect(() => {
+    //     let lastScrollY = window.scrollY;
 
-        const handleScroll = () => {
-            const currentScrollY = window.scrollY;
+    //     const handleScroll = () => {
+    //         const currentScrollY = window.scrollY;
 
-            if (currentScrollY > lastScrollY) {
-                setScrollDir("down");
-            } else if (currentScrollY < lastScrollY) {
-                setScrollDir("up");
-            }
+    //         if (currentScrollY > lastScrollY) {
+    //             setScrollDir("down");
+    //         } else if (currentScrollY < lastScrollY) {
+    //             setScrollDir("up");
+    //         }
 
-            lastScrollY = currentScrollY;
-        };
+    //         lastScrollY = currentScrollY;
+    //     };
 
-        window.addEventListener("scroll", handleScroll);
+    //     window.addEventListener("scroll", handleScroll);
 
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    //     return () => window.removeEventListener("scroll", handleScroll);
+    // }, []);
 
-    useEffect(() => {
-        if (isLastInView && !hasScrolled) {
-            if (scrollDir === "down") {
-                const percent = 75;
-                const pixels = (percent / 100) * window.innerHeight;
-                window.scrollBy({ top: pixels, behavior: "smooth" });
-                setHasScrolled(true);
-            } else if (scrollDir === "up") {
-                const percent = 65;
-                const pixels = (percent / 100) * window.innerHeight;
-                window.scrollBy({ top: -pixels, behavior: "smooth" });
-                setHasScrolled(true);
-            }
-        }
+    // useEffect(() => {
+    //     if (isLastInView && !hasScrolled) {
+    //         if (scrollDir === "down") {
+    //             const percent = 75;
+    //             const pixels = (percent / 100) * window.innerHeight;
+    //             window.scrollBy({ top: pixels, behavior: "smooth" });
+    //             setHasScrolled(true);
+    //         } else if (scrollDir === "up") {
+    //             const percent = 65;
+    //             const pixels = (percent / 100) * window.innerHeight;
+    //             window.scrollBy({ top: -pixels, behavior: "smooth" });
+    //             setHasScrolled(true);
+    //         }
+    //     }
 
-        if (!isLastInView) {
-            setHasScrolled(false);
-        }
-    }, [isLastInView, scrollDir]);
+    //     if (!isLastInView) {
+    //         setHasScrolled(false);
+    //     }
+    // }, [isLastInView, scrollDir]);
 
     return (
         <div>
