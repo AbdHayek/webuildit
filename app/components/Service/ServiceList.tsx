@@ -94,7 +94,7 @@ export default function ServiceList() {
     }, [isLastInView, scrollDir]);
 
     return (
-        <div style={{  position: "relative" }}>
+        <div>
             {servicesData.map((service, index) => {
                 return (
                     <div
