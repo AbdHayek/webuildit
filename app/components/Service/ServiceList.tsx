@@ -129,7 +129,7 @@ export default function ServiceList() {
                             </div>
 
                             {/* Image */}
-                            <div className="md:w-1/4 flex justify-center">
+                            <div className="md:w-1/4 flex justify-center mt-[5%]">
                                 <Image
                                     src={service.image}
                                     width={250}
