@@ -76,12 +76,12 @@ export default function ServiceList() {
     useEffect(() => {
         if (isLastInView && !hasScrolled) {
             if (scrollDir === "down") {
-                const percent = 100;
+                const percent = 75;
                 const pixels = (percent / 100) * window.innerHeight;
                 window.scrollBy({ top: pixels, behavior: "smooth" });
                 setHasScrolled(true);
             } else if (scrollDir === "up") {
-                const percent = 90;
+                const percent = 75;
                 const pixels = (percent / 100) * window.innerHeight;
                 window.scrollBy({ top: -pixels, behavior: "smooth" });
                 setHasScrolled(true);
@@ -94,7 +94,7 @@ export default function ServiceList() {
     }, [isLastInView, scrollDir]);
 
     return (
-        <div style={{ height: "400vh", position: "relative" }}>
+        <div style={{  position: "relative" }}>
             {servicesData.map((service, index) => {
                 return (
                     <div
@@ -102,7 +102,7 @@ export default function ServiceList() {
                         key={index}
                         style={{
                             position: "sticky",
-                            top: `${parseInt(service.top, 10)}vh`,  // use vh units or px
+                            top: service.top,  // use vh units or px
                             backgroundColor: "#070322",
                             zIndex: 10 + index
                         }}>
