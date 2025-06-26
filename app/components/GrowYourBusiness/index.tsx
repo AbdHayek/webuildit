@@ -45,17 +45,15 @@ export default function GrowYourBusiness() {
   const RADIUS = 400;
   const CENTER = { x: CONTAINER_WIDTH / 2, y: CONTAINER_HEIGHT / 2 };
   const activeElement = useRef(null);
-
-  const [lastPostion, setLastPostion] = useState<Postion>({ prev: null, now: null });
   const ids = ["how", "who", "why"];
   const [centerId, setCenterId] = useState("who");
-  const [positionsBubble, setPositionsBubble] = useState({
+  const [positionsSmallBubble, setPositionsSmallBubble] = useState({
     first: "top-[0%] left-[27%]",
     second: "top-[50%] left-[10%]",
     third: "top-[0%] right-[27%]",
     forth: "top-[50%] right-[10%]",
   });
-  const hasMounted = useRef(false);
+   const [lastPostion, setLastPostion] = useState<Postion>({ prev: null, now: null });
 
 
   const getAngle = (id: string) => {
@@ -102,7 +100,7 @@ export default function GrowYourBusiness() {
     if (!el) return;
 
     // Get the current `top` as a number (strip the '%' and parse)
-    el.style.top = `${parseFloat(el.style.top || "0") + 100}%`;
+    el.style.top = `${parseFloat(el.style.top || "0") + 90}%`;
 
     const timeoutDisplay = setTimeout(() => {
       el.style.left = lastPostion?.now?.left
@@ -116,6 +114,9 @@ export default function GrowYourBusiness() {
     return () => {
       clearTimeout(timeout);
       clearTimeout(timeoutDisplay);
+      if (el) {
+        el.style.transition = "";
+      }
     };
 
   }, [lastPostion]);
@@ -148,7 +149,7 @@ export default function GrowYourBusiness() {
       <div className="h-screen relative">
 
         {/* Animate small bubbles */}
-        <SmallBubbles positionsBubble={positionsBubble} centerId={centerId} />
+        <SmallBubbles positionsBubble={positionsSmallBubble} centerId={centerId} />
 
         <Orbit centerId={centerId} />
 
