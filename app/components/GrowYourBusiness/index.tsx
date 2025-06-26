@@ -55,6 +55,7 @@ export default function GrowYourBusiness() {
     third: "top-[0%] right-[27%]",
     forth: "top-[50%] right-[10%]",
   });
+  const hasMounted = useRef(false);
 
 
   const getAngle = (id: string) => {
@@ -99,6 +100,7 @@ export default function GrowYourBusiness() {
 
   useEffect(() => {
 
+    if (lastPostion.now === null || lastPostion.prev === null) return;
     const el = activeElement.current;
     if (!el) return;
 
