@@ -81,7 +81,6 @@ export default function GrowYourBusiness() {
     };
   };
 
-
   useEffect(() => {
 
     const targetBubble = bubbles[2]; // idx === 2
@@ -95,8 +94,6 @@ export default function GrowYourBusiness() {
     }));
 
   }, [centerId]);
-
-
 
   useEffect(() => {
 
@@ -116,9 +113,12 @@ export default function GrowYourBusiness() {
     }, 1000); // Delay in ms
 
     // Cleanup timeout if component unmounts or centerId changes
-    return () => clearTimeout(timeout);
+    return () => {
+      clearTimeout(timeout);
+      clearTimeout(timeoutDisplay);
+    };
 
-  }, [lastPostion])
+  }, [lastPostion]);
 
 
   return (
