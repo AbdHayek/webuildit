@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./GrowYourBusiness.module.scss";
 import Orbit from "./Orbit";
 import SmallBubbles from "./SmallBubbles";
@@ -27,13 +27,26 @@ const bubbles = [
   },
 ];
 
+type Postion = {
+  prev: {
+    left: string,
+    top: string
+  } | null,
+  now: {
+    left: string,
+    top: string
+  } | null
+}
+
 export default function GrowYourBusiness() {
 
   const CONTAINER_WIDTH = 1100;
   const CONTAINER_HEIGHT = 1300;
   const RADIUS = 400;
   const CENTER = { x: CONTAINER_WIDTH / 2, y: CONTAINER_HEIGHT / 2 };
+  const activeElement = useRef(null);
 
+  const [lastPostion, setLastPostion] = useState<Postion>({ prev: null, now: null });
   const ids = ["how", "who", "why"];
   const [centerId, setCenterId] = useState("who");
   const [positionsBubble, setPositionsBubble] = useState({
@@ -68,6 +81,44 @@ export default function GrowYourBusiness() {
   };
 
 
+  useEffect(() => {
+
+    const targetBubble = bubbles[2]; // idx === 2
+    if (!targetBubble) return;
+
+    const newPos = calculatePosition(targetBubble.id);
+
+    setLastPostion((prev) => ({
+      prev: prev.now,
+      now: newPos,
+    }));
+
+  }, [centerId]);
+
+
+
+  useEffect(() => {
+
+    const el = activeElement.current;
+    if (!el) return;
+
+    // Get the current `top` as a number (strip the '%' and parse)
+    el.style.top = `${parseFloat(el.style.top || "0") + 100}%`;
+
+    const timeoutDisplay = setTimeout(() => {
+      el.style.left = lastPostion?.now?.left
+    }, 500); // Delay in ms
+
+    const timeout = setTimeout(() => {
+      el.style.top = lastPostion?.now?.top
+    }, 1000); // Delay in ms
+
+    // Cleanup timeout if component unmounts or centerId changes
+    return () => clearTimeout(timeout);
+
+  }, [lastPostion])
+
+
   return (
     <div className={`mt-[10%]  h-[1450px] overflow-y-hidden relative`}>
       {/* Right-side Gradient Background */}
@@ -100,21 +151,23 @@ export default function GrowYourBusiness() {
         <Orbit centerId={centerId} />
 
         {/* Animate bubbles */}
-        {bubbles.map((bubble) => {
+        {bubbles.map((bubble, idx) => {
           const pos = calculatePosition(bubble.id);
+          const appliedStyle = (idx === 2 && lastPostion?.prev !== null) ? lastPostion.prev : pos;
           return (
             <motion.div
+              ref={(bubble.id === "why") ? activeElement : null}
               key={bubble.id}
               onClick={() => setCenterId(bubble.id)}
               style={{
-                ...pos,
+                ...appliedStyle,
                 borderColor: bubble.bordercolor,
                 position: "absolute"
               }}
               className={`cursor-pointer rounded-full flex items-center justify-center  transform
                  -translate-x-1/2 -translate-y-1/2  2xl:-translate-y-3/4  xl:-translate-y-3/4  lg:-translate-y-1/2  duration-1000
                   bg-gradient-to-b ${bubble.background
-                  }  shadow-lg ${centerId === bubble.id
+                }  shadow-lg ${centerId === bubble.id
                   ? styles.bubble_active
                   : styles.bubble_inactive
                 }`}
@@ -218,6 +271,6 @@ export default function GrowYourBusiness() {
           </motion.div>
         </AnimatePresence>
       </div>
-    </div>
+    </div >
   );
 }
