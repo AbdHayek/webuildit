@@ -31,7 +31,7 @@ export async function parseForm(req: Request): Promise<{ fields: any; files: any
     const buffer = Buffer.from(await req.arrayBuffer())
 
     // Create a fake Node.js IncomingMessage from the Web Request
-    const nodeReq = new Readable()
+    const nodeReq = new Readable() as any
     nodeReq.push(buffer)
     nodeReq.push(null) // signal EOF
 
@@ -89,9 +89,9 @@ export async function GET(req: NextRequest) {
         };
 
         const blogs = isAdmin
-            ? await prisma.blogs.findMany(baseQuery)
+            ? await prisma.blogs.findMany(baseQuery as any)
             : await prisma.blogs.findMany({
-                ...baseQuery,
+                ...baseQuery as any,
                 skip: offset,
                 take: limit
             });
@@ -134,7 +134,7 @@ export async function POST(req: Request) {
             sub_title: String(subtitle) || null,
             content: String(content),
             updatedAt: updated_at ? new Date(updated_at) : new Date(),
-            createdAt: created_at ? new Date(created_at) : new Date(),
+            createdAt: created_at ? new Date(created_at) : new Date()
         }
 
         // upload image
