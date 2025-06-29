@@ -2,11 +2,11 @@ import React from 'react'
 import { motion } from "framer-motion";
 import styles from "./GrowYourBusiness.module.scss"
 
-export default function SmallBubbles({ positionsBubble, centerId }: { positionsBubble: any, centerId: string }) {
+export default function SmallBubbles({centerId }: {centerId: string }) {
     return (
         <>
             <motion.div
-                className={`absolute ${styles.first_smallBub}  z-[10] transition-all duration-500 hidden 2xl:block xl:block lg:block`}
+                className={`absolute ${styles.first_smallBub}  z-[10] transition-all duration-500  2xl:block xl:block lg:block`}
             >
                 <svg
                     width="98"
@@ -105,7 +105,7 @@ export default function SmallBubbles({ positionsBubble, centerId }: { positionsB
                 </svg>
             </motion.div>
             <motion.div
-                className={`absolute ${styles.second_smallBub} z-[10] transition-all duration-500 hidden 2xl:block xl:block lg:block`}
+                className={`absolute ${styles.second_smallBub} z-[10] transition-all duration-500  2xl:block xl:block lg:block`}
             >
                 <svg
                     width="58"
@@ -204,7 +204,7 @@ export default function SmallBubbles({ positionsBubble, centerId }: { positionsB
                 </svg>
             </motion.div>
             <motion.div
-                className={`absolute ${styles.third_smallBub} z-[10] transition-all duration-500 hidden 2xl:block xl:block lg:block`}
+                className={`absolute ${styles.third_smallBub} z-[10] transition-all duration-500  2xl:block xl:block lg:block`}
             >
                 <svg
                     width="98"
@@ -303,7 +303,7 @@ export default function SmallBubbles({ positionsBubble, centerId }: { positionsB
                 </svg>
             </motion.div>
             <motion.div
-                className={`absolute ${styles.forth_smallBub}  z-[10] transition-all duration-500 hidden 2xl:block xl:block lg:block`}
+                className={`absolute ${styles.forth_smallBub}  z-[10] transition-all duration-500  2xl:block xl:block lg:block`}
             >
                 <svg
                     width="58"

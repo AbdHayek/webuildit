@@ -47,14 +47,7 @@ export default function GrowYourBusiness() {
   const ids = ["how", "who", "why"];
   const [centerId, setCenterId] = useState("who");
   const [prevCenterId, setPrevCenterId] = useState("why");
-  const [positionsSmallBubble, setPositionsSmallBubble] = useState({
-    first: "top-[0%] left-[27%]",
-    second: "top-[50%] left-[10%]",
-    third: "top-[0%] right-[27%]",
-    forth: "top-[50%] right-[10%]",
-  });
   const [lastPostion, setLastPostion] = useState<Postion>({ now: null });
-
 
   const getAngle = (id: string) => {
     const centerIndex = ids.indexOf(centerId);
@@ -182,7 +175,7 @@ export default function GrowYourBusiness() {
       <div className="h-screen relative">
 
         {/* Animate small bubbles */}
-        <SmallBubbles positionsBubble={positionsSmallBubble} centerId={centerId} />
+        <SmallBubbles centerId={centerId} />
 
         <Orbit centerId={centerId} />
 
