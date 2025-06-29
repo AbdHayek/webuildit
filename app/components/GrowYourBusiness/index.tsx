@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./GrowYourBusiness.module.scss";
 import Orbit from "./Orbit";
 import SmallBubbles from "./SmallBubbles";
+import { ImagesSection } from "./ImagesSection";
 
 const bubbles = [
   {
@@ -128,6 +129,7 @@ export default function GrowYourBusiness() {
     }, 500); // Delay in ms
 
     const timeout = setTimeout(() => {
+       el.style.left = lastPostion?.now?.left || "0"
       el.style.top = lastPostion?.now?.top || "0"
     }, 1000); // Delay in ms
 
@@ -170,7 +172,7 @@ export default function GrowYourBusiness() {
       ></div>
 
       {/* bottom-side Gradient Background */}
-      <div className="absolute bottom-0 left-0 w-full h-1/3 z-[20] bg-gradient-to-t from-[#070322]/100 via-[#070322]/75 to-[#070322]/75  backdrop-blur-xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-1/4 z-[20] bg-gradient-to-t from-[#070322]/100 via-[#070322]/75 to-[#070322]/75  backdrop-blur-xl pointer-events-none" />
 
       {/* CONTAINER ADDED */}
       <div className="text-center mb-30">
@@ -219,76 +221,25 @@ export default function GrowYourBusiness() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.7 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-[30%] z-[10] bottom-0 left-1/2 transform -translate-x-1/2 text-center"
+            className="absolute top-[35%] z-[10] bottom-0 left-1/2 transform -translate-x-1/2 text-center"
           >
             {centerId === "who" && (
-              <section className="relative w-full flex items-center justify-center overflow-hidden">
-                <div className="relative rounded-full overflow-hidden">
-                  {/* Background Image */}
-                  <img
-                    src="/assets/GrowYourBusiness/who.png"
-                    alt="Visual Process"
-                    className="w-full h-full  object-cover"
-                  />
-
-                  {/* Centered Text */}
-                  <div className="absolute inset-0 flex flex-col justify-center items-center px-4 text-white text-center">
-                    <h2 className="text-2xl md:text-4xl font-bold uppercase tracking-wide">
-                      Step-by-step
-                      <br />
-                      Process With
-                      <br />
-                      Visuals
-                    </h2>
-                  </div>
-                </div>
-              </section>
+              <ImagesSection 
+                title={["Step 1", "Step 2", "Step 3"]} 
+                image={["/assets/GrowYourBusiness/who.png", "/assets/GrowYourBusiness/how.png", "/assets/GrowYourBusiness/why.png"]} 
+              />
             )}
             {centerId === "how" && (
-              <section className="relative w-full flex items-center justify-center overflow-hidden">
-                <div className="relative  rounded-full overflow-hidden">
-                  {/* Background Image */}
-                  <img
-                    src="/assets/GrowYourBusiness/how.png"
-                    alt="Visual Process"
-                    className="w-full h-full  object-cover"
-                  />
-
-                  {/* Centered Text */}
-                  <div className="absolute inset-0 flex flex-col justify-center items-center px-4 text-white text-center">
-                    <h2 className="text-2xl md:text-4xl font-bold uppercase tracking-wide">
-                      Step-by-step
-                      <br />
-                      Process With
-                      <br />
-                      Visuals
-                    </h2>
-                  </div>
-                </div>
-              </section>
+              <ImagesSection 
+                title={["Process 1", "Process 2", "Process 3"]} 
+                image={["/assets/GrowYourBusiness/how.png", "/assets/GrowYourBusiness/why.png", "/assets/GrowYourBusiness/who.png"]} 
+              />
             )}
             {centerId === "why" && (
-              <section className="relative w-full flex items-center justify-center overflow-hidden">
-                <div className="relative overflow-hidden rounded-full">
-                  {/* Background Image */}
-                  <img
-                    src="/assets/GrowYourBusiness/why.png"
-                    alt="Visual Process"
-                    className="w-full h-full object-cover"
-                  />
-
-                  {/* Centered Text */}
-                  <div className="absolute inset-0 flex flex-col justify-center items-center px-4 text-white text-center">
-                    <h2 className="text-2xl md:text-4xl font-bold uppercase tracking-wide">
-                      Step-by-step
-                      <br />
-                      Process With
-                      <br />
-                      Visuals
-                    </h2>
-                  </div>
-                </div>
-              </section>
+              <ImagesSection 
+                title={["Phase 1", "Phase 2", "Phase 3"]} 
+                image={["/assets/GrowYourBusiness/why.png", "/assets/GrowYourBusiness/who.png", "/assets/GrowYourBusiness/how.png"]} 
+              />
             )}
           </motion.div>
         </AnimatePresence>
