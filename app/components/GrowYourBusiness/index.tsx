@@ -69,7 +69,7 @@ export default function GrowYourBusiness() {
 
     return {
       left: `${leftPercent}%`,
-      top: `${topPercent}%`,
+      top: `${topPercent- (window.innerWidth <= 1024 ? 15 : 0)}%`,
     };
   };
   

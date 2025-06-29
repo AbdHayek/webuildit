@@ -15,6 +15,35 @@
 
 /* Mobile First Responsive Design */
 
+@media screen and (max-width: 520px) {
+  .bubble_active {
+    width: 80px;
+    height: 80px;
+    font-size: 12px;
+  }
+
+  .bubble_inactive {
+    width: 60px;
+    height: 60px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .bubble_active {
+    width: 100px;
+    height: 100px;
+    font-size: 14px;
+  }
+
+  .bubble_inactive {
+    width: 80px;
+    height: 80px;
+    font-size: 14px;
+  }
+}
+
+
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   .bubble_active {
