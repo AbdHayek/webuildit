@@ -165,7 +165,7 @@ export default function GrowYourBusiness() {
       ></div>
 
       {/* bottom-side Gradient Background */}
-      <div className="absolute bottom-0 left-0 w-full h-1/4 z-[20] bg-gradient-to-t from-[#070322]/100 via-[#070322]/75 to-[#070322]/75  backdrop-blur-xl pointer-events-none" />
+      <div className="absolute bottom-[50%] 2xl:bottom-[0%]  xl:bottom-[0%] lg:bottom-[15%]  md:bottom-[25%] sm:bottom-[35%]   sm:block hidden  left-0 w-full h-1/4 z-[20] bg-gradient-to-t from-[#070322]/100 via-[#070322]/75 to-[#070322]/75  backdrop-blur-xl pointer-events-none" />
 
       {/* CONTAINER ADDED */}
       <div className="text-center mb-30">
@@ -214,7 +214,7 @@ export default function GrowYourBusiness() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.7 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-[35%] z-[10] bottom-0 left-1/2 transform -translate-x-1/2 text-center"
+            className="absolute top-[12%] 2xl:top-[33%] xl:top-[25%] lg:top-[12%] z-[10] bottom-0 left-1/2 transform -translate-x-1/2 text-center"
           >
             {centerId === "who" && (
               <ImagesSection 

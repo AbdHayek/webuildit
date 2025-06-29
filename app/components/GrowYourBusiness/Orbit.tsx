@@ -32,7 +32,7 @@ export default function Orbit({ centerId }: { centerId: string }) {
             </div>
 
             {/* inSide Line */}
-            <div className="absolute top-[15%] sm:top-[16%] md:top-[17%] lg:top-[18%] right-[10%] left-[10%] sm:right-[12%] sm:left-[12%] md:right-[15%] md:left-[15%] lg:right-[17%] lg:left-[17%] xl:right-[17%] xl:left-[17%] 2xl:right-[17%] 2xl:left-[17%]">
+            <div className="absolute top-[2%] sm:top-[2%] md:top-[5%]  lg:top-[5%] xl:top-[18%] right-[10%] left-[10%] sm:right-[12%] sm:left-[12%] md:right-[15%] md:left-[15%] lg:right-[17%] lg:left-[17%] xl:right-[17%] xl:left-[17%] 2xl:right-[17%] 2xl:left-[17%]">
                 <svg
                     width="100%"
                     height="100%"
