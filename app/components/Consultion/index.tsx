@@ -10,11 +10,11 @@ import { ArrowDownCircleIcon } from "@heroicons/react/24/solid";
 const options = [
   {
     name: "Online Consultation",
-    icon: <ArrowDownCircleIcon className="w-5 h-5 text-purple-500" />,
+    icon: <ArrowDownCircleIcon className="w-4 h-4 sm:w-5 sm:h-5 text-purple-500" />,
   },
   {
     name: "In-Person Consultation",
-    icon: <ArrowDownCircleIcon className="w-5 h-5 text-purple-500" />,
+    icon: <ArrowDownCircleIcon className="w-4 h-4 sm:w-5 sm:h-5 text-purple-500" />,
   },
 ];
 
@@ -24,33 +24,34 @@ export default function Consultion() {
   const [selected, setSelected] = useState(options[0]);
 
   return (
-    <div className="min-h-screen text-white flex flex-col md:flex-row items-center justify-center gap-[10%] lg:px-[10%] lg:py-[10%] md:px-[5%] md:py-[5%]">
+    <div className="min-h-screen text-white flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-[10%] px-4 sm:px-6 lg:px-[10%] py-8 sm:py-12 lg:py-[10%]">
       {/* Left - Calendar */}
-      <div className="bg-white text-center rounded-lg p-6 w-full md:w-[40%] text-black shadow-lg mb-[5%] mt-[5%]">
-        <h3 className="text-3xl font-semibold text-[#4A148C] mb-4">
+      <div className="bg-white text-center rounded-lg p-4 sm:p-6 w-full lg:w-[40%] text-black shadow-lg mb-6 sm:mb-8 lg:mb-0 order-2 lg:order-1">
+        <h3 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-[#4A148C] mb-3 sm:mb-4">
           Select Date
         </h3>
-        <DatePicker
-          selected={selectedDate}
-          onChange={(date) => setSelectedDate(date!)}
-          inline
-          calendarClassName="bg-white rounded-xl shadow-lg p-4 text-center"
-          dayClassName={(date) =>
-            `flex items-center justify-center rounded-full transition font-medium
-            ${
-              date.toDateString() === new Date().toDateString()
+        <div className="flex justify-center">
+          <DatePicker
+            selected={selectedDate}
+            onChange={(date) => setSelectedDate(date!)}
+            inline
+            calendarClassName="bg-white rounded-xl shadow-lg p-2 sm:p-4 text-center"
+            dayClassName={(date) =>
+              `flex items-center justify-center rounded-full transition font-medium text-sm sm:text-base
+              ${date.toDateString() === new Date().toDateString()
                 ? "bg-purple-600 text-white"
                 : "text-gray-700 hover:bg-purple-100"
-            }`
-          }
-        />
+              }`
+            }
+          />
+        </div>
 
-        <div className="mt-6 text-left">
-          <label className="block text-xl text-[#4A148C] font-semibold mb-2">
+        <div className="mt-4 sm:mt-6 text-left">
+          <label className="block text-lg sm:text-xl text-[#4A148C] font-semibold mb-2">
             Select Time
           </label>
           <select
-            className="w-full p-2 border rounded"
+            className="w-full p-2 sm:p-3 border rounded text-sm sm:text-base"
             value={selectedTime}
             onChange={(e) => setSelectedTime(e.target.value)}
           >
@@ -62,33 +63,34 @@ export default function Consultion() {
       </div>
 
       {/* Right - Form */}
-      <div className="w-full space-y-4 md:w-[60%] mb-[5%] mt-[5%]">
-        <h1 className="font-bold text-4xl leading-tight">
-          <span className="text-white text-6xl">CONSULTING</span> FOR
+      <div className="w-full space-y-4 lg:w-[60%] order-1 lg:order-2">
+        <h1 className="font-bold text-2xl sm:text-3xl lg:text-4xl leading-tight text-center lg:text-left">
+          <span className="text-white text-3xl sm:text-4xl lg:text-6xl">CONSULTING</span> FOR
         </h1>
-        <h1 className="text-4xl font-semibold text-white/90 leading-tight">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-white/90 leading-tight text-center lg:text-left">
           EVERY BUSINESS
         </h1>
+
         <Listbox value={selected} onChange={setSelected}>
           <div className="relative w-full">
             {/* Label */}
-            <label className="block mb-2 text-lg font-bold text-[#CB97FF]">
+            <label className="block mb-2 text-base sm:text-lg font-bold text-[#CB97FF]">
               Consultation type
             </label>
 
-            <Listbox.Button className="w-full p-3 border rounded bg-transparent text-white flex justify-between items-center">
+            <Listbox.Button className="w-full p-3 border rounded bg-transparent text-white flex justify-between items-center text-sm sm:text-base">
               <span className="flex items-center gap-2">
                 {selected.icon}
-                {selected.name}
+                <span className="truncate">{selected.name}</span>
               </span>
             </Listbox.Button>
 
-            <Listbox.Options className="absolute mt-1 w-full bg-white text-black rounded shadow-lg z-10">
+            <Listbox.Options className="absolute mt-1 w-full bg-white text-black rounded shadow-lg z-10 max-h-32 overflow-auto">
               {options.map((option, idx) => (
                 <Listbox.Option
                   key={idx}
                   value={option}
-                  className="cursor-pointer p-2 hover:bg-purple-100 flex items-center gap-2"
+                  className="cursor-pointer p-2 hover:bg-purple-100 flex items-center gap-2 text-sm sm:text-base"
                 >
                   {option.icon}
                   {option.name}
@@ -100,26 +102,26 @@ export default function Consultion() {
 
         <input
           placeholder="Full Name:"
-          className="w-full p-3 rounded border bg-transparent text-white"
+          className="w-full p-3 rounded border bg-transparent text-white text-sm sm:text-base placeholder-gray-400"
         />
         <input
           placeholder="Phone Number:"
-          className="w-full p-3 rounded border bg-transparent text-white"
+          className="w-full p-3 rounded border bg-transparent text-white text-sm sm:text-base placeholder-gray-400"
         />
         <input
           placeholder="Email Address:"
-          className="w-full p-3 rounded border bg-transparent text-white"
+          className="w-full p-3 rounded border bg-transparent text-white text-sm sm:text-base placeholder-gray-400"
         />
 
-        <div className="h-[1px] bg-white mx-auto mt-8 mb-2" />
-        <div className="flex flex-col sm:flex-row items-center justify-between pt-4 gap-4">
-          <p className="text-purple-400 text-2xl font-bold">$100</p>
-          <Button className="group flex items-center rounded-full border-2 border-purple-500 overflow-hidden bg-transparent text-white transition-all duration-300 hover:bg-purple-600">
-            <div className="flex transform transition-transform duration-1000 group-hover:translate-x-[75%]">
-              <div className="bg-purple-400 p-3 rounded-full">
+        <div className="h-[1px] bg-white mx-auto mt-6 sm:mt-8 mb-2" />
+        <div className="flex flex-col justify-self-center w-[25%] md:w-[100%] justify-between md:justify-between lg:flex-row items-center  pt-4 gap-4">
+          <p className="text-purple-400 text-xl sm:text-2xl font-bold">$100</p>
+          <Button className="group flex items-center rounded-full border-2 border-purple-500 overflow-hidden bg-transparent text-white transition-all duration-300 hover:bg-purple-600 w-full sm:w-auto">
+            <div className="flex transform transition-transform duration-1000 group-hover:translate-x-[75%] w-full sm:w-auto">
+              <div className="bg-purple-400 p-2 sm:p-3 rounded-full">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-white"
+                  className="h-3 w-3 sm:h-4 sm:w-4 text-white"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -132,7 +134,7 @@ export default function Consultion() {
                   />
                 </svg>
               </div>
-              <span className="px-8 text-sm font-medium">
+              <span className="px-4 sm:px-8 text-xs sm:text-sm font-medium">
                 Make
                 <br />
                 Payment
