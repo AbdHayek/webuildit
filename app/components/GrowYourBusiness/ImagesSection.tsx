@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export const ImagesSection = ({ title, image }: { title: Array<string>, image: Array<string> }) => {
   return (
     <section className="relative w-full flex items-center justify-center overflow-hidden">
@@ -5,11 +7,14 @@ export const ImagesSection = ({ title, image }: { title: Array<string>, image: A
         {/* One shape divided into 3 vertical sections */}
         <div className="relative w-full h-full">
           {/* Top Section - 1/3 of the circle */}
-          <div className="absolute top-0 left-0 right-0 h-1/3 overflow-hidden">
-            <img
+          <div className="absolute top-0 left-0 right-0 h-1/4 overflow-hidden">
+            <Image
               src={image[0]}
               alt="Visual Process Top"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 671px"
+              priority
             />
 
             {/* Centered Text for Top Section */}
@@ -21,11 +26,13 @@ export const ImagesSection = ({ title, image }: { title: Array<string>, image: A
           </div>
 
           {/* Middle Section - 1/3 of the circle */}
-          <div className="absolute top-1/3 left-0 right-0 h-1/3 overflow-hidden">
-            <img
+          <div className="absolute top-1/4 left-0 right-0 h-1/4 overflow-hidden">
+            <Image
               src={image[1]}
               alt="Visual Process Middle"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 671px"
             />
 
             {/* Centered Text for Middle Section */}
@@ -37,15 +44,17 @@ export const ImagesSection = ({ title, image }: { title: Array<string>, image: A
           </div>
 
           {/* Bottom Section - 1/3 of the circle */}
-          <div className="absolute bottom-0 left-0 right-0 h-1/3 overflow-hidden">
-            <img
+          <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden">
+            <Image
               src={image[2]}
               alt="Visual Process Bottom"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 671px"
             />
 
             {/* Centered Text for Bottom Section */}
-            <div className="absolute inset-0 flex flex-col justify-center items-center px-4 text-white text-center z-10">
+            <div className="absolute inset-0 bottom-[30%] flex flex-col justify-center items-center px-4 text-white text-center z-10">
               <h2 className="text-2xl md:text-4xl font-bold uppercase tracking-wide">
                 {title[2]}
               </h2>
