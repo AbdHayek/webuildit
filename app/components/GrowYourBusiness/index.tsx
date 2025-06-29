@@ -28,10 +28,6 @@ const bubbles = [
 ];
 
 type Postion = {
-  prev: {
-    left: string,
-    top: string
-  } | null,
   now: {
     left: string,
     top: string
@@ -44,16 +40,19 @@ export default function GrowYourBusiness() {
   const CONTAINER_HEIGHT = 1300;
   const RADIUS = 400;
   const CENTER = { x: CONTAINER_WIDTH / 2, y: CONTAINER_HEIGHT / 2 };
-  const activeElement = useRef(null);
+  const activeElement = useRef<HTMLElement | null>(null);
+  const activePrevElement = useRef<HTMLElement | null>(null);
+  const activeCurrentElement = useRef<HTMLElement | null>(null);
   const ids = ["how", "who", "why"];
   const [centerId, setCenterId] = useState("who");
+  const [prevCenterId, setPrevCenterId] = useState("why");
   const [positionsSmallBubble, setPositionsSmallBubble] = useState({
     first: "top-[0%] left-[27%]",
     second: "top-[50%] left-[10%]",
     third: "top-[0%] right-[27%]",
     forth: "top-[50%] right-[10%]",
   });
-   const [lastPostion, setLastPostion] = useState<Postion>({ prev: null, now: null });
+  const [lastPostion, setLastPostion] = useState<Postion>({ now: null });
 
 
   const getAngle = (id: string) => {
@@ -81,21 +80,43 @@ export default function GrowYourBusiness() {
 
   useEffect(() => {
 
-    const targetBubble = bubbles[2]; // idx === 2
+    const targetBubble = getLastNode(); // Remove await since getLastNode is not async
     if (!targetBubble) return;
 
-    const newPos = calculatePosition(targetBubble.id);
+    const element = document.getElementById(targetBubble.id);
+    if (element) {
+      activeElement.current = element;
+    }
 
-    setLastPostion((prev) => ({
-      prev: prev.now,
-      now: newPos,
+    const prevElement = document.getElementById(prevCenterId);
+    if (prevElement) {
+      const pos = calculatePosition(prevCenterId);
+      activePrevElement.current = prevElement;
+
+      activePrevElement.current.style.left = pos.left;
+      activePrevElement.current.style.top = pos.top;
+    }
+
+    const currentElement = document.getElementById(centerId);
+    if (currentElement) {
+      const pos = calculatePosition(centerId);
+      activeCurrentElement.current = currentElement;
+
+      activeCurrentElement.current.style.left = pos.left;
+      activeCurrentElement.current.style.top = pos.top;
+    }
+
+    const newPos = calculatePosition(targetBubble.id);
+    setLastPostion(() => ({
+      now: newPos
     }));
 
-  }, [centerId]);
+
+  }, [centerId, prevCenterId]);
 
   useEffect(() => {
 
-    if (lastPostion.now === null || lastPostion.prev === null) return;
+    if (lastPostion.now === null) return;
     const el = activeElement.current;
     if (!el) return;
 
@@ -103,11 +124,11 @@ export default function GrowYourBusiness() {
     el.style.top = `${parseFloat(el.style.top || "0") + 90}%`;
 
     const timeoutDisplay = setTimeout(() => {
-      el.style.left = lastPostion?.now?.left
+      el.style.left = lastPostion?.now?.left || "0"
     }, 500); // Delay in ms
 
     const timeout = setTimeout(() => {
-      el.style.top = lastPostion?.now?.top
+      el.style.top = lastPostion?.now?.top || "0"
     }, 1000); // Delay in ms
 
     // Cleanup timeout if component unmounts or centerId changes
@@ -121,6 +142,16 @@ export default function GrowYourBusiness() {
 
   }, [lastPostion]);
 
+
+  const handleClick = (id: string) => {
+    setPrevCenterId(centerId);
+    setCenterId(id);
+  }
+
+  const getLastNode = () => {
+    const idx = bubbles.find(bubble => bubble.id !== centerId && bubble.id !== prevCenterId);
+    return idx;
+  }
 
   return (
     <div className={`mt-[10%]  h-[1450px] overflow-y-hidden relative`}>
@@ -155,15 +186,12 @@ export default function GrowYourBusiness() {
 
         {/* Animate bubbles */}
         {bubbles.map((bubble, idx) => {
-          const pos = calculatePosition(bubble.id);
-          const appliedStyle = (idx === 2 && lastPostion?.prev !== null) ? lastPostion.prev : pos;
           return (
             <motion.div
-              ref={(bubble.id === "why") ? activeElement : null}
+              id={bubble.id}
               key={bubble.id}
-              onClick={() => setCenterId(bubble.id)}
+              onClick={() => handleClick(bubble.id)}
               style={{
-                ...appliedStyle,
                 borderColor: bubble.bordercolor,
                 position: "absolute"
               }}
@@ -203,9 +231,6 @@ export default function GrowYourBusiness() {
                     className="w-full h-full  object-cover"
                   />
 
-                  {/* Overlay */}
-                  {/* <div className="absolute inset-0 bg-[#8448F1]/31" /> */}
-
                   {/* Centered Text */}
                   <div className="absolute inset-0 flex flex-col justify-center items-center px-4 text-white text-center">
                     <h2 className="text-2xl md:text-4xl font-bold uppercase tracking-wide">
@@ -229,9 +254,6 @@ export default function GrowYourBusiness() {
                     className="w-full h-full  object-cover"
                   />
 
-                  {/* Overlay */}
-                  {/* <div className="absolute inset-0 bg-[#DA59A6]/31" /> */}
-
                   {/* Centered Text */}
                   <div className="absolute inset-0 flex flex-col justify-center items-center px-4 text-white text-center">
                     <h2 className="text-2xl md:text-4xl font-bold uppercase tracking-wide">
@@ -254,9 +276,6 @@ export default function GrowYourBusiness() {
                     alt="Visual Process"
                     className="w-full h-full object-cover"
                   />
-
-                  {/* Overlay */}
-                  {/* <div className="absolute inset-0 bg-[#408BEC]/31" /> */}
 
                   {/* Centered Text */}
                   <div className="absolute inset-0 flex flex-col justify-center items-center px-4 text-white text-center">
