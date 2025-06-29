@@ -4,7 +4,7 @@ export default function Orbit({ centerId }: { centerId: string }) {
     return (
         <>
             {/* outSide Line */}
-            <div className="absolute top-[-5%] right-[10%] left-[10%] 2xl:block xl:block lg:block">
+            <div className="absolute top-[-5%] right-[5%] left-[5%] sm:right-[8%] sm:left-[8%] md:right-[10%] md:left-[10%] lg:right-[10%] lg:left-[10%] xl:right-[10%] xl:left-[10%] 2xl:right-[10%] 2xl:left-[10%]">
                 <svg
                     width="100%"
                     height="100%"
@@ -12,6 +12,7 @@ export default function Orbit({ centerId }: { centerId: string }) {
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                     style={{ opacity: 0.5 }}
+                    className="w-full h-auto"
                 >
                     <circle
                         cx="608"
@@ -24,12 +25,14 @@ export default function Orbit({ centerId }: { centerId: string }) {
                                     ? "#8448F1"
                                     : "#408BEC"
                         }
+                        strokeWidth="1"
+                        className="sm:stroke-[1.5] md:stroke-[2]"
                     />
                 </svg>
             </div>
 
             {/* inSide Line */}
-            <div className="absolute top-[18%] right-[17%] left-[17%] 2xl:block xl:block lg:block">
+            <div className="absolute top-[15%] sm:top-[16%] md:top-[17%] lg:top-[18%] right-[10%] left-[10%] sm:right-[12%] sm:left-[12%] md:right-[15%] md:left-[15%] lg:right-[17%] lg:left-[17%] xl:right-[17%] xl:left-[17%] 2xl:right-[17%] 2xl:left-[17%]">
                 <svg
                     width="100%"
                     height="100%"
@@ -37,6 +40,7 @@ export default function Orbit({ centerId }: { centerId: string }) {
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                     style={{ opacity: 0.3 }}
+                    className="w-full h-auto"
                 >
                     <path
                         d="M496 1C769.404 1 991 217.269 991 484C991 750.731 769.404 967 496 967C222.596 967 1 750.731 1 484C1 217.269 222.596 1 496 1Z"
@@ -47,7 +51,8 @@ export default function Orbit({ centerId }: { centerId: string }) {
                                     ? "#8448F1"
                                     : "#408BEC"
                         }
-                        strokeWidth="2"
+                        strokeWidth="1"
+                        className="sm:stroke-[1.5] md:stroke-[2]"
                     />
                     <defs>
                         <linearGradient
