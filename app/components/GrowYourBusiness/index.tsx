@@ -234,19 +234,19 @@ export default function GrowYourBusiness() {
             {centerId === "who" && (
               <ImagesSection 
                 title={["Step 1", "Step 2", "Step 3"]} 
-                image={["/assets/GrowYourBusiness/1.jpg", "/assets/GrowYourBusiness/2.jpg", "/assets/GrowYourBusiness/3.png"]} 
+                image={["/assets/GrowYourBusiness/purple/1.jpg", "/assets/GrowYourBusiness/purple/2.jpg", "/assets/GrowYourBusiness/purple/3.jpg"]} 
               />
             )}
             {centerId === "how" && (
               <ImagesSection 
                 title={["Process 1", "Process 2", "Process 3"]} 
-                image={["/assets/GrowYourBusiness/2.jpg", "/assets/GrowYourBusiness/3.png", "/assets/GrowYourBusiness/1.jpg"]} 
+                image={["/assets/GrowYourBusiness/pink/1.jpg"]} 
               />
             )}
             {centerId === "why" && (
               <ImagesSection 
                 title={["Phase 1", "Phase 2", "Phase 3"]} 
-                image={["/assets/GrowYourBusiness/3.png", "/assets/GrowYourBusiness/1.jpg", "/assets/GrowYourBusiness/2.jpg"]} 
+                image={["/assets/GrowYourBusiness/blue/3.jpg", "/assets/GrowYourBusiness/blue/1.jpg", "/assets/GrowYourBusiness/blue/2.jpg"]} 
               />
             )}
           </motion.div>
