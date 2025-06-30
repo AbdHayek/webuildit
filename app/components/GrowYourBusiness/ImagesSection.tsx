@@ -4,10 +4,12 @@ export const ImagesSection = ({
   title,
   image,
   position,
+  classes
 }: {
   title: string[];
   image: string[];
   position: string[];
+  classes: string;
 }) => {
   const isSingle = image.length === 1;
 
@@ -15,6 +17,8 @@ export const ImagesSection = ({
     <section className="relative w-full flex items-center justify-center overflow-hidden py-12 px-4">
       <div className="relative rounded-full overflow-hidden w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[500px] lg:h-[550px] xl:w-[600px] xl:h-[650px] 2xl:w-[671px] 2xl:h-[718px]">
         <div className="relative w-full h-full">
+          {/* Overlay */}
+          <div className={classes} />
           {isSingle ? (
             <div className="absolute top-0 left-0 right-0 h-[100%] overflow-hidden">
               <Image

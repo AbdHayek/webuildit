@@ -233,6 +233,7 @@ export default function GrowYourBusiness() {
           >
             {centerId === "who" && (
               <ImagesSection
+                classes={"absolute inset-0 bg-gradient-to-b from-[#9643D64F] to-[#140526DB] z-10"}
                 position={["top", "center", "center"]}
                 title={["Step 1", "Step 2", "Step 3"]}
                 image={["/assets/GrowYourBusiness/purple/3.jpg", "/assets/GrowYourBusiness/purple/2.jpg", "/assets/GrowYourBusiness/purple/1.jpg"]}
@@ -240,6 +241,7 @@ export default function GrowYourBusiness() {
             )}
             {centerId === "how" && (
               <ImagesSection
+                classes={"absolute inset-0 bg-gradient-to-b from-[#BD3E937D] to-[#4C022ED1] z-10"}
                 position={[]}
                 title={["Process 1", "Process 2", "Process 3"]}
                 image={["/assets/GrowYourBusiness/pink/1.jpg"]}
@@ -247,7 +249,8 @@ export default function GrowYourBusiness() {
             )}
             {centerId === "why" && (
               <ImagesSection
-                position={["center", "center", "bottom"]}
+                classes={"absolute inset-0 bg-gradient-to-b from-[#0043994F] to-[#140526] z-10"}
+                position={["center", "ce  nter", "bottom"]}
                 title={["Phase 1", "Phase 2", "Phase 3"]}
                 image={["/assets/GrowYourBusiness/blue/1.jpg", "/assets/GrowYourBusiness/blue/2.jpg", "/assets/GrowYourBusiness/blue/3.jpg"]}
               />
