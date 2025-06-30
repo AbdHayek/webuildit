@@ -4,7 +4,7 @@ export default function Orbit({ centerId }: { centerId: string }) {
     return (
         <>
             {/* outSide Line */}
-            <div className="absolute top-[-5%] right-[5%] left-[5%] sm:right-[8%] sm:left-[8%] md:right-[10%] md:left-[10%] lg:right-[10%] lg:left-[10%] xl:right-[10%] xl:left-[10%] 2xl:right-[10%] 2xl:left-[10%]">
+            <div className="absolute top-[-15%] 2xl:top-[-5%] xl:top-[-5%] lg:top-[-15%] md:top-[-15%] sm:top-[-15%] right-[5%] left-[5%] sm:right-[8%] sm:left-[8%] md:right-[10%] md:left-[10%] lg:right-[10%] lg:left-[10%] xl:right-[10%] xl:left-[10%] 2xl:right-[10%] 2xl:left-[10%]">
                 <svg
                     width="100%"
                     height="100%"
@@ -32,7 +32,7 @@ export default function Orbit({ centerId }: { centerId: string }) {
             </div>
 
             {/* inSide Line */}
-            <div className="absolute top-[2%] sm:top-[2%] md:top-[5%]  lg:top-[5%] xl:top-[18%] right-[10%] left-[10%] sm:right-[12%] sm:left-[12%] md:right-[15%] md:left-[15%] lg:right-[17%] lg:left-[17%] xl:right-[17%] xl:left-[17%] 2xl:right-[17%] 2xl:left-[17%]">
+            <div className="absolute top-[2%] sm:top-[2%] md:top-[5%]  lg:top-[5%] xl:top-[18%] right-[15%] left-[15%] sm:right-[18%] sm:left-[18%] md:right-[18%] md:left-[18%] lg:right-[17%] lg:left-[17%] xl:right-[17%] xl:left-[17%] 2xl:right-[17%] 2xl:left-[17%]">
                 <svg
                     width="100%"
                     height="100%"

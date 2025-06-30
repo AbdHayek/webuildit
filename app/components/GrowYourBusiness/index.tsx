@@ -69,7 +69,7 @@ export default function GrowYourBusiness() {
 
     return {
       left: `${leftPercent}%`,
-      top: `${topPercent- (window.innerWidth <= 1024 ? 15 : 0)}%`,
+      top: `${topPercent- ( window.innerWidth <= 1024 ? 15 : 0)}%`, // add 15% to the top if the width is less than 1024 for better UI
     };
   };
   
@@ -206,7 +206,7 @@ export default function GrowYourBusiness() {
                 position: "absolute"
               }}
               className={`cursor-pointer rounded-full flex items-center justify-center  transform
-                 -translate-x-1/2 -translate-y-1/2  2xl:-translate-y-3/4  xl:-translate-y-3/4  lg:-translate-y-3/4  duration-1000
+                 -translate-x-1/2 -translate-y-3/4  2xl:-translate-y-3/4  xl:-translate-y-3/4  lg:-translate-y-3/4  duration-1000
                   bg-gradient-to-b ${bubble.background
                 }  shadow-lg ${centerId === bubble.id
                   ? styles.bubble_active

@@ -119,13 +119,37 @@
 
 @media screen and (min-width: 1024px) {
   .first_smallBub {
+    top: -10%;
+    left: 22%;
+  }
+
+  .second_smallBub {
+    top: 20%;
+    left: 12%;
+  }
+
+  .third_smallBub {
+    top: -10%;
+    right: 22%;
+  }
+
+  .forth_smallBub {
+    top: 20%;
+    right: 12%;
+  }
+}
+
+
+
+@media screen and (min-width: 1300px) {
+  .first_smallBub {
     top: 4%;
     left: 22%;
   }
 
   .second_smallBub {
     top: 30%;
-    left: 12%;
+    left: 14%;
   }
 
   .third_smallBub {
@@ -135,7 +159,7 @@
 
   .forth_smallBub {
     top: 30%;
-    right: 12%;
+    right: 14%;
   }
 }
 
