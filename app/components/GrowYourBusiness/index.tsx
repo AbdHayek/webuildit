@@ -48,7 +48,7 @@ export default function GrowYourBusiness() {
   const [centerId, setCenterId] = useState("who");
   const [prevCenterId, setPrevCenterId] = useState("why");
   const [lastPostion, setLastPostion] = useState<Postion>({ now: null });
-  const [divHeight, setDivHeight] = useState(0);
+  const [divHeight, setDivHeight] = useState(1450);
 
   const getAngle = (id: string) => {
     const centerIndex = ids.indexOf(centerId);
@@ -69,10 +69,10 @@ export default function GrowYourBusiness() {
 
     return {
       left: `${leftPercent}%`,
-      top: `${topPercent- ( window.innerWidth <= 1024 ? 15 : 0)}%`, // add 15% to the top if the width is less than 1024 for better UI
+      top: `${topPercent - (window.innerWidth <= 1250 ? 15 : 0)}%`, // add 15% to the top if the width is less than 1024 for better UI
     };
   };
-  
+
 
   useEffect(() => {
 
@@ -124,7 +124,7 @@ export default function GrowYourBusiness() {
     }, 500); // Delay in ms
 
     const timeout = setTimeout(() => {
-       el.style.left = lastPostion?.now?.left || "0"
+      el.style.left = lastPostion?.now?.left || "0"
       el.style.top = lastPostion?.now?.top || "0"
     }, 1000); // Delay in ms
 
@@ -180,7 +180,7 @@ export default function GrowYourBusiness() {
       ></div>
 
       {/* bottom-side Gradient Background */}
-      <div className="absolute bottom-[0%] left-0 w-full h-1/4 z-[20] bg-gradient-to-t from-[#070322]/100 via-[#070322]/75 to-[#070322]/75  backdrop-blur-xl pointer-events-none" />
+      <div className="absolute bottom-[0%] left-0 w-full 2xl:h-1/4 h-[5%] z-[20] bg-gradient-to-t from-[#070322]/100 via-[#070322]/75 to-[#070322]/75  backdrop-blur-xl pointer-events-none" />
 
       {/* CONTAINER ADDED */}
       <div className="text-center mb-30">
@@ -206,7 +206,7 @@ export default function GrowYourBusiness() {
                 position: "absolute"
               }}
               className={`cursor-pointer rounded-full flex items-center justify-center  transform
-                 -translate-x-1/2 -translate-y-3/4  2xl:-translate-y-3/4  xl:-translate-y-3/4  lg:-translate-y-3/4  duration-1000
+                 -translate-x-1/2 -translate-y-3/4  duration-1000
                   bg-gradient-to-b ${bubble.background
                 }  shadow-lg ${centerId === bubble.id
                   ? styles.bubble_active
@@ -229,24 +229,27 @@ export default function GrowYourBusiness() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.7 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-[12%] 2xl:top-[33%] xl:top-[25%] lg:top-[12%] z-[10] bottom-0 left-1/2 transform -translate-x-1/2 text-center"
+            className="absolute top-[5%] xl:top-[25%] lg:top-[12%] z-[10] bottom-0 left-1/2 transform -translate-x-1/2 text-center"
           >
             {centerId === "who" && (
-              <ImagesSection 
-                title={["Step 1", "Step 2", "Step 3"]} 
-                image={["/assets/GrowYourBusiness/purple/1.jpg", "/assets/GrowYourBusiness/purple/2.jpg", "/assets/GrowYourBusiness/purple/3.jpg"]} 
+              <ImagesSection
+                position={["top", "center", "center"]}
+                title={["Step 1", "Step 2", "Step 3"]}
+                image={["/assets/GrowYourBusiness/purple/3.jpg", "/assets/GrowYourBusiness/purple/2.jpg", "/assets/GrowYourBusiness/purple/1.jpg"]}
               />
             )}
             {centerId === "how" && (
-              <ImagesSection 
-                title={["Process 1", "Process 2", "Process 3"]} 
-                image={["/assets/GrowYourBusiness/pink/1.jpg"]} 
+              <ImagesSection
+                position={[]}
+                title={["Process 1", "Process 2", "Process 3"]}
+                image={["/assets/GrowYourBusiness/pink/1.jpg"]}
               />
             )}
             {centerId === "why" && (
-              <ImagesSection 
-                title={["Phase 1", "Phase 2", "Phase 3"]} 
-                image={["/assets/GrowYourBusiness/blue/3.jpg", "/assets/GrowYourBusiness/blue/1.jpg", "/assets/GrowYourBusiness/blue/2.jpg"]} 
+              <ImagesSection
+                position={["center", "center", "bottom"]}
+                title={["Phase 1", "Phase 2", "Phase 3"]}
+                image={["/assets/GrowYourBusiness/blue/1.jpg", "/assets/GrowYourBusiness/blue/2.jpg", "/assets/GrowYourBusiness/blue/3.jpg"]}
               />
             )}
           </motion.div>
