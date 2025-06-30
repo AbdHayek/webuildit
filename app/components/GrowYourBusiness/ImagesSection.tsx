@@ -37,61 +37,42 @@ export const ImagesSection = ({
             </div>
           ) : (
             <>
-              {/* Top Section */}
-              {image[0] && title[0] && (
-                <div className="absolute top-0 left-0 right-0 h-1/4 overflow-hidden">
+            {title.map((t, i) => {
+              if (!image[i] || !title[i]) return null;
+          
+              const sectionStyles = [
+                'top-0 h-1/4',
+                'top-1/4 h-1/4',
+                'bottom-0 h-1/2',
+              ];
+          
+              const textPosition =  'inset-0';
+          
+              return (
+                <div
+                  key={i}
+                  className={`absolute left-0 right-0 overflow-hidden ${sectionStyles[i]}`}
+                >
                   <Image
-                    src={image[0]}
-                    alt={title[0]}
+                    src={image[i]}
+                    alt={title[i]}
                     fill
-                    className={`object-cover object-${position[0]}`}
+                    className={`object-cover object-${position[i]}`}
                     sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, (max-width: 1024px) 384px, (max-width: 1280px) 500px, (max-width: 1536px) 600px, 671px"
-                    priority
+                    priority={i === 0}
                   />
-                  <div className="absolute inset-0 flex flex-col justify-center items-center px-4 text-white text-center z-10">
+                  <div
+                    className={`absolute ${textPosition} flex flex-col justify-center items-center px-4 text-white text-center z-10`}
+                  >
                     <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold uppercase tracking-wide">
-                      {title[0]}
+                      {title[i]}
                     </h2>
                   </div>
                 </div>
-              )}
-
-              {/* Middle Section */}
-              {image[1] && title[1] && (
-                <div className="absolute top-1/4 left-0 right-0 h-1/4 overflow-hidden">
-                  <Image
-                    src={image[1]}
-                    alt={title[1]}
-                    fill
-                    className={`object-cover object-${position[1]}`}
-                    sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, (max-width: 1024px) 384px, (max-width: 1280px) 500px, (max-width: 1536px) 600px, 671px"
-                  />
-                  <div className="absolute inset-0 flex flex-col justify-center items-center px-4 text-white text-center z-10">
-                    <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold uppercase tracking-wide">
-                      {title[1]}
-                    </h2>
-                  </div>
-                </div>
-              )}
-
-              {/* Bottom Section */}
-              {image[2] && title[2] && (
-                <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden">
-                  <Image
-                    src={image[2]}
-                    alt={title[2]}
-                    fill
-                    className={`object-cover object-${position[2]}`}
-                    sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, (max-width: 1024px) 384px, (max-width: 1280px) 500px, (max-width: 1536px) 600px, 671px"
-                  />
-                  <div className="absolute inset-0 bottom-[30%] flex flex-col justify-center items-center px-4 text-white text-center z-10">
-                    <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold uppercase tracking-wide">
-                      {title[2]}
-                    </h2>
-                  </div>
-                </div>
-              )}
-            </>
+              );
+            })}
+          </>
+          
           )}
         </div>
       </div>
