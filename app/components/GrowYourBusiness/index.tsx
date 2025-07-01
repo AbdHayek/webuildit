@@ -163,6 +163,7 @@ export default function GrowYourBusiness() {
     return idx;
   }
 
+  
   return (
     divHeight && (
     <div className={`mt-[10%] h-[${divHeight}px] overflow-y-hidden relative`}>
