@@ -166,7 +166,7 @@ export default function GrowYourBusiness() {
   
   return (
     divHeight && (
-    <div className={`mt-[10%] h-[${divHeight}px] overflow-y-hidden relative`}>
+    <div className={`mt-[20%] h-[${divHeight}px] overflow-y-hidden relative`}>
       {/* Right-side Gradient Background */}
       <div
         className="absolute right-0 top-[5%] h-[40%] w-[6%] 

@@ -62,7 +62,7 @@ export default function HowWeWork() {
   }, []);
 
   return (
-    <section className="text-white px-6 py-20 relative bg-gradient-to-b from-[#050114] to-transparent">
+    <section id="how_do_we_work" className="text-white px-6 relative bg-gradient-to-b from-[#050114] to-transparent scroll-smooth">
       {/* Right-side Gradient Background */}
       <div
         className="absolute right-0 top-[15%] h-[70%] w-[6%] 
