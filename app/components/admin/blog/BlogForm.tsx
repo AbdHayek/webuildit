@@ -208,7 +208,7 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs, se
         {preview && ( // show image preview
           <div className="mt-4 max-w-[50%] max-h-[50%]">
             <p className="text-sm  mb-1">Preview:</p>
-            <img src={preview} alt="Preview" className="max-w-full h-auto rounded" />
+            <img src={preview as string} alt="Preview" className="max-w-full h-auto rounded" />
           </div>
         )}
         {img && ( // show image for update
