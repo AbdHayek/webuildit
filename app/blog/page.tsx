@@ -53,7 +53,7 @@ export default async function BlogPage({
           {blogs.length === 0 ? (
             <p className="text-center text-lg text-white-500">No blog posts found or failed to load.</p>
           ) : (blogs.map((blog: any) => (
-            <div className="m-auto" key={blog.id}>
+            <Link   href={`/blog/${blog.id}`} className="m-auto" key={blog.id}>
               <Image
                 src={blog.img || "/assets/Blog/default.png"}
                 alt={blog.title}
@@ -69,14 +69,13 @@ export default async function BlogPage({
                   {blog.sub_title || ''}
                 </p>
 
-                <Link
-                  href={`/blog/${blog.id}`}
+                <p
                   className="text-[#8A3EFF] font-medium inline-flex items-center hover:underline"
                 >
                   Learn More <span className="ml-2">→</span>
-                </Link>
+                </p>
               </div>
-            </div>
+            </Link>
           )))}
         </div>
 
