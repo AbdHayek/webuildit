@@ -115,7 +115,7 @@ export default function Consultion() {
 
         <div className="h-[1px] bg-white mx-auto mt-6 sm:mt-8 mb-2" />
         <div className="flex flex-col justify-self-center w-[25%] md:w-[100%] justify-between md:justify-between lg:flex-row items-center  pt-4 gap-4">
-          <p className="text-purple-400 text-xl sm:text-2xl font-bold">$100</p>
+          <p className="text-purple-400 text-xl sm:text-3xl font-bold">$100</p>
           <Button className="group flex items-center rounded-full border-2 border-purple-500 overflow-hidden bg-transparent text-white transition-all duration-300 hover:bg-purple-600 w-full sm:w-auto">
             <div className="flex transform transition-transform duration-1000 group-hover:translate-x-[75%] w-full sm:w-auto">
               <div className="bg-purple-400 p-2 sm:p-3 rounded-full">
@@ -134,9 +134,8 @@ export default function Consultion() {
                   />
                 </svg>
               </div>
-              <span className="px-4 sm:px-8 text-xs sm:text-sm font-medium">
+              <span className="px-2 sm:px-4 text-xs sm:text-sm font-medium content-center">
                 Make
-                <br />
                 Payment
               </span>
             </div>

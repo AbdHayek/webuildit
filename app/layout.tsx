@@ -3,7 +3,7 @@ import "./globals.css";
 import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
-  title: "We buildit",
+  title: "WeBuildIt",
   description: "Home Page",
   icons: {
     icon: "/favicon.ico", // supports png, ico, svg

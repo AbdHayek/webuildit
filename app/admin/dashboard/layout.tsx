@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/app/components/admin/Navbar";
 
 export const metadata: Metadata = {
-  title: "We buildit",
+  title: "WeBuildIt",
   description: "Admin Dashboard",
   icons: {
     icon: "/favicon.ico", // supports png, ico, svg

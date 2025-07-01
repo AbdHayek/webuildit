@@ -96,13 +96,20 @@ export default async function BlogPage({
             </span>
           )}
 
-          <Link
-            href={`?limit=${limit}&offset=${offset + limit}`}
-            className="flex items-center gap-2 px-4 py-2 rounded-full transition-colors bg-[#FF0084] hover:bg-[#070322]"
-          >
-            Next
-            <ArrowRight size={18} />
-          </Link>
+          {blogs.length > 0 ? (
+            <Link
+              href={`?limit=${limit}&offset=${offset + limit}`}
+              className="flex items-center gap-2 px-4 py-2 rounded-full transition-colors bg-[#FF0084] hover:bg-[#070322]"
+            >
+              Next
+              <ArrowRight size={18} />
+            </Link>
+          ):(
+            <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-400 cursor-not-allowed">
+              Next
+              <ArrowRight size={18} />
+            </span>
+          )}
         </div>
 
 

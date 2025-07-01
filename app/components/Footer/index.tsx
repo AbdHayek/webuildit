@@ -21,8 +21,8 @@ export default function index() {
           <div className="lg:block md:block  flex flex-col items-center">
             <div>
               <Image
-                width={500}
-                height={200}
+                width={339}
+                height={54}
                 alt="Site Logo"
                 src="/assets/Footer/logo.png"
               />
@@ -38,8 +38,8 @@ export default function index() {
 
           {/* Pages Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Pages</h3>
-            <ul className="space-y-2 text-sm text-white/70">
+            <h3 className="text-xl font-semibold mb-4">Pages</h3>
+            <ul className="space-y-2 text-medium text-white/70">
               <li>
                 <Link href="/">Home</Link>
               </li>
@@ -61,23 +61,23 @@ export default function index() {
           {/* Contact Info */}
           <div>
             <div>
-              <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-              <p className="text-sm text-white/70">+1 (999) 888-77-66</p>
-              <p className="text-sm text-white/70">hello@niskalastd.com</p>
+              <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
+              <p className="text-medium text-white/70">+1 (999) 888-77-66</p>
+              <p className="text-medium text-white/70">hello@niskalastd.com</p>
             </div>
 
             {/* Location */}
             <div className="mt-[20%]">
-              <h3 className="text-lg font-semibold mb-4">Location</h3>
-              <p className="text-sm text-white/70">483920, Indonesia</p>
-              <p className="text-sm text-white/70">Lampung 22/2/5, Office 4</p>
+              <h3 className="text-xl font-semibold mb-4">Location</h3>
+              <p className="text-medium text-white/70">483920, Indonesia</p>
+              <p className="text-medium text-white/70">Lampung 22/2/5, Office 4</p>
             </div>
           </div>
         </div>
       </footer>
 
       {/* Bottom gradient overlay */}
-      <div className="absolute bottom-0  w-full h-10 bg-gradient-to-bl from-[##7305FF] via-white to-[##7305FF] rounded-b-full pointer-events-none blur-[50px] " />
+      <div className="absolute bottom-0  w-full h-10 bg-gradient-to-bl from-[#7305FF] via-[#7305FF] to-[#7305FF] rounded-b-full pointer-events-none blur-[50px] " />
     </div>
   );
 }
