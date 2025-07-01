@@ -6,13 +6,14 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export async function generateMetadata({ params }: Props) {
+  const { id } = await params;
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE}/api/blogs/${params.id}`,
+      `${process.env.NEXT_PUBLIC_API_BASE}/api/blogs/${id}`,
       { next: { revalidate: 60 } }
     );
     
@@ -49,7 +50,7 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function BlogDetailPage({ params }: Props) {
-  const { id } = params;
+  const { id } = await params;
 
   let blog: any = null;
 

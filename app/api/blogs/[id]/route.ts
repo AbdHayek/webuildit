@@ -6,16 +6,16 @@ const prisma = new PrismaClient();
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = parseInt(params.id);
-    if (isNaN(id)) {
+    const { id } = await params;
+    if (isNaN(parseInt(id))) {
       return NextResponse.json({ error: 'Invalid blog ID' }, { status: 400 });
-    }
+    } 
 
     const blog = await prisma.blogs.findUnique({
-      where: { id },
+      where: { id: parseInt(id) },
       include: {
         user: {
           select: {

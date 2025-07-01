@@ -13,11 +13,12 @@ export const metadata = {
 export default async function BlogPage({
   searchParams,
 }: {
-  searchParams: { limit?: string; offset?: string };
+  searchParams: Promise<{ limit?: string; offset?: string }>;
 }) {
 
-  const limit = parseInt(searchParams.limit || "20");
-  const offset = parseInt(searchParams.offset || "0");
+  const params = await searchParams;
+  const limit = parseInt(params.limit || "20");
+  const offset = parseInt(params.offset || "0");
 
   let blogs = [];
 
