@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Navbar from "@/app/components/admin/Navbar";
+import Sidebar from "@/app/components/admin/Sidebar"; // <-- import Sidebar
 
 export const metadata: Metadata = {
   title: "WeBuildIt",
   description: "Admin Dashboard",
   icons: {
-    icon: "/favicon.ico", // supports png, ico, svg
+    icon: "/favicon.ico",
   },
 };
 
@@ -15,10 +16,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div style={{ padding: 20 }}>
+    <div>
       <Navbar />
-      <div>
-        {children}
+      <div style={{ display: "flex" }}>
+        <Sidebar />
+        <main style={{ flex: 1, padding: 20 }}>
+          {children}
+        </main>
       </div>
     </div>
   );

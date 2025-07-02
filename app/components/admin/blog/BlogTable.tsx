@@ -142,7 +142,7 @@ export default function BlogTable() {
                             </button>
                         </div>
 
-                        <table className="w-full text-sm text-left border border-gray-300 rounded-lg overflow-hidden shadow-sm">
+                        <table className="w-full  text-sm text-left border border-gray-300 rounded-lg overflow-hidden shadow-sm">
                             <thead className="bg-gray-100 text-gray-700">
                                 {table.getHeaderGroups().map(headerGroup => (
                                     <tr key={headerGroup.id}>

@@ -12,12 +12,12 @@ export default function Navbar() {
 
     return (
         <>
-            <nav style={{
+            <nav className='2xl:justify-between xl:justify-between lg:justify-between justify-center'
+             style={{
                 display: 'flex',
-                justifyContent: 'space-between',
+                width: '100%',
                 alignItems: 'center',
                 padding: '1rem 2rem',
-
                 borderBottom: '1px solid #ddd'
             }}>
                 <div>
@@ -36,13 +36,13 @@ export default function Navbar() {
                         gap: '8px',
                         padding: '8px 16px',
                         color: 'white',
-                  
+
                         border: 'none',
                         borderRadius: '4px',
                         cursor: 'pointer',
                     }}
                 >
-                    <FiLogOut  size={18} />
+                    <FiLogOut size={18} />
                     Logout
                 </button>
             </nav>
