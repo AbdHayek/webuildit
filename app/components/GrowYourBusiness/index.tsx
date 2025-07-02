@@ -48,7 +48,6 @@ export default function GrowYourBusiness() {
   const [centerId, setCenterId] = useState("who");
   const [prevCenterId, setPrevCenterId] = useState("why");
   const [lastPostion, setLastPostion] = useState<Postion>({ now: null });
-  const [divHeight, setDivHeight] = useState(1450);
 
   const getAngle = (id: string) => {
     const centerIndex = ids.indexOf(centerId);
@@ -140,20 +139,8 @@ export default function GrowYourBusiness() {
   }, [lastPostion]);
 
 
-  useEffect(() => {
-    const updateHeight = () => {
-      const height = window.innerHeight * 2 + 60;
-      setDivHeight(height);
-    };
-
-    updateHeight(); // Set on load
-    window.addEventListener('resize', updateHeight); // Update on resize
-
-    return () => window.removeEventListener('resize', updateHeight);
-  }, []);
-
-
   const handleClick = (id: string) => {
+    if (id === centerId) return;
     setPrevCenterId(centerId);
     setCenterId(id);
   }
@@ -163,10 +150,9 @@ export default function GrowYourBusiness() {
     return idx;
   }
 
-  
+
   return (
-    divHeight && (
-    <div className={`mt-[20%] h-[${divHeight}px] overflow-y-hidden relative`}>
+    <div className={`mt-[20%] mb-[10%]  2xl:mb-[5%] xl:mb-[10%] lg:mb-[10%] 2xl:h-[1450px] xl:h-[1050px] lg:h-[900px] h-[800px] overflow-y-hidden relative`}>
       {/* Right-side Gradient Background */}
       <div
         className="absolute right-0 top-[5%] h-[40%] w-[6%] 
@@ -261,6 +247,5 @@ export default function GrowYourBusiness() {
         </AnimatePresence>
       </div>
     </div >
-    )
   );
 }

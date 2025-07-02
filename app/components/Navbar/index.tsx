@@ -57,14 +57,17 @@ export default function Navbar() {
           {/* Animated Overlay Menu */}
           <div
             className={`
-                  fixed inset-0 z-[9999999] 
-                  transition-opacity transition-transform duration-500 ease-in-out
-                  origin-top-right transform
-                  ${isOpen ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-0 pointer-events-none"}
-                  font-medium leading-normal w-full h-screen
-                  bg-[#070322] bg-[url('/assets/Navbar/background-menu.png')] bg-cover bg-center bg-no-repeat
-                  flex flex-col items-center justify-center text-white text-[33px] uppercase
-                `}>
+                fixed inset-0 z-[9999999]
+                transition-all duration-500 ease-in-out
+                origin-top-right transform
+                ${isOpen
+                ? "opacity-100 scale-100 rotate-0 translate-y-0 pointer-events-auto"
+                : "opacity-0 scale-90 rotate-0 -translate-y-5 pointer-events-none"}
+                font-medium leading-normal w-full h-screen
+                bg-[#070322] bg-[url('/assets/Navbar/background-menu.png')] bg-cover bg-center bg-no-repeat
+                flex flex-col items-center justify-center text-white text-[33px] uppercase
+              `}
+          >
 
 
             {/* Close Button inside overlay */}
