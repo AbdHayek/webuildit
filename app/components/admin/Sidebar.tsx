@@ -8,6 +8,8 @@ import styles from "./Sidebar.module.scss";
 const navLinks = [
     { href: "/admin/dashboard", label: "Dashboard" },
     { href: "/admin/dashboard/blog", label: "Blogs" },
+    { href: "/admin/dashboard/partner", label: "Partners" },
+    { href: "/admin/dashboard/testimonial", label: "Testimonials" },
     // Add more links as needed
 ]
 

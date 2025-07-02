@@ -22,7 +22,7 @@ export const config = {
 export async function parseForm(req: Request): Promise<{ fields: any; files: any }> {
 
     const form = formidable({
-        uploadDir: path.join(process.cwd(), 'public/uploads'),
+        uploadDir: path.join(process.cwd(), 'public/uploads/blogs'),
         keepExtensions: true,
         filename: (name, ext, part) => `${Date.now()}-${part.originalFilename}`,
     })
@@ -126,7 +126,7 @@ export async function POST(req: Request) {
         }
 
         const imageFile = files.image?.[0]
-        const imagePath = imageFile ? `/uploads/${path.basename(imageFile.filepath)}` : null
+        const imagePath = imageFile ? `/uploads/blogs/${path.basename(imageFile.filepath)}` : null
 
         let data = {
             userId: userId,

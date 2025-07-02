@@ -12,42 +12,37 @@ import Image from '@tiptap/extension-image'
 import { useEditor } from '@tiptap/react';
 import EditorComponent from '../../Common/admin/EditorComponent';
 import { Dispatch, SetStateAction } from 'react';
-import "../Dashboard.scss"
+import '../Dashboard.scss';
 
-type Blog = {
+type Testimonial = {
   id: number;
   title: string;
-  sub_title: string;
+  author: string;
   content: string;
-  img: string;
-  user: any;
 };
 
-type BlogFormProps = {
-  initialData?: Blog;
+type TestimonialFormProps = {
+  initialData?: Testimonial;
 };
 
-interface BlogFormComponentProps {
-  initialData: BlogFormProps | null;
-  setEditData: Dispatch<SetStateAction<BlogFormProps | null>>;
-  setCreateNewBlog: Dispatch<SetStateAction<Boolean | null>>;
-  setBlogs: Dispatch<SetStateAction<Blog[]>>;
-  blogs: Blog[];
+interface TestimonialFormComponentProps {
+  initialData: TestimonialFormProps | null;
+  setEditData: Dispatch<SetStateAction<TestimonialFormProps | null>>;
+  setCreateNewTestimonial: Dispatch<SetStateAction<Boolean | null>>;
+  setTestimonials: Dispatch<SetStateAction<Testimonial[]>>;
+  Testimonials: Testimonial[];
 }
 
-export default function BlogForm({ initialData, setEditData, setBlogs, blogs, setCreateNewBlog }: BlogFormComponentProps) {
+export default function TestimonialForm({ initialData, setEditData, setTestimonials, Testimonials, setCreateNewTestimonial }: TestimonialFormComponentProps) {
   const [title, setTitle] = useState('');
-  const [subTitle, setSubTitle] = useState('');
+  const [author, setAuthor] = useState('');
   const [content, setContent] = useState(' <h3>Typing something...</h3>');
-  const [img, setImg] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [file, setFile] = useState(null)
-  const [preview, setPreview] = useState<string | ArrayBuffer | null>(null)
   const route = useRouter();
   const handleBackToDashboard = () => {
     if (setEditData) setEditData(null)
-    else setCreateNewBlog(false)
+    else setCreateNewTestimonial(false)
   }
   const editor = useEditor({
     extensions: [
@@ -68,27 +63,11 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs, se
     content: content
   })
 
-  const handleFileChange = (e: any) => {
-    const selectedFile = e.target.files[0]
-    setFile(selectedFile)
-
-    if (selectedFile) {
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        setPreview(reader.result)
-      }
-      reader.readAsDataURL(selectedFile)
-      setImg('')
-    }
-  }
-
   useEffect(() => {
     if (initialData) {
       setTitle(initialData.title);
-      setSubTitle(initialData.sub_title);
+      setAuthor(initialData.author);
       setContent(initialData.content);
-      setImg(initialData.img);
-
       if (editor) {
         editor.commands.setContent(initialData.content);
       }
@@ -98,6 +77,16 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs, se
   const handleSubmit = async (e: React.FormEvent) => {
 
     e.preventDefault();
+
+    if (!title) {
+      setError("Title is required.");
+      return;
+    }
+
+    if (!author) {
+      setError("Author is required.");
+      return;
+    }
 
     const textContent = editor?.getText().trim();
     if (!textContent) {
@@ -110,17 +99,15 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs, se
       formData.append('id', initialData?.id)
 
     formData.append('title', title);
-    formData.append('subtitle', subTitle);
+    formData.append('author', author);
     formData.append('created_at', new Date().toISOString());
     formData.append('updated_at', new Date().toISOString());
-
     if (editor) formData.append('content', editor.getHTML());
-    if (file) formData.append('image', file);
 
     setLoading(true);
     setError('');
     try {
-      const res = await fetch("/api/blogs", {
+      const res = await fetch("/api/testimonials", {
         method: 'POST',
         body: formData,
         credentials: 'include',
@@ -133,26 +120,23 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs, se
 
       const result = await res.json()
       if (initialData?.id) {
-        setBlogs(blogs => blogs.map(blog => blog.id === initialData?.id ? {
-          ...blog,
-          title: result.blog.title,
-          sub_title: result.blog.sub_title,
-          content: result.blog.content,
-          img: result.blog.img,
-          updatedAt: result.blog.updatedAt
-        } : blog));
+        setTestimonials(Testimonials => Testimonials.map(Testimonial => Testimonial.id === initialData?.id ? {
+          ...Testimonial,
+          title: result.testimonial.title,
+          author: result.testimonial.author,
+          content: result.testimonial.content,
+          updatedAt: result.testimonial.updatedAt
+        } : Testimonial));
       } else {
-        setBlogs([
+        setTestimonials([
           {
-            title: result.blog.title,
-            sub_title: result.blog.sub_title,
-            content: result.blog.content,
-            img: result.blog.img,
-            user: result.blog.user,
-            createdAt: result.blog.createdAt,
-            updatedAt: result.blog.updatedAt
+            title: result.testimonial.title,
+            author: result.testimonial.author,
+            content: result.testimonial.content,
+            createdAt: result.testimonial.createdAt,
+            updatedAt: result.testimonial.updatedAt
           },
-          ...blogs
+          ...Testimonials
         ]);
       }
 
@@ -167,11 +151,9 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs, se
     }
   };
 
-
-
   return (
     <form onSubmit={handleSubmit} className="max-w-7xl mx-auto p-6 rounded-md space-y-4">
-      <h2 className="text-xl font-semibold">{initialData ? 'Update Blog' : 'Create Blog'}</h2>
+      <h2 className="text-xl font-semibold">{initialData ? 'Update Testimonial' : 'Create Testimonial'}</h2>
 
       <div>
         <label className="block text-sm font-medium">Title</label>
@@ -185,39 +167,13 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs, se
       </div>
 
       <div>
-        <label className="block text-sm font-medium">Sub Title</label>
+        <label className="block text-sm font-medium">Author</label>
         <input
           type="text"
-          value={subTitle}
-          onChange={e => setSubTitle(e.target.value)}
+          value={author}
+          onChange={e => setAuthor(e.target.value)}
           className="mt-1 w-full border rounded px-3 py-2"
         />
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium">Upload Image</label>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-          className="mt-1 w-full border rounded px-3 py-2"
-        />
-
-        {preview && ( // show image preview
-          <div className="mt-4 max-w-[50%] max-h-[50%]">
-            <p className="text-sm  mb-1">Preview:</p>
-            <img src={preview as string} alt="Preview" className="max-w-full h-auto rounded" />
-          </div>
-        )}
-        {img && ( // show image for update
-          <div className="my-4 max-w-[50%] max-h-[50%]">
-            <p className="text-sm  mb-1">Image:
-              <small className="text-white-500 text-sm ml-2 mr-2">
-                (Recommended size: 367.500px × 225.887px)
-              </small></p>
-            <img src={img} alt="Preview" className="max-w-full h-auto rounded" />
-          </div>
-        )}
       </div>
 
       <div>
