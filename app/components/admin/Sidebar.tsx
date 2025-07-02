@@ -7,7 +7,7 @@ import styles from "./Sidebar.module.scss";
 
 const navLinks = [
     { href: "/admin/dashboard", label: "Dashboard" },
-    { href: "/admin/dashboard/blogs", label: "Blogs" },
+    { href: "/admin/dashboard/blog", label: "Blogs" },
     // Add more links as needed
 ]
 
@@ -40,8 +40,7 @@ export default function Sidebar() {
             <aside
             className={`
             bg-gradient-to-b from-[#1f1f1f] via-[#FF0084]/70 to-transparent
-            fixed top-0 left-0 h-full w-64 z-50
-            ${styles.sidebar}
+            fixed top-0 left-0 h-full w-64 z-50 h-screen
             text-white px-4 pt-20 space-y-4
             transform transition-transform duration-500 ease-in-out
             ${open ? 'translate-x-0' : '-translate-x-full'}

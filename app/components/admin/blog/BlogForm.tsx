@@ -12,7 +12,7 @@ import Image from '@tiptap/extension-image'
 import { useEditor } from '@tiptap/react';
 import EditorComponent from './EditorComponent';
 import { Dispatch, SetStateAction } from 'react';
-import '../../../admin/dashboard/Blog.scss';
+import './Blog.scss';
 
 type Blog = {
   id: number;
