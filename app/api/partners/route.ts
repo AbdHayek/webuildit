@@ -54,7 +54,7 @@ export async function POST(req: Request) {
 
     try {
 
-        const { fields, files } = await parseForm(req)
+        const { fields, files } = await parseForm(req,'public/uploads/partners')
         const {
             id,
             created_at,

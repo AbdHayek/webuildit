@@ -46,7 +46,7 @@ export async function POST(req: Request) {
     if (userId === null) return NextResponse.json({ error: 'Unauthorized: No token provided' }, { status: 401 });
 
     try {
-        const { fields, files } = await parseForm(req)
+        const { fields, files } = await parseForm(req,'public/uploads/testimonials')
         const {
             id,
             title,

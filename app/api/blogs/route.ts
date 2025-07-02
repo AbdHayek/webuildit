@@ -19,10 +19,10 @@ export const config = {
     },
 }
 
-export async function parseForm(req: Request): Promise<{ fields: any; files: any }> {
+export async function parseForm(req: Request,storeUrl:string): Promise<{ fields: any; files: any }> {
 
     const form = formidable({
-        uploadDir: path.join(process.cwd(), 'public/uploads/blogs'),
+        uploadDir: path.join(process.cwd(), storeUrl),
         keepExtensions: true,
         filename: (name, ext, part) => `${Date.now()}-${part.originalFilename}`,
     })
@@ -110,7 +110,7 @@ export async function POST(req: Request) {
     if (userId === null) return NextResponse.json({ error: 'Unauthorized: No token provided' }, { status: 401 });
 
     try {
-        const { fields, files } = await parseForm(req)
+        const { fields, files } = await parseForm(req,'public/uploads/blogs')
         const {
             id,
             title,
