@@ -12,25 +12,13 @@ if (!JWT_SECRET) {
 
 export async function GET(req: NextRequest) {
     try {
-        const { searchParams } = new URL(req.url);
-
-        const isAdmin = parseInt(searchParams.get('admin') || '0') === 1;
-        const limit = parseInt(searchParams.get('limit') || '10'); // default 10
-        const offset = parseInt(searchParams.get('offset') || '0'); // default 0
-
         const baseQuery = {
             orderBy: {
                 id: 'desc',
             },
         };
 
-        const testimonials = isAdmin
-            ? await prisma.testimonials.findMany(baseQuery as any)
-            : await prisma.testimonials.findMany({
-                ...baseQuery as any,
-                skip: offset,
-                take: limit
-            });
+        const testimonials = await prisma.testimonials.findMany(baseQuery as any);
 
         return NextResponse.json(testimonials);
     } catch (error) {
