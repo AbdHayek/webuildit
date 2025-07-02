@@ -39,8 +39,8 @@ export default function LoginPage() {
 
   return (
     <div
+      className='2xl:w-[33.3%] xl:w-[33.3%] lg:w-[50%] w-[90%]'
       style={{
-        width: "33.3%",
         padding: '30px',
         borderRadius: '8px',
         boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
