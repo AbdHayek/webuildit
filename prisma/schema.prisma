@@ -36,3 +36,20 @@ model Blogs {
   updatedAt DateTime @updatedAt @default(now())
 }
 
+model Partners {
+  id        Int      @id @default(autoincrement())
+  img       String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt @default(now())
+}
+
+model Testimonials {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String  @db.Text
+  author    String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt @default(now())
+}
