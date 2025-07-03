@@ -46,6 +46,7 @@ model Partners {
 
 model Testimonials {
   id        Int      @id @default(autoincrement())
+  order_number     Int    @default(1)
   title     String
   content   String  @db.Text
   author    String

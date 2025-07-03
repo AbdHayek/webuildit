@@ -9,7 +9,6 @@ import {
 } from '@tanstack/react-table';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import PartnerForm from './PartnerForm';
 
 type Partner = {
@@ -23,7 +22,6 @@ export default function PartnerTable() {
     const [loading, setLoading] = useState(true);
     const [createNewPartner, setCreateNewPartner] = useState<Boolean>(false);
     const [editData, setEditData] = useState<Partner | null>(null);
-    const route = useRouter();
 
     useEffect(() => {
         fetch('/api/partners?admin=1', { credentials: 'include' })

@@ -9,7 +9,6 @@ import {
 } from '@tanstack/react-table';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import BlogForm from './BlogForm';
 
 type Blog = {
@@ -31,7 +30,6 @@ export default function BlogTable() {
     const [loading, setLoading] = useState(true);
     const [createNewBlog, setCreateNewBlog] = useState<Boolean>(false);
     const [editData, setEditData] = useState<Blog | null>(null);
-    const route = useRouter();
 
     useEffect(() => {
         fetch('/api/blogs?admin=1', { credentials: 'include' })

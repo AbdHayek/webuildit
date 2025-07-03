@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { Dispatch, SetStateAction } from 'react';
 import '../Dashboard.scss';
 
@@ -28,7 +27,6 @@ export default function PartnerForm({ initialData, setEditData, setPartners, Par
   const [error, setError] = useState('');
   const [file, setFile] = useState(null)
   const [preview, setPreview] = useState<string | ArrayBuffer | null>(null)
-  const route = useRouter();
   const handleBackToDashboard = () => {
     if (setEditData) setEditData(null)
     else setCreateNewPartner(false)
@@ -99,6 +97,7 @@ export default function PartnerForm({ initialData, setEditData, setPartners, Par
       } else {
         setPartners([
           {
+            id: result.partner.id,
             img: result.partner.img,
             createdAt: result.partner.createdAt,
             updatedAt: result.partner.updatedAt

@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import StarterKit from '@tiptap/starter-kit'
 import Highlight from '@tiptap/extension-highlight'
 import TextAlign from '@tiptap/extension-text-align'
@@ -44,7 +43,6 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs, se
   const [error, setError] = useState('');
   const [file, setFile] = useState(null)
   const [preview, setPreview] = useState<string | ArrayBuffer | null>(null)
-  const route = useRouter();
   const handleBackToDashboard = () => {
     if (setEditData) setEditData(null)
     else setCreateNewBlog(false)
@@ -144,6 +142,7 @@ export default function BlogForm({ initialData, setEditData, setBlogs, blogs, se
       } else {
         setBlogs([
           {
+            id: result.blog.id,
             title: result.blog.title,
             sub_title: result.blog.sub_title,
             content: result.blog.content,

@@ -14,8 +14,8 @@ export async function GET(req: NextRequest) {
     try {
         const baseQuery = {
             orderBy: {
-                id: 'desc',
-            },
+                order_number: 'asc',
+            }
         };
 
         const testimonials = await prisma.testimonials.findMany(baseQuery as any);
@@ -34,12 +34,13 @@ export async function POST(req: Request) {
     if (userId === null) return NextResponse.json({ error: 'Unauthorized: No token provided' }, { status: 401 });
 
     try {
-        const { fields, files } = await parseForm(req,'public/uploads/testimonials')
+        const { fields, files } = await parseForm(req, 'public/uploads/testimonials')
         const {
             id,
             title,
             author,
             content,
+            order_number,
             created_at,
             updated_at,
         } = fields
@@ -48,7 +49,8 @@ export async function POST(req: Request) {
         if (
             (title === undefined || String(title)?.trim() === "") ||
             (author === undefined || String(author)?.trim() === "") ||
-            (content === undefined || String(content)?.trim() === "")
+            (content === undefined || String(content)?.trim() === "") ||
+            (order_number === undefined || String(order_number)?.trim() === "")
         ) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
         }
@@ -56,6 +58,7 @@ export async function POST(req: Request) {
         let data = {
             title: String(title),
             author: String(author) || null,
+            order_number: parseInt(order_number),
             content: String(content),
             updatedAt: updated_at ? new Date(updated_at) : new Date(),
             createdAt: created_at ? new Date(created_at) : new Date()
@@ -63,7 +66,7 @@ export async function POST(req: Request) {
 
         const testimonial = id
             ? await prisma.testimonials.update({ where: { id: parseInt(id) }, data })
-            : await prisma.testimonials.create({data})
+            : await prisma.testimonials.create({ data })
 
         return NextResponse.json({ testimonial })
     } catch (err) {

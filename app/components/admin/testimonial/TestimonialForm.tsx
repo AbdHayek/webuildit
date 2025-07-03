@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import StarterKit from '@tiptap/starter-kit'
 import Highlight from '@tiptap/extension-highlight'
 import TextAlign from '@tiptap/extension-text-align'
@@ -19,15 +18,13 @@ type Testimonial = {
   title: string;
   author: string;
   content: string;
+  order_number: number;
 };
 
-type TestimonialFormProps = {
-  initialData?: Testimonial;
-};
 
 interface TestimonialFormComponentProps {
-  initialData: TestimonialFormProps | null;
-  setEditData: Dispatch<SetStateAction<TestimonialFormProps | null>>;
+  initialData: Testimonial | null;
+  setEditData: Dispatch<SetStateAction<Testimonial | null>>;
   setCreateNewTestimonial: Dispatch<SetStateAction<Boolean | null>>;
   setTestimonials: Dispatch<SetStateAction<Testimonial[]>>;
   Testimonials: Testimonial[];
@@ -39,7 +36,7 @@ export default function TestimonialForm({ initialData, setEditData, setTestimoni
   const [content, setContent] = useState(' <h3>Typing something...</h3>');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const route = useRouter();
+  const [orderNumber, setOrderNumber] = useState<number | ''>('');
   const handleBackToDashboard = () => {
     if (setEditData) setEditData(null)
     else setCreateNewTestimonial(false)
@@ -68,6 +65,7 @@ export default function TestimonialForm({ initialData, setEditData, setTestimoni
       setTitle(initialData.title);
       setAuthor(initialData.author);
       setContent(initialData.content);
+      setOrderNumber(initialData.order_number || '');
       if (editor) {
         editor.commands.setContent(initialData.content);
       }
@@ -88,6 +86,11 @@ export default function TestimonialForm({ initialData, setEditData, setTestimoni
       return;
     }
 
+    if (orderNumber === '' || orderNumber === null) {
+      setError("Order number is required.");
+      return;
+    }
+
     const textContent = editor?.getText().trim();
     if (!textContent) {
       setError("Content is required.");
@@ -100,6 +103,7 @@ export default function TestimonialForm({ initialData, setEditData, setTestimoni
 
     formData.append('title', title);
     formData.append('author', author);
+    formData.append('order_number', String(orderNumber));
     formData.append('created_at', new Date().toISOString());
     formData.append('updated_at', new Date().toISOString());
     if (editor) formData.append('content', editor.getHTML());
@@ -125,14 +129,17 @@ export default function TestimonialForm({ initialData, setEditData, setTestimoni
           title: result.testimonial.title,
           author: result.testimonial.author,
           content: result.testimonial.content,
+          order_number: result.testimonial.order_number,
           updatedAt: result.testimonial.updatedAt
         } : Testimonial));
       } else {
         setTestimonials([
           {
+            id: result.testimonial.id,
             title: result.testimonial.title,
             author: result.testimonial.author,
             content: result.testimonial.content,
+            order_number: result.testimonial.order_number,
             createdAt: result.testimonial.createdAt,
             updatedAt: result.testimonial.updatedAt
           },
@@ -173,6 +180,18 @@ export default function TestimonialForm({ initialData, setEditData, setTestimoni
           value={author}
           onChange={e => setAuthor(e.target.value)}
           className="mt-1 w-full border rounded px-3 py-2"
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium">Order Number</label>
+        <input
+          type="number"
+          value={orderNumber}
+          onChange={e => setOrderNumber(e.target.value === '' ? '' : Number(e.target.value))}
+          className="mt-1 w-full border rounded px-3 py-2"
+          min={1}
+          required
         />
       </div>
 

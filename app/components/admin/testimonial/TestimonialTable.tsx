@@ -8,7 +8,6 @@ import {
     ColumnDef,
 } from '@tanstack/react-table';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import TestimonialForm from './TestimonialForm';
 
 type Testimonial = {
@@ -25,7 +24,6 @@ export default function TestimonialTable() {
     const [loading, setLoading] = useState(true);
     const [createNewTestimonial, setCreateNewTestimonial] = useState<Boolean>(false);
     const [editData, setEditData] = useState<Testimonial | null>(null);
-    const route = useRouter();
 
     useEffect(() => {
         fetch('/api/testimonials?admin=1', { credentials: 'include' })
