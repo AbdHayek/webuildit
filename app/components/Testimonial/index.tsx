@@ -1,6 +1,6 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -27,7 +27,7 @@ export default function Testimonial() {
   }, []);
 
   return (
-    <section className="text-white py-16">
+    <section className="text-white py-16 swiper-testimonial">
       <div className="text-center mb-12">
         <h2 className="font-medium text-[40px]">HEAR FROM OUR</h2>
         <p className="font-medium text-[40px] mt-2 text-gray-300">CUSTOMERS</p>
@@ -53,11 +53,12 @@ export default function Testimonial() {
         ) : (
           <Swiper
             onSwiper={(swiper) => (swiperRef.current = swiper)}
-            modules={[Pagination]}
+            modules={[Pagination,Autoplay]}
             pagination={{ clickable: true }}
             spaceBetween={10}
             centeredSlides={true}
             loop={true}
+            autoplay={{ delay: 2000, disableOnInteraction: false }}
             watchSlidesProgress={true}
             slideActiveClass="swiper-slide-active"
             breakpoints={{
