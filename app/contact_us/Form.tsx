@@ -5,6 +5,7 @@ export default function Form() {
     const [selectedOption, setSelectedOption] = useState("New Project");
     const options = ["New Project", "Joining Our Team", "General Inquiries"];
     const [showForm, setShowForm] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     // Form fields state
     const [formData, setFormData] = useState({
@@ -50,6 +51,7 @@ export default function Form() {
             subject: selectedOption,
         };
 
+        setIsLoading(true);
         try {
             const res = await fetch("/api/contact", {
                 method: "POST",
@@ -75,6 +77,11 @@ export default function Form() {
         } catch (error) {
             alert("Error sending message. Please try again.");
             console.error(error);
+
+
+        }
+        finally {
+            setIsLoading(false);
         }
     };
 
@@ -166,8 +173,8 @@ export default function Form() {
                 </div>
 
                 <div className="pt-4">
-                    <button className="px-8 py-3 border cursor-pointer text-white border-[#8A3EFF] rounded-full hover:bg-[#8A3EFF] hover:text-white transition-all">
-                        Send message
+                    <button disabled={isLoading} className="px-8 py-3 border cursor-pointer text-white border-[#8A3EFF] rounded-full hover:bg-[#8A3EFF] hover:text-white transition-all">
+                        {isLoading ? "Sending..." : "Send message"}
                     </button>
                 </div>
             </form>
