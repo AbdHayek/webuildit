@@ -6,6 +6,7 @@ import "./Consulting.scss";
 import { Button } from "@headlessui/react";
 import { Listbox } from "@headlessui/react";
 import { ArrowDownCircleIcon } from "@heroicons/react/24/solid";
+import { stripePromise } from '@/lib/stripe';
 
 const options = [
   {
@@ -62,6 +63,19 @@ export default function Consultion() {
       setSelectedTime(null);
     }
   }, [selectedDate, rules]);
+
+
+  const handleCheckout = async () => {
+    const date = new Date();
+    const stripe = await stripePromise;
+    const res = await fetch("/api/calendly/create-checkout-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ date: date.toISOString().split("T")[0], time: selectedTime?.from, name: "John Doe", email: "john@example.com" }),
+    });
+    const { sessionId } = await res.json();
+    await stripe?.redirectToCheckout({ sessionId });
+  };
 
   return (
     <div className="min-h-screen text-white flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-[10%] px-4 sm:px-6 lg:px-[10%] py-8 sm:py-12 lg:py-[10%]">
@@ -150,7 +164,7 @@ export default function Consultion() {
           <p className="text-purple-400 text-3xl font-bold">$100</p>
           <Button className="group flex items-center rounded-full border-2 border-purple-500 bg-transparent text-white hover:bg-purple-600 transition-all px-4 py-2">
             <div className="flex items-center gap-2">
-              <div className="bg-purple-400 p-2 rounded-full">
+              <div onClick={handleCheckout} className="bg-purple-400 p-2 rounded-full">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-4 w-4 text-white"
