@@ -17,15 +17,15 @@ export async function GET(req: NextRequest) {
       return NextResponse.redirect(new URL('/?payment_error=true', req.nextUrl.origin));
     }
 
-    const { date, time, name, email } = session.metadata ?? {};
+    const { date, type, time, name, email, phone } = session.metadata ?? {};
 
     // Safety check
-    if (!date || !time || !name || !email) {
+    if (!date || !type || !time || !name || !email || !phone) {
       return NextResponse.redirect(new URL('/?payment_error=true', req.nextUrl.origin));
     }
 
     // Make Calendly reservation
-    const calendlyResponse = await fetch('https://api.calendly.com/event_types', {
+    const calendlyResponse = await fetch(`${process.env.CALENDLY_URL}/event_types`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${process.env.CALENDLY_API_KEY}`,
@@ -33,11 +33,10 @@ export async function GET(req: NextRequest) {
       },
       body: JSON.stringify({
         active: false,
-        owner: `https://api.calendly.com/users/${process.env.CALENDLY_UUID}`,
-        name: "New Meeting",
-        description: "New Meeting",
+        owner: `${process.env.CALENDLY_URL}/users/${process.env.CALENDLY_UUID}`,
+        name: `New Meeting with ${name} for ${type}`,
+        description: `New Meeting with ${name} for ${type}`,
         duration: 15,
-        duration_options: [15, 30],
         locations: [
           {
             kind: "custom",

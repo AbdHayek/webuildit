@@ -28,7 +28,11 @@ export default function Consultion() {
   const [timeSlots, setTimeSlots] = useState<TimeSlot[]>([]);
   const [rules, setRules] = useState<Rule[]>([]);
   const [selected, setSelected] = useState(options[0]);
-  
+  const [error, setError] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
   const getDayName = (date: Date) =>
     date.toLocaleDateString("en-US", { weekday: "long" });
 
@@ -66,12 +70,22 @@ export default function Consultion() {
 
 
   const handleCheckout = async () => {
-    const date = new Date();
+
+    if (!selectedDate || !selected || !selectedTime || !name || !email || !phone) {
+      setError("Please fill all the fields");
+      return;
+    }
+    setError("");
+
     const stripe = await stripePromise;
     const res = await fetch("/api/calendly/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ date: date.toISOString().split("T")[0], time: selectedTime?.from, name: "John Doe", email: "john@example.com" }),
+      body: JSON.stringify({
+        date: new Date(selectedDate).toISOString().split('T')[0],
+        type: selected.name, time: selectedTime?.from + " - " + selectedTime?.to,
+        name: name, email: email, phone: phone
+      }),
     });
     const { sessionId } = await res.json();
     await stripe?.redirectToCheckout({ sessionId });
@@ -88,10 +102,9 @@ export default function Consultion() {
           inline
           calendarClassName="bg-white rounded-xl shadow-lg p-2 sm:p-4 text-center"
           dayClassName={(date) =>
-            `flex items-center justify-center rounded-full transition font-medium text-sm sm:text-base ${
-              date.toDateString() === new Date().toDateString()
-                ? "bg-purple-600 text-white"
-                : "text-gray-700 hover:bg-purple-100"
+            `flex items-center justify-center rounded-full transition font-medium text-sm sm:text-base ${date.toDateString() === new Date().toDateString()
+              ? "bg-purple-600 text-white"
+              : "text-gray-700 hover:bg-purple-100"
             }`
           }
         />
@@ -155,16 +168,19 @@ export default function Consultion() {
           </div>
         </Listbox>
 
-        <input placeholder="Full Name:" className="w-full p-3 rounded border bg-transparent text-white placeholder-gray-400" />
-        <input placeholder="Phone Number:" className="w-full p-3 rounded border bg-transparent text-white placeholder-gray-400" />
-        <input placeholder="Email Address:" className="w-full p-3 rounded border bg-transparent text-white placeholder-gray-400" />
+        <input placeholder="Full Name:" className="w-full p-3 rounded border bg-transparent text-white placeholder-gray-400" value={name} onChange={(e) => setName(e.target.value)} />
+        <input placeholder="Phone Number:" className="w-full p-3 rounded border bg-transparent text-white placeholder-gray-400" value={phone} onChange={(e) => setPhone(e.target.value)} />
+        <input placeholder="Email Address:" className="w-full p-3 rounded border bg-transparent text-white placeholder-gray-400" value={email} onChange={(e) => setEmail(e.target.value)} />
 
         <div className="h-[1px] bg-white mx-auto mt-6 mb-2" />
         <div className="flex flex-col sm:flex-row items-center justify-between pt-4 gap-4">
           <p className="text-purple-400 text-3xl font-bold">$100</p>
-          <Button className="group flex items-center rounded-full border-2 border-purple-500 bg-transparent text-white hover:bg-purple-600 transition-all px-4 py-2">
+          <Button
+            onClick={handleCheckout}
+            className="group flex items-center rounded-full border-2 border-purple-500 bg-transparent text-white hover:bg-purple-600 transition-all px-4 py-2"
+          >
             <div className="flex items-center gap-2">
-              <div onClick={handleCheckout} className="bg-purple-400 p-2 rounded-full">
+              <div className="bg-purple-400 p-2 rounded-full transform transition-transform duration-300 group-hover:translate-x-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-4 w-4 text-white"
@@ -175,10 +191,14 @@ export default function Consultion() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                 </svg>
               </div>
-              <span className="text-sm font-medium">Make Payment</span>
+              <span className="text-sm font-medium transform transition-transform duration-300 group-hover:translate-x-1">
+                Make Payment
+              </span>
             </div>
           </Button>
+
         </div>
+        {error && <p className="text-red-500 text-sm">{ error }</p>}
       </div>
     </div>
   );
