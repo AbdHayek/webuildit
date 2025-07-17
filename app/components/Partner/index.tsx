@@ -8,11 +8,15 @@ import "swiper/css";
 
 export default function Partner() {
   const [partners, setPartners] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     fetch("/api/partners")
       .then((res) => res.json())
-      .then((data) => setPartners(data));
+      .then((data) => setPartners(data))
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
   }, []);
 
   return (
@@ -23,24 +27,40 @@ export default function Partner() {
 
       {/* Swiper Slider */}
       <div className="px-6 max-w-7xl mx-auto">
-        <Swiper
-          modules={[Autoplay]}
-          slidesPerView={2}
-          spaceBetween={40}
-          loop={true}
-          autoplay={{ delay: 2000, disableOnInteraction: false }}
-          breakpoints={{
-            640: { slidesPerView: 3 },
-            768: { slidesPerView: 4 },
-            1024: { slidesPerView: 5 },
-          }}
-        >
-          {partners.map((partner: any) => (
-            <SwiperSlide key={partner.id} className="flex justify-center items-center">
-              <Image src={partner.img} alt={partner.id} width={200} height={200} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {loading ? (
+          <div className="text-center py-10">Loading partners...</div>
+        ) : error ? (
+          <div className="text-center text-red-500 py-10">{error}</div>
+        ) : partners.length === 0 ? (
+          <div className="text-center py-10">No partners found.</div>
+        ) : (
+          <Swiper
+            modules={[Autoplay]}
+            slidesPerView={2}
+            spaceBetween={40}
+            loop={true}
+            autoplay={{ delay: 2000, disableOnInteraction: false }}
+            breakpoints={{
+              640: { slidesPerView: 3 },
+              768: { slidesPerView: 4 },
+              1024: { slidesPerView: 5 },
+            }}
+          >
+            {partners.map((partner: any) => (
+              <SwiperSlide
+                key={partner.id}
+                className="flex justify-center items-center"
+              >
+                <Image
+                  src={partner.img}
+                  alt={partner.id}
+                  width={200}
+                  height={200}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
       </div>
 
       <div className="mt-24 h-[2px] w-2/3 mx-auto bg-gradient-to-r from-transparent via-purple-600 to-transparent" />
