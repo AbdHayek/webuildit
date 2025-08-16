@@ -14,6 +14,7 @@ type Testimonial = {
     id: number;
     title: string;
     author: string;
+    order_number: string;
     content: string;
     createdAt: string;
     updatedAt: string;
@@ -36,6 +37,7 @@ export default function TestimonialTable() {
         { header: 'Id', accessorKey: 'id' },
         { header: 'Title', accessorKey: 'title' },
         { header: 'Author', accessorKey: 'author' },
+        { header: 'Order', accessorKey: 'order_number'},
         {
             header: 'Created At',
             accessorKey: 'createdAt',
