@@ -3,10 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(req: NextRequest) {
 
   try {
-    const calendlyUserUri = `https://api.calendly.com/users/${process.env.CALENDLY_UUID!}`;
+    const calendlyUserUri = `${process.env.CALENDLY_URL}users/${process.env.CALENDLY_UUID!}`;
 
     const calendlyResponse = await fetch(
-      `https://api.calendly.com/user_availability_schedules?user=${encodeURIComponent(calendlyUserUri)}`,
+      `${process.env.CALENDLY_URL}user_availability_schedules?user=${encodeURIComponent(calendlyUserUri)}`,
       {
         headers: {
           Authorization: `Bearer ${process.env.CALENDLY_API_KEY!}`,

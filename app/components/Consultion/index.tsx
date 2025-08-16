@@ -7,6 +7,7 @@ import { Button } from "@headlessui/react";
 import { Listbox } from "@headlessui/react";
 import { ArrowDownCircleIcon } from "@heroicons/react/24/solid";
 import { stripePromise } from '@/lib/stripe';
+import { AlertCircle } from "lucide-react";
 
 const options = [
   {
@@ -32,6 +33,8 @@ export default function Consultion() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [sessionUri, setSessionUri] = useState("");
+  const [slotsWithPayment, setSlotsWithPayment] = useState<any[]>([]);
 
   const getDayName = (date: Date) =>
     date.toLocaleDateString("en-US", { weekday: "long" });
@@ -42,12 +45,35 @@ export default function Consultion() {
         const res = await fetch("/api/calendly/availability");
         const data = await res.json();
 
-        const updatedRules: Rule[] = data.collection[0]?.rules.map((rule: any) => ({
+        const userUri = data.collection[0]?.user;
+        setRules(data.collection[0]?.rules.map((rule: any) => ({
           day: rule.wday,
           time_slots: rule.intervals,
-        })) || [];
+        })) || []);
 
-        setRules(updatedRules);
+        // get arrange array to get event price
+        const eventTypeRes = await fetch(`/api/calendly/event-type?user=${encodeURIComponent(userUri)}`);
+        const eventTypeData = await eventTypeRes.json();
+        console.log("eventTypeData", eventTypeData);
+        data.collection.forEach((schedule: any) => {
+          schedule.rules.forEach((rule: any) => {
+            rule.intervals.forEach((interval: any) => {
+              eventTypeData.collection.forEach((event: any) => {
+                // if(event?.resource?.invitee_can_pay) {
+                setSlotsWithPayment(prev => [...prev, {
+                  day: rule?.wday,
+                  from: interval?.from,
+                  to: interval?.to,
+                  eventName: event?.resource?.name,
+                  payment: event?.resource?.payment_amount,
+                  uri: event?.uri
+                }]);
+                // }
+              });
+            });
+          });
+        });
+
       } catch (error) {
         console.error("Error fetching availability", error);
       }
@@ -58,10 +84,24 @@ export default function Consultion() {
 
   useEffect(() => {
     const day = getDayName(selectedDate);
-    const rule = rules.find((r) => r.day.toLowerCase() === day.toLowerCase());
-    if (rule) {
-      setTimeSlots(rule.time_slots);
-      setSelectedTime(rule.time_slots[0] || null);
+    const newRule = rules.find((r) => r.day.toLowerCase() === day.toLowerCase());
+    // console.log("rule", rule);
+    if (newRule) {
+      let slotsFound = slotsWithPayment.filter((slot) => slot.day === newRule.day);
+      // console.log("slots1", slotsFound);
+      if (slotsFound.length > 0) {
+        slotsFound.find((slot) => {
+          const timeSlot = newRule.time_slots.find((time) => time.from === slot.from && time.to === slot.to);
+          if (timeSlot) {
+            setSessionUri(slot.uri);
+            setTimeSlots(newRule.time_slots);
+            setSelectedTime({ from: slot.from, to: slot.to });
+          }
+        });
+      } else {
+        setTimeSlots([]);
+        setSelectedTime(null);
+      }
     } else {
       setTimeSlots([]);
       setSelectedTime(null);
@@ -71,8 +111,8 @@ export default function Consultion() {
 
   const handleCheckout = async () => {
 
-    if (!selectedDate || !selected || !selectedTime || !name || !email || !phone) {
-      setError("Please fill all the fields");
+    if (!selectedDate || !selected || !selectedTime || !name || !email || !phone || !sessionUri) {
+      setError("Please fill all the fields and select a time slot");
       return;
     }
     setError("");
@@ -84,12 +124,14 @@ export default function Consultion() {
       body: JSON.stringify({
         date: new Date(selectedDate).toISOString().split('T')[0],
         type: selected.name, time: selectedTime?.from + " - " + selectedTime?.to,
-        name: name, email: email, phone: phone
+        name: name, email: email, phone: phone, sessionUri: sessionUri
       }),
     });
     const { sessionId } = await res.json();
     await stripe?.redirectToCheckout({ sessionId });
   };
+
+  console.log("selectedTime", selectedTime);
 
   return (
     <div className="min-h-screen text-white flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-[10%] px-4 sm:px-6 lg:px-[10%] py-8 sm:py-12 lg:py-[10%]">
@@ -198,7 +240,12 @@ export default function Consultion() {
           </Button>
 
         </div>
-        {error && <p className="text-red-500 text-sm">{ error }</p>}
+        {error && (
+          <div className="mt-2 flex items-center gap-2 rounded-md bg-red-50 px-3 py-2 text-sm text-red-700 border border-red-200">
+            <AlertCircle className="h-4 w-4 text-red-500" />
+            <span>{error}</span>
+          </div>
+        )}
       </div>
     </div>
   );

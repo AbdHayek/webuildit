@@ -5,9 +5,9 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const { date, type, time, name, email, phone } = body;
+  const { date, type, time, name, email, phone, sessionUri } = body;
 
-  if (!date || !type || !time || !name || !email || !phone) {
+  if (!date || !type || !time || !name || !email || !phone || !sessionUri) {
     return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
   }
 
@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
       mode: 'payment',
       success_url: `${req.nextUrl.origin}/api/calendly/complete-booking?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.nextUrl.origin}/?canceled=true`,
-      metadata: { date, type, time, name, email, phone },
+      metadata: { date, type, time, name, email, phone, sessionUri },
     });
 
     return NextResponse.json({ sessionId: session.id });

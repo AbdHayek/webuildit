@@ -17,34 +17,24 @@ export async function GET(req: NextRequest) {
       return NextResponse.redirect(new URL('/?payment_error=true', req.nextUrl.origin));
     }
 
-    const { date, type, time, name, email, phone } = session.metadata ?? {};
+    const { date, type, time, name, email, phone, sessionUri } = session.metadata ?? {};
 
     // Safety check
-    if (!date || !type || !time || !name || !email || !phone) {
+    if (!date || !type || !time || !name || !email || !phone || !sessionUri) {
       return NextResponse.redirect(new URL('/?payment_error=true', req.nextUrl.origin));
     }
 
     // Make Calendly reservation
-    const calendlyResponse = await fetch(`${process.env.CALENDLY_URL}/event_types`, {
+    const calendlyResponse = await fetch(`${process.env.CALENDLY_URL}scheduling_links`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${process.env.CALENDLY_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        active: false,
-        owner: `${process.env.CALENDLY_URL}/users/${process.env.CALENDLY_UUID}`,
-        name: `New Meeting with ${name} for ${type}`,
-        description: `New Meeting with ${name} for ${type}`,
-        duration: 15,
-        locations: [
-          {
-            kind: "custom",
-            location: "Online Meeting"
-          }
-        ],
-        color: "#fff200",
-        locale: "en"
+        max_event_count: 1,
+        owner: sessionUri,
+        owner_type: "EventType"
       }),
     });
     const result = await calendlyResponse.json();
