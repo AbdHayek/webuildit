@@ -45,4 +45,9 @@ next-env.d.ts
 /public/uploads/testmonials/*
 /public/uploads/partners/*
 /public/uploads/blogs/*
+
+!/public/uploads/testmonials/.gitkeep
+!/public/uploads/partners/.gitkeep
+!/public/uploads/blogs/.gitkeep
+
 .env
