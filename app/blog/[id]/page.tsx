@@ -1,22 +1,23 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
-import { sanitize } from '@/lib/sanitizeHtml';
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import {BlogContent} from "@/app/components/blog/BlogContent";
 
 type Props = {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 };
 
 export async function generateMetadata({ params }: Props) {
-  const { id } = await params;
+  const { id } =  params;
+
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE}/api/blogs/${id}`,
       { next: { revalidate: 60 } }
     );
-    
+
     if (!res.ok) {
       return {
         title: "Blog Not Found | Your Brand Name",
@@ -50,7 +51,7 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function BlogDetailPage({ params }: Props) {
-  const { id } = await params;
+  const { id } =  params;
 
   let blog: any = null;
 
@@ -109,7 +110,7 @@ export default async function BlogDetailPage({ params }: Props) {
 
       {/* Content */}
       <article className="prose prose-invert prose-lg max-w-none mb-[20%]">
-        <div dangerouslySetInnerHTML={{ __html: sanitize(blog.content || '') }} />
+         <BlogContent content = {blog.content}  />
       </article>
     </div>
   );

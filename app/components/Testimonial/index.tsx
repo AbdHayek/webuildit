@@ -7,7 +7,7 @@ import "swiper/css/pagination";
 import "./Testimonial.scss";
 import BorderCard from "../Common/BorderCard";
 import { useRef, useEffect, useState } from "react";
-import { htmlToText } from 'html-to-text';
+import DOMPurify from "dompurify";
 
 export default function Testimonial() {
   const swiperRef = useRef<any>(null);
@@ -21,7 +21,7 @@ export default function Testimonial() {
         if (!res.ok) throw new Error("Failed to fetch testimonials");
         return res.json();
       })
-      .then((data) => setTestimonials(data))
+      .then((data) => setTestimonials(data.length < 4 && data.length !== 1 ? [...data, ...data] : data))
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);
@@ -53,27 +53,27 @@ export default function Testimonial() {
         ) : (
           <Swiper
             onSwiper={(swiper) => (swiperRef.current = swiper)}
-            modules={[Pagination,Autoplay]}
+            modules={[Pagination, Autoplay]}
             pagination={{ clickable: true }}
             spaceBetween={10}
             centeredSlides={true}
             loop={true}
-            autoplay={{ delay: 2000, disableOnInteraction: false }}
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
             watchSlidesProgress={true}
             slideActiveClass="swiper-slide-active"
             breakpoints={{
               320: { slidesPerView: 1 },
               768: { slidesPerView: 2 },
-              1024: { slidesPerView: 2 },
+              1024: { slidesPerView: 2 }
             }}
           >
             {testimonials.map((item, idx) => (
-              <SwiperSlide key={item.id || idx}>
+              <SwiperSlide key={idx}>
                 <BorderCard />
                 <div className="bg-[#4935824A] rounded-2xl p-8 text-center shadow-lg">
                   <h3 className="text-3xl mb-4">{item.title}</h3>
-                  <p className="text-gray-300 text-[16px] mb-6">
-                    {htmlToText(item.content)}
+                  <p className="text-gray-300 text-[16px] mb-6"
+                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item.content || '') }}>
                   </p>
                   <hr className="border-gray-600 mb-4 w-1/2 mx-auto" />
                   <p className="text-lg">{item.author}</p>

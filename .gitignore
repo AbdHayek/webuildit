@@ -42,5 +42,7 @@ next-env.d.ts
 
 /app/generated/prisma
 
-/public/uploads
+/public/uploads/testmonials/*
+/public/uploads/partners/*
+/public/uploads/blogs/*
 .env
