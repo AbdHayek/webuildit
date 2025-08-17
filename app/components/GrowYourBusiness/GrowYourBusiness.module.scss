@@ -13,9 +13,10 @@
   font-size: 23px;
 }
 
-/* Mobile First Responsive Design */
 
-@media screen and (max-width: 520px) {
+
+/* Mobile First Responsive Design */
+@media screen and (max-width: 424px) {
   .bubble_active {
     width: 80px;
     height: 80px;
@@ -29,7 +30,8 @@
   }
 }
 
-@media screen and (max-width: 769px) {
+/* Mobile First Responsive Design */
+@media screen and (max-width: 769px) and (min-width: 425px) {
   .bubble_active {
     width: 100px;
     height: 100px;
@@ -86,8 +88,6 @@
 }
 
 @media screen and (max-width: 768px) {
-
-
   .first_smallBub{
     display: none;
   }
@@ -96,7 +96,7 @@
     display: none;
   }
 
-  .forth_smallBub {
+  .third_smallBub {
     display: none;
   }
 
@@ -104,7 +104,119 @@
     display: none;
   }
 
+}
 
+
+@media screen and (min-width: 769px) {
+  .first_smallBub {
+    top: 0px;
+    left: 90px;
+  }
+
+  .second_smallBub {
+    top: 220px;
+    left: 55px;
+  }
+
+  .third_smallBub {
+    top: 3px;
+    right: 90px;
+  }
+
+  .forth_smallBub {
+    top: 220px;
+    right: 55px;
+  }
+}
+
+
+@media screen and (min-width: 800px) {
+  .first_smallBub {
+    top: 0px;
+    left: 100px;
+  }
+
+  .second_smallBub {
+    top: 220px;
+    left: 55px;
+  }
+
+  .third_smallBub {
+    top: 3px;
+    right: 100px;
+  }
+
+  .forth_smallBub {
+    top: 220px;
+    right: 55px;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .first_smallBub {
+    top: 0px;
+    left: 110px;
+  }
+
+  .second_smallBub {
+    top: 220px;
+    left: 65px;
+  }
+
+  .third_smallBub {
+    top: 3px;
+    right: 110px;
+  }
+
+  .forth_smallBub {
+    top: 220px;
+    right: 65px;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .first_smallBub {
+    top: 0px;
+    left: 125px;
+  }
+
+  .second_smallBub {
+    top: 220px;
+    left: 65px;
+  }
+
+  .third_smallBub {
+    top: 3px;
+    right: 125px;
+  }
+
+  .forth_smallBub {
+    top: 220px;
+    right: 65px;
+  }
+}
+
+
+@media screen and (min-width: 950px) {
+  .first_smallBub {
+    top: 0px;
+    left: 140px;
+  }
+
+  .second_smallBub {
+    top: 220px;
+    left: 70px;
+  }
+
+  .third_smallBub {
+    top: 3px;
+    right: 140px;
+  }
+
+  .forth_smallBub {
+    top: 220px;
+    right: 70px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -365,47 +477,71 @@
   }
 }
 
+
+@media screen and (min-width: 1800px) {
+
+  .first_smallBub {
+    top: 0%;
+    left: 28%;
+  }
+
+  .second_smallBub {
+    top: 50%;
+    left: 11%;
+  }
+
+  .third_smallBub {
+    top: 0%;
+    right: 28%;
+  }
+
+  .forth_smallBub {
+    top: 50%;
+    right: 11%;
+  }
+}
+
 @media screen and (min-width: 2100px) {
 
   .first_smallBub {
-    top: 2%;
+    top: 3%;
     left: 27%;
   }
 
   .second_smallBub {
     top: 50%;
-    left: 9%;
+    left: 11%;
   }
 
   .third_smallBub {
-    top: 2%;
+    top: 3%;
     right: 27%;
   }
 
   .forth_smallBub {
     top: 50%;
-    right: 9%;
+    right: 11%;
   }
 }
 
 @media screen and (min-width: 2500px) {
   .first_smallBub {
-    top: 6%;
+    top: 4%;
     left: 27%;
   }
 
   .second_smallBub {
     top: 50%;
-    left: 13%;
+    left: 11.5%;
   }
 
   .third_smallBub {
-    top: 6%;
+    top: 4%;
     right: 27%;
   }
 
   .forth_smallBub {
     top: 50%;
-    right: 13%;
+    right: 11.5%;
   }
 }
