@@ -43,8 +43,6 @@
   }
 }
 
-
-
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   .bubble_active {
     width: 100px;
@@ -88,82 +86,264 @@
 }
 
 @media screen and (max-width: 768px) {
+
+
+  .first_smallBub{
+    display: none;
+  }
+
   .second_smallBub {
-   display: none;
+    display: none;
   }
 
   .forth_smallBub {
     display: none;
   }
-}
-
-@media screen and (max-width: 1024px) {
-  .first_smallBub {
-   display: none;
-  }
-
-  .second_smallBub {
-    top: 30%;
-    left: 8%;
-  }
-
-  .third_smallBub {
-    display: none;  
-  }
 
   .forth_smallBub {
-    top: 30%;
-    right: 8%;
+    display: none;
   }
+
+
 }
 
 @media screen and (min-width: 1024px) {
   .first_smallBub {
-    top: -10%;
-    left: 22%;
+    top: 0px;
+    left: 150px;
   }
 
   .second_smallBub {
-    top: 20%;
-    left: 12%;
+    top: 220px;
+    left: 80px;
   }
 
   .third_smallBub {
-    top: -10%;
-    right: 22%;
+    top: 3px;
+    right: 150px;
   }
 
   .forth_smallBub {
-    top: 20%;
-    right: 12%;
+    top: 220px;
+    right: 80px;
+  }
+}
+
+@media screen and (min-width: 1074px) {
+
+  .first_smallBub {
+    top: 0px;
+    left: 165px;
+  }
+
+  .second_smallBub {
+    top: 220px;
+    left: 90px;
+  }
+
+  .third_smallBub {
+    top: 3px;
+    right: 165px;
+  }
+
+  .forth_smallBub {
+    top: 220px;
+    right: 90px;
+  }
+}
+
+
+@media screen and (min-width: 1100px) {
+
+  .first_smallBub {
+    top: 3px;
+    left: 170px;
+  }
+
+  .second_smallBub {
+    top: 220px;
+    left: 90px;
+  }
+
+  .third_smallBub {
+    top: 3px;
+    right: 170px;
+  }
+
+  .forth_smallBub {
+    top: 220px;
+    right: 90px;
+  }
+}
+
+@media screen and (min-width: 1150px) {
+
+  .first_smallBub {
+    top: 3px;
+    left: 185px;
+  }
+
+  .second_smallBub {
+    top: 220px;
+    left: 100px;
+  }
+
+  .third_smallBub {
+    top: 3px;
+    right: 185px;
+  }
+
+  .forth_smallBub {
+    top: 220px;
+    right: 100px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+
+  .first_smallBub {
+    top: 0px;
+    left: 205px;
+  }
+
+  .second_smallBub {
+    top: 220px;
+    left: 110px;
+  }
+
+  .third_smallBub {
+    top: 0px;
+    right: 205px;
+  }
+
+  .forth_smallBub {
+    top: 220px;
+    right: 110px;
   }
 }
 
 
 
-@media screen and (min-width: 1300px) {
+@media screen and (min-width: 1250px) {
+
   .first_smallBub {
-    top: 6%;
-    left: 22%;
+    top: 3px;
+    left: 220px;
   }
 
   .second_smallBub {
-    top: 30%;
-    left: 13.5%;
+    top: 220px;
+    left: 125px;
   }
 
   .third_smallBub {
-    top: 6%;
-    right: 22%;
+    top: 3px;
+    right: 220px;
   }
 
   .forth_smallBub {
-    top: 30%;
-    right: 13.5%;
+    top: 220px;
+    right: 125px;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+
+  .first_smallBub {
+    top: 3px;
+    left: 320px;
+  }
+
+  .second_smallBub {
+    top: 220px;
+    left: 165px;
+  }
+
+  .third_smallBub {
+    top: 3px;
+    right: 320px;
+  }
+
+  .forth_smallBub {
+    top: 220px;
+    right: 165px;
+  }
+}
+
+
+@media screen and (min-width: 1350px) {
+
+  .first_smallBub {
+    top: 12px;
+    left: 320px;
+  }
+
+  .second_smallBub {
+    top: 220px;
+    left: 175px;
+  }
+
+  .third_smallBub {
+    top: 12px;
+    right: 320px;
+  }
+
+  .forth_smallBub {
+    top: 220px;
+    right: 175px;
+  }
+}
+
+
+@media screen and (min-width: 1400px) {
+
+  .first_smallBub {
+    top: 30px;
+    left: 320px;
+  }
+
+  .second_smallBub {
+    top: 220px;
+    left: 190px;
+  }
+
+  .third_smallBub {
+    top: 30px;
+    right: 320px;
+  }
+
+  .forth_smallBub {
+    top: 220px;
+    right: 190px;
+  }
+}
+
+
+@media screen and (min-width: 1450px) {
+
+  .first_smallBub {
+    top: 40px;
+    left: 320px;
+  }
+
+  .second_smallBub {
+    top: 220px;
+    left: 200px;
+  }
+
+  .third_smallBub {
+    top: 40px;
+    right: 320px;
+  }
+
+  .forth_smallBub {
+    top: 220px;
+    right: 200px;
   }
 }
 
 @media screen and (min-width: 1500px) {
+
   .first_smallBub {
     top: 0%;
     left: 27%;
@@ -186,6 +366,7 @@
 }
 
 @media screen and (min-width: 2100px) {
+
   .first_smallBub {
     top: 2%;
     left: 27%;

@@ -179,7 +179,7 @@ export default function GrowYourBusiness() {
 
         {/* Animate small bubbles */}
         <SmallBubbles centerId={centerId} />
-
+       
         <Orbit centerId={centerId} />
 
         {/* Animate bubbles */}
