@@ -1,18 +1,10 @@
   import { NextRequest } from "next/server";
 
   export async function GET(req: NextRequest) {
-    const user = req.nextUrl.searchParams.get("user");
-
-    if (!user) {
-      return new Response(JSON.stringify({ error: "Missing user parameter" }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      });
-    }
-
+   
     try {
       const calendlyRes = await fetch(
-        `${process.env.CALENDLY_URL}event_types?user=${decodeURIComponent(user!)}`,
+        `${process.env.CALENDLY_URL}event_types?user=https://api.calendly.com/users/${process.env.CALENDLY_UUID}`,
         {
           headers: {
             Authorization: `Bearer ${process.env.CALENDLY_API_KEY}`, // Your Calendly personal access token

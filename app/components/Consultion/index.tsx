@@ -9,16 +9,6 @@ import { ArrowDownCircleIcon } from "@heroicons/react/24/solid";
 import { stripePromise } from '@/lib/stripe';
 import { AlertCircle } from "lucide-react";
 
-const options = [
-  {
-    name: "Online Consultation",
-    icon: <ArrowDownCircleIcon className="w-4 h-4 sm:w-5 sm:h-5 text-purple-500" />,
-  },
-  {
-    name: "In-Person Consultation",
-    icon: <ArrowDownCircleIcon className="w-4 h-4 sm:w-5 sm:h-5 text-purple-500" />,
-  },
-];
 
 type TimeSlot = { from: string; to: string };
 type Rule = { day: string; time_slots: TimeSlot[] };
@@ -28,90 +18,59 @@ export default function Consultion() {
   const [selectedTime, setSelectedTime] = useState<TimeSlot | null>(null);
   const [timeSlots, setTimeSlots] = useState<TimeSlot[]>([]);
   const [rules, setRules] = useState<Rule[]>([]);
-  const [selected, setSelected] = useState(options[0]);
   const [error, setError] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [sessionUri, setSessionUri] = useState("");
+  const [sessionUri, setSessionUri] = useState(null);
   const [slotsWithPayment, setSlotsWithPayment] = useState<any[]>([]);
+  const [eventType, setEventType] = useState<any[]>([]);
 
   const getDayName = (date: Date) =>
     date.toLocaleDateString("en-US", { weekday: "long" });
 
   useEffect(() => {
-    const fetchAvailability = async () => {
+
+    const fetchEventTypes = async () => {
       try {
-        const res = await fetch("/api/calendly/availability");
-        const data = await res.json();
-
-        const userUri = data.collection[0]?.user;
-        setRules(data.collection[0]?.rules.map((rule: any) => ({
-          day: rule.wday,
-          time_slots: rule.intervals,
-        })) || []);
-
-        // get arrange array to get event price
-        const eventTypeRes = await fetch(`/api/calendly/event-type?user=${encodeURIComponent(userUri)}`);
+        const eventTypeRes = await fetch(`/api/calendly/event-type`);
         const eventTypeData = await eventTypeRes.json();
-        console.log("eventTypeData", eventTypeData);
-        data.collection.forEach((schedule: any) => {
-          schedule.rules.forEach((rule: any) => {
-            rule.intervals.forEach((interval: any) => {
-              eventTypeData.collection.forEach((event: any) => {
-                // if(event?.resource?.invitee_can_pay) {
-                setSlotsWithPayment(prev => [...prev, {
-                  day: rule?.wday,
-                  from: interval?.from,
-                  to: interval?.to,
-                  eventName: event?.resource?.name,
-                  payment: event?.resource?.payment_amount,
-                  uri: event?.uri
-                }]);
-                // }
-              });
-            });
-          });
-        });
-
+        const allEventTypeActive = eventTypeData.collection.filter((val: any) => val.active);
+        setEventType(allEventTypeActive);
+        setSessionUri(allEventTypeActive.length > 0 ? allEventTypeActive[0].uri : null)
       } catch (error) {
-        console.error("Error fetching availability", error);
+        console.error("Error fetching Event Types", error);
       }
     };
 
-    fetchAvailability();
+    fetchEventTypes();
   }, []);
 
   useEffect(() => {
-    const day = getDayName(selectedDate);
-    const newRule = rules.find((r) => r.day.toLowerCase() === day.toLowerCase());
-    // console.log("rule", rule);
-    if (newRule) {
-      let slotsFound = slotsWithPayment.filter((slot) => slot.day === newRule.day);
-      // console.log("slots1", slotsFound);
-      if (slotsFound.length > 0) {
-        slotsFound.find((slot) => {
-          const timeSlot = newRule.time_slots.find((time) => time.from === slot.from && time.to === slot.to);
-          if (timeSlot) {
-            setSessionUri(slot.uri);
-            setTimeSlots(newRule.time_slots);
-            setSelectedTime({ from: slot.from, to: slot.to });
-          }
-        });
-      } else {
-        setTimeSlots([]);
-        setSelectedTime(null);
-      }
-    } else {
-      setTimeSlots([]);
-      setSelectedTime(null);
-    }
-  }, [selectedDate, rules]);
 
+    const fetchAvablility = async () => {
+      const start_time = new Date(selectedDate).toISOString();
+      const date = new Date(selectedDate); // create Date object
+      date.setMinutes(date.getMinutes() + 15); // add 15 minutes
+      const end_time = date.toISOString(); // convert to ISO
+
+      try {
+        const avablilityRes = await fetch(`/api/calendly/availability?event_type_uri=${sessionUri}&start_time=${start_time}&end_time=${end_time}`);
+        const avablilityData = await avablilityRes.json();
+        setSlotsWithPayment(avablilityData.collection);
+        console.log("avablilityData", avablilityData.collection);
+      } catch (error) {
+        console.error("Error fetching availability", error);
+      }
+    }
+
+    sessionUri && fetchAvablility();
+
+  }, [selectedDate,sessionUri]);
 
   const handleCheckout = async () => {
 
-    if (!selectedDate || !selected || !selectedTime || !name || !email || !phone || !sessionUri) {
+    if (!selectedDate  || !selectedTime || !name || !email || !phone || !sessionUri) {
       setError("Please fill all the fields and select a time slot");
       return;
     }
@@ -123,15 +82,13 @@ export default function Consultion() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         date: new Date(selectedDate).toISOString().split('T')[0],
-        type: selected.name, time: selectedTime?.from + " - " + selectedTime?.to,
+        type: sessionUri, time: selectedTime?.from + " - " + selectedTime?.to,
         name: name, email: email, phone: phone, sessionUri: sessionUri
       }),
     });
     const { sessionId } = await res.json();
     await stripe?.redirectToCheckout({ sessionId });
   };
-
-  console.log("selectedTime", selectedTime);
 
   return (
     <div className="min-h-screen text-white flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-[10%] px-4 sm:px-6 lg:px-[10%] py-8 sm:py-12 lg:py-[10%]">
@@ -184,31 +141,32 @@ export default function Consultion() {
           EVERY BUSINESS
         </h2>
 
-        <Listbox value={selected} onChange={setSelected}>
-          <div className="relative w-full">
-            <label className="block mb-2 text-lg font-bold text-[#CB97FF]">
-              Consultation type
-            </label>
-            <Listbox.Button className="w-full p-3 border rounded bg-transparent text-white flex justify-between items-center">
-              <span className="flex items-center gap-2">
-                {selected.icon}
-                <span>{selected.name}</span>
-              </span>
-            </Listbox.Button>
-            <Listbox.Options className="absolute mt-1 w-full bg-white text-black rounded shadow-lg z-10 max-h-32 overflow-auto">
-              {options.map((option, idx) => (
-                <Listbox.Option
-                  key={idx}
-                  value={option}
-                  className="cursor-pointer p-2 hover:bg-purple-100 flex items-center gap-2"
-                >
-                  {option.icon}
-                  {option.name}
-                </Listbox.Option>
-              ))}
-            </Listbox.Options>
-          </div>
-        </Listbox>
+        {eventType?.length > 0 &&
+          <Listbox value={eventType[0]} onChange={(e) => setSessionUri(e.uri)}>
+            <div className="relative w-full">
+              <label className="block mb-2 text-lg font-bold text-[#CB97FF]">
+                Consultation type
+              </label>
+              <Listbox.Button className="w-full p-3 border rounded bg-transparent text-white flex justify-between items-center">
+                <span className="flex items-center gap-2">
+                  <span>{eventType[0].name  + " - " + eventType[0].duration  + " Min " }</span>
+                </span>
+              </Listbox.Button>
+              <Listbox.Options className="absolute mt-1 w-full bg-white text-black rounded shadow-lg z-10 max-h-32 overflow-auto">
+                {eventType.map((option, idx) => (
+                  <Listbox.Option
+                    key={idx}
+                    value={option}
+                    className="cursor-pointer p-2 hover:bg-purple-100 flex items-center gap-2"
+                  >
+                    {option.name + " - " + option.duration  + " Min " }
+                  </Listbox.Option>
+                ))}
+              </Listbox.Options>
+            </div>
+          </Listbox>
+        }
+
 
         <input placeholder="Full Name:" className="w-full p-3 rounded border bg-transparent text-white placeholder-gray-400" value={name} onChange={(e) => setName(e.target.value)} />
         <input placeholder="Phone Number:" className="w-full p-3 rounded border bg-transparent text-white placeholder-gray-400" value={phone} onChange={(e) => setPhone(e.target.value)} />

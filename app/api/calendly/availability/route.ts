@@ -2,11 +2,17 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
 
-  try {
-    const calendlyUserUri = `${process.env.CALENDLY_URL}users/${process.env.CALENDLY_UUID!}`;
+  const eventTypeUri = req.nextUrl.searchParams.get('event_type_uri') as string;
+  // const start_time = req.nextUrl.searchParams.get('start_time') as string;
+  // const end_time = req.nextUrl.searchParams.get('end_time') as string;
 
+  const start_time= "2025-09-16T00:00:00Z"
+  const end_time= "2025-09-18T00:00:00Z"
+
+  try {
+    console.log(`${process.env.CALENDLY_URL}event_type_available_times?event_type=${decodeURIComponent(eventTypeUri)}&start_time=${start_time}&end_time=${end_time}`)
     const calendlyResponse = await fetch(
-      `${process.env.CALENDLY_URL}user_availability_schedules?user=${encodeURIComponent(calendlyUserUri)}`,
+      `${process.env.CALENDLY_URL}event_type_available_times?event_type=${decodeURIComponent(eventTypeUri)}&start_time=${start_time}&end_time=${end_time}`,
       {
         headers: {
           Authorization: `Bearer ${process.env.CALENDLY_API_KEY!}`,
