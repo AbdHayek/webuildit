@@ -14,7 +14,7 @@ type TimeSlot = { from: string; to: string };
 type Rule = { day: string; time_slots: TimeSlot[] };
 
 export default function Consultion() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date(new Date().setDate(new Date().getDate() + 1)));
   const [selectedTime, setSelectedTime] = useState<TimeSlot | null>(null);
   const [timeSlots, setTimeSlots] = useState<TimeSlot[]>([]);
   const [rules, setRules] = useState<Rule[]>([]);
@@ -28,6 +28,25 @@ export default function Consultion() {
 
   const getDayName = (date: Date) =>
     date.toLocaleDateString("en-US", { weekday: "long" });
+
+  const addHoursSameDay = (dateStr: any, hours: any) => {
+    const date = new Date(dateStr);
+
+    // store the original day (UTC)
+    const originalDay = date.getUTCDate();
+
+    // add the hours
+    date.setUTCHours(date.getUTCHours() + hours);
+
+    // if we rolled into the next day, clamp to end of original day
+    if (date.getUTCDate() !== originalDay) {
+      date.setUTCDate(originalDay);
+      date.setUTCHours(23, 59, 59, 999);
+    }
+
+    return date.toISOString();
+  }
+
 
   useEffect(() => {
 
@@ -50,9 +69,8 @@ export default function Consultion() {
 
     const fetchAvablility = async () => {
       const start_time = new Date(selectedDate).toISOString();
-      const date = new Date(selectedDate); // create Date object
-      date.setMinutes(date.getMinutes() + 15); // add 15 minutes
-      const end_time = date.toISOString(); // convert to ISO
+      const end_time = addHoursSameDay(start_time, 23);
+
 
       try {
         const avablilityRes = await fetch(`/api/calendly/availability?event_type_uri=${sessionUri}&start_time=${start_time}&end_time=${end_time}`);
@@ -66,11 +84,11 @@ export default function Consultion() {
 
     sessionUri && fetchAvablility();
 
-  }, [selectedDate,sessionUri]);
+  }, [selectedDate, sessionUri]);
 
   const handleCheckout = async () => {
 
-    if (!selectedDate  || !selectedTime || !name || !email || !phone || !sessionUri) {
+    if (!selectedDate || !selectedTime || !name || !email || !phone || !sessionUri) {
       setError("Please fill all the fields and select a time slot");
       return;
     }
@@ -99,10 +117,11 @@ export default function Consultion() {
           selected={selectedDate}
           onChange={(date) => setSelectedDate(date!)}
           inline
+          minDate={new Date(new Date().setDate(new Date().getDate() + 1))} // disable today & past
           calendarClassName="bg-white rounded-xl shadow-lg p-2 sm:p-4 text-center"
           dayClassName={(date) =>
             `flex items-center justify-center rounded-full transition font-medium text-sm sm:text-base ${date.toDateString() === new Date().toDateString()
-              ? "bg-purple-600 text-white"
+              ? "bg-purple-300 text-gray-400 cursor-not-allowed" // style disabled today
               : "text-gray-700 hover:bg-purple-100"
             }`
           }
@@ -149,7 +168,7 @@ export default function Consultion() {
               </label>
               <Listbox.Button className="w-full p-3 border rounded bg-transparent text-white flex justify-between items-center">
                 <span className="flex items-center gap-2">
-                  <span>{eventType[0].name  + " - " + eventType[0].duration  + " Min " }</span>
+                  <span>{eventType[0].name + " - " + eventType[0].duration + " Min "}</span>
                 </span>
               </Listbox.Button>
               <Listbox.Options className="absolute mt-1 w-full bg-white text-black rounded shadow-lg z-10 max-h-32 overflow-auto">
@@ -159,7 +178,7 @@ export default function Consultion() {
                     value={option}
                     className="cursor-pointer p-2 hover:bg-purple-100 flex items-center gap-2"
                   >
-                    {option.name + " - " + option.duration  + " Min " }
+                    {option.name + " - " + option.duration + " Min "}
                   </Listbox.Option>
                 ))}
               </Listbox.Options>
