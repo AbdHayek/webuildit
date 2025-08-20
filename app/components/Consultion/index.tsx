@@ -32,25 +32,34 @@ export default function Consultion() {
   const addHoursSameDay = (dateStr: any, hours: any) => {
     const date = new Date(dateStr);
 
-    // store the original day (UTC)
+    // store the original day and month (UTC)
     const originalDay = date.getUTCDate();
+    const originalMonth = date.getUTCMonth(); // 0-based (0 = Jan, 11 = Dec)
+    const originalYear = date.getUTCFullYear();
 
     // add the hours
     date.setUTCHours(date.getUTCHours() + hours);
 
-    // if we rolled into the next day, clamp to end of original day
-    if (date.getUTCDate() !== originalDay) {
+    // if we rolled into the next day or month (or year), clamp
+    if (
+      date.getUTCDate() !== originalDay ||
+      date.getUTCMonth() !== originalMonth ||
+      date.getUTCFullYear() !== originalYear
+    ) {
+      date.setUTCFullYear(originalYear);
+      date.setUTCMonth(originalMonth);
       date.setUTCDate(originalDay);
       date.setUTCHours(23, 59, 59, 999);
     }
 
     return date.toISOString();
-  }
+  };
+
 
   useEffect(() => {
 
     const fetchEventTypes = async () => {
-      
+
       setError("");
 
       try {
@@ -82,6 +91,9 @@ export default function Consultion() {
 
       const start_time = new Date(selectedDate).toISOString();
       const end_time = addHoursSameDay(start_time, 23);
+
+      console.log("start_time :", start_time)
+      console.log("end_time :", end_time)
       setError("");
 
       try {
@@ -96,7 +108,7 @@ export default function Consultion() {
         setSlotsWithPayment(avablilityData.collection);
         console.log("avablilityData", avablilityData.collection);
       } catch (error) {
-        setError(error?.message  || "Unknown error");
+        setError(error?.message || "Unknown error");
         console.error("Error fetching availability", error);
       }
     }
