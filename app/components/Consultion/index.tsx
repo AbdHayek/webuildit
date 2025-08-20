@@ -9,25 +9,32 @@ import { ArrowDownCircleIcon } from "@heroicons/react/24/solid";
 import { stripePromise } from '@/lib/stripe';
 import { AlertCircle } from "lucide-react";
 
-
-type TimeSlot = { from: string; to: string };
-type Rule = { day: string; time_slots: TimeSlot[] };
-
 export default function Consultion() {
   const [selectedDate, setSelectedDate] = useState(new Date(new Date().setDate(new Date().getDate() + 1)));
-  const [selectedTime, setSelectedTime] = useState<TimeSlot | null>(null);
-  const [timeSlots, setTimeSlots] = useState<TimeSlot[]>([]);
-  const [rules, setRules] = useState<Rule[]>([]);
+  const [timeSlots, setTimeSlots] = useState("");
   const [error, setError] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [sessionUri, setSessionUri] = useState(null);
+  const [sessionUri, setSessionUri] = useState<string | null>(null);
   const [slotsWithPayment, setSlotsWithPayment] = useState<any[]>([]);
   const [eventType, setEventType] = useState<any[]>([]);
+  const [eventSelected, setEventSelected] = useState("")
 
-  const getDayName = (date: Date) =>
-    date.toLocaleDateString("en-US", { weekday: "long" });
+  const toStartOfDayUTC = (dateStr: string) => {
+    const date = new Date(dateStr);
+    // force to 00:00:00 in UTC
+    date.setUTCHours(0, 0, 0, 0);
+    return date.toISOString();
+  };
+
+  const getHourMinute = (dateStr: string) => {
+    const date = new Date(dateStr);
+    // get UTC hours & minutes (if you want local, use getHours/getMinutes)
+    const hours = String(date.getUTCHours()).padStart(2, "0");
+    const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+    return `${hours}:${minutes}`;
+  };
 
   const addHoursSameDay = (dateStr: any, hours: any) => {
     const date = new Date(dateStr);
@@ -73,7 +80,8 @@ export default function Consultion() {
         const eventTypeData = await eventTypeRes.json();
         const allEventTypeActive = eventTypeData.collection.filter((val: any) => val.active);
         setEventType(allEventTypeActive);
-        setSessionUri(allEventTypeActive.length > 0 ? allEventTypeActive[0].uri : null)
+        setSessionUri(allEventTypeActive.length > 0 ? allEventTypeActive[0].uri : null);
+        setEventSelected(allEventTypeActive[0]);
 
       } catch (error) {
         setError(error?.message || "Unknown error");
@@ -89,12 +97,11 @@ export default function Consultion() {
 
     const fetchAvablility = async () => {
 
-      const start_time = new Date(selectedDate).toISOString();
+      const start_time = toStartOfDayUTC(new Date(selectedDate).toISOString());
       const end_time = addHoursSameDay(start_time, 23);
 
-      console.log("start_time :", start_time)
-      console.log("end_time :", end_time)
       setError("");
+      setSlotsWithPayment([])
 
       try {
         const avablilityRes = await fetch(`/api/calendly/availability?event_type_uri=${sessionUri}&start_time=${start_time}&end_time=${end_time}`);
@@ -106,20 +113,24 @@ export default function Consultion() {
 
         const avablilityData = await avablilityRes.json();
         setSlotsWithPayment(avablilityData.collection);
-        console.log("avablilityData", avablilityData.collection);
       } catch (error) {
         setError(error?.message || "Unknown error");
         console.error("Error fetching availability", error);
       }
     }
 
-    sessionUri && fetchAvablility();
+
+    if (sessionUri) {
+      setEventSelected(eventType.find(e => e.uri === sessionUri));
+      fetchAvablility();
+    }
+
 
   }, [selectedDate, sessionUri]);
 
   const handleCheckout = async () => {
 
-    if (!selectedDate || !selectedTime || !name || !email || !phone || !sessionUri) {
+    if (!selectedDate || !name || !email || !phone || !sessionUri) {
       setError("Please fill all the fields and select a time slot");
       return;
     }
@@ -130,14 +141,13 @@ export default function Consultion() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        date: new Date(selectedDate).toISOString().split('T')[0],
-        type: sessionUri, time: selectedTime?.from + " - " + selectedTime?.to,
-        name: name, email: email, phone: phone, sessionUri: sessionUri
+        name: name, email: email, phone: phone, sessionUri: sessionUri , time : getHourMinute(timeSlots.start_time)
       }),
     });
     const { sessionId } = await res.json();
     await stripe?.redirectToCheckout({ sessionId });
   };
+
 
   return (
     <div className="min-h-screen text-white flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-[10%] px-4 sm:px-6 lg:px-[10%] py-8 sm:py-12 lg:py-[10%]">
@@ -163,20 +173,22 @@ export default function Consultion() {
           </label>
           <select
             className="w-full p-3 border rounded text-sm sm:text-base"
-            value={selectedTime ? `${selectedTime.from} - ${selectedTime.to}` : ""}
+            value={timeSlots ? JSON.stringify(timeSlots) : ""}
             onChange={(e) => {
-              const [from, to] = e.target.value.split(" - ");
-              setSelectedTime({ from, to });
+              const parsed = JSON.parse(e.target.value);
+              setTimeSlots(parsed);
             }}
           >
-            {timeSlots.length === 0 ? (
+            {slotsWithPayment.length === 0 ? (
               <option disabled>No slots available</option>
             ) : (
-              timeSlots.map((slot, idx) => (
-                <option key={idx}>
-                  {slot.from} - {slot.to}
-                </option>
-              ))
+              slotsWithPayment.map((slot, idx) =>
+                slot.status === "available" && slot.invitees_remaining > 0 && (
+                  <option value={JSON.stringify(slot)} key={idx}>
+                    {getHourMinute(slot.start_time)}
+                  </option>
+                )
+              )
             )}
           </select>
         </div>
@@ -191,22 +203,26 @@ export default function Consultion() {
           EVERY BUSINESS
         </h2>
 
-        {eventType?.length > 0 &&
-          <Listbox value={eventType[0]} onChange={(e) => setSessionUri(e.uri)}>
+        {eventType?.length > 0 ?
+          <Listbox value={sessionUri ?? ""} onChange={setSessionUri}>
             <div className="relative w-full">
               <label className="block mb-2 text-lg font-bold text-[#CB97FF]">
                 Consultation type
               </label>
-              <Listbox.Button className="w-full p-3 border rounded bg-transparent text-white flex justify-between items-center">
-                <span className="flex items-center gap-2">
-                  <span>{eventType[0].name + " - " + eventType[0].duration + " Min "}</span>
-                </span>
+
+              {/* Trigger button */}
+              <Listbox.Button className="w-full p-3 border rounded text-left">
+                {eventSelected
+                  ? `${eventSelected?.name} - ${eventSelected?.duration} MIN`
+                  : "Select a type"}
               </Listbox.Button>
+
+              {/* Dropdown options */}
               <Listbox.Options className="absolute mt-1 w-full bg-white text-black rounded shadow-lg z-10 max-h-32 overflow-auto">
-                {eventType.map((option, idx) => (
+                {eventType.map((option) => (
                   <Listbox.Option
-                    key={idx}
-                    value={option}
+                    key={option.uri}
+                    value={option.uri}
                     className="cursor-pointer p-2 hover:bg-purple-100 flex items-center gap-2"
                   >
                     {option.name + " - " + option.duration + " Min "}
@@ -215,8 +231,13 @@ export default function Consultion() {
               </Listbox.Options>
             </div>
           </Listbox>
-        }
-
+          : <Listbox>
+            <div className="relative w-full">
+              <label className="block mb-2 text-lg font-bold text-[#CB97FF]">
+                Consultation not available now
+              </label>
+            </div>
+          </Listbox>}
 
         <input placeholder="Full Name:" className="w-full p-3 rounded border bg-transparent text-white placeholder-gray-400" value={name} onChange={(e) => setName(e.target.value)} />
         <input placeholder="Phone Number:" className="w-full p-3 rounded border bg-transparent text-white placeholder-gray-400" value={phone} onChange={(e) => setPhone(e.target.value)} />

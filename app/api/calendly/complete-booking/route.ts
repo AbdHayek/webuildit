@@ -17,10 +17,10 @@ export async function GET(req: NextRequest) {
       return NextResponse.redirect(new URL('/?payment_error=true', req.nextUrl.origin));
     }
 
-    const { date, type, time, name, email, phone, sessionUri } = session.metadata ?? {};
+    const {time, name, email, phone, sessionUri } = session.metadata ?? {};
 
     // Safety check
-    if (!date || !type || !time || !name || !email || !phone || !sessionUri) {
+    if (!time || !name || !email || !phone || !sessionUri) {
       return NextResponse.redirect(new URL('/?payment_error=true', req.nextUrl.origin));
     }
 
