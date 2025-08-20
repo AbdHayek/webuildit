@@ -47,17 +47,27 @@ export default function Consultion() {
     return date.toISOString();
   }
 
-
   useEffect(() => {
 
     const fetchEventTypes = async () => {
+      
+      setError("");
+
       try {
         const eventTypeRes = await fetch(`/api/calendly/event-type`);
+
+        if (!eventTypeRes.ok) {
+          // Manually throw to be caught by catch()
+          throw new Error(`Failed to fetch Event Types: ${eventTypeRes.status} ${eventTypeRes.statusText}`);
+        }
+
         const eventTypeData = await eventTypeRes.json();
         const allEventTypeActive = eventTypeData.collection.filter((val: any) => val.active);
         setEventType(allEventTypeActive);
         setSessionUri(allEventTypeActive.length > 0 ? allEventTypeActive[0].uri : null)
+
       } catch (error) {
+        setError(error?.message || "Unknown error");
         console.error("Error fetching Event Types", error);
       }
     };
@@ -65,19 +75,28 @@ export default function Consultion() {
     fetchEventTypes();
   }, []);
 
+
   useEffect(() => {
 
     const fetchAvablility = async () => {
+
       const start_time = new Date(selectedDate).toISOString();
       const end_time = addHoursSameDay(start_time, 23);
-
+      setError("");
 
       try {
         const avablilityRes = await fetch(`/api/calendly/availability?event_type_uri=${sessionUri}&start_time=${start_time}&end_time=${end_time}`);
+
+        if (!avablilityRes.ok) {
+          // Manually throw to be caught by catch()
+          throw new Error(`Failed to fetch Event Types: ${avablilityRes.status} ${avablilityRes.statusText}`);
+        }
+
         const avablilityData = await avablilityRes.json();
         setSlotsWithPayment(avablilityData.collection);
         console.log("avablilityData", avablilityData.collection);
       } catch (error) {
+        setError(error?.message  || "Unknown error");
         console.error("Error fetching availability", error);
       }
     }

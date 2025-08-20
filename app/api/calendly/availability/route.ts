@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
       { status: 400 }
     );
   }
-  
+
 
   try {
     const calendlyResponse = await fetch(
@@ -26,8 +26,7 @@ export async function GET(req: NextRequest) {
     );
 
     if (!calendlyResponse.ok) {
-      console.error("Calendly API error:", await calendlyResponse.text());
-      return NextResponse.json({ error: "Failed to fetch Calendly availability" }, { status: 500 });
+      return new Response(await calendlyResponse.text(), { status: calendlyResponse.status });
     }
 
     const data = await calendlyResponse.json();
