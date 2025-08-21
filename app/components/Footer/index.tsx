@@ -28,9 +28,22 @@ export default function index() {
               />
             </div>
             <div className="flex space-x-4 mt-6">
-              <FaInstagram className="w-6 h-6 text-white/80  hover:text-purple-400 cursor-pointer" />
-              <FaLinkedinIn className="w-6 h-6 text-white/80 hover:text-purple-400 cursor-pointer" />
-              <FaFacebookF className="w-6 h-6 text-white/80 hover:text-purple-400 cursor-pointer" />
+              <a
+                href="https://www.instagram.com/webuildit.ae?igsh=eHE1d25jZ3k3Zm85&utm_source=qr"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaInstagram className="w-6 h-6 text-white/80 hover:text-purple-400 cursor-pointer" />
+              </a>
+
+              <a
+                href="https://www.linkedin.com/company/104582139/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaLinkedinIn className="w-6 h-6 text-white/80 hover:text-purple-400 cursor-pointer" />
+              </a>
+
             </div>
           </div>
 
@@ -62,15 +75,24 @@ export default function index() {
           <div>
             <div>
               <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
-              <p className="text-medium text-white/70">+1 (999) 888-77-66</p>
-              <p className="text-medium text-white/70">hello@niskalastd.com</p>
+              <p className="text-medium text-white/70">
+                <a href="tel:+971505421229" className="hover:underline">
+                  +971 505421229
+                </a>
+              </p>
+              <p className="text-medium text-white/70">
+                <a href="mailto:contact@webuildit.ae" className="hover:underline">
+                  contact@webuildit.ae
+                </a>
+              </p>
+
             </div>
 
             {/* Location */}
             <div className="mt-[20%]">
               <h3 className="text-xl font-semibold mb-4">Location</h3>
-              <p className="text-medium text-white/70">483920, Indonesia</p>
-              <p className="text-medium text-white/70">Lampung 22/2/5, Office 4</p>
+              <p className="text-medium text-white/70">Location: Everywhere and Anywhere,</p>
+              <p className="text-medium text-white/70"> we don’t have walls, we have Wi-Fi (100% Remotely )</p>
             </div>
           </div>
         </div>

@@ -22,7 +22,10 @@ export default function Partner() {
   return (
     <section className="pt-[10%] pb-[10%] text-white relative overflow-hidden">
       <div className="text-center mb-12">
-        <h2 className="text-[40px] font-medium md:text-4xl">OUR PARTNERS</h2>
+        <h2 className="text-[40px] font-medium md:text-4xl uppercase">
+          We are happy to deal with
+        </h2>
+
       </div>
 
       {/* Swiper Slider */}

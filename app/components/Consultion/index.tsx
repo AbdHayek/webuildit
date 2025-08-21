@@ -151,7 +151,7 @@ export default function Consultion() {
 
 
   return (
-    <div className="min-h-screen text-white flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-[10%] px-4 sm:px-6 lg:px-[10%] py-8 sm:py-12 lg:py-[10%]">
+    <div id="consultation" className="min-h-screen text-white flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-[10%] px-4 sm:px-6 lg:px-[10%] py-8 sm:py-12 lg:py-[10%]">
       {/* Left - Calendar */}
       <div className="bg-white text-center rounded-lg p-4 sm:p-6 w-full lg:w-[40%] text-black shadow-lg order-2 lg:order-1">
         <h3 className="text-2xl lg:text-3xl font-semibold text-[#4A148C] mb-4">Select Date</h3>

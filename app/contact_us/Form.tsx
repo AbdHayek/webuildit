@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 export default function Form() {
     const [selectedOption, setSelectedOption] = useState("New Project");
-    const options = ["New Project", "Joining Our Team", "General Inquiries"];
+    const options = ["New Project", "Joining Our Team"];
     const [showForm, setShowForm] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
 

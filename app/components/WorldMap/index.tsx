@@ -2,12 +2,15 @@ import Image from "next/image";
 
 export default function WorldMap() {
   const pins = [
-    { top: "23%", left: "13%", label: "New York, USA" }, // USA
-    { top: "24%", left: "75%", label: "New York, USA" }, // Russia
-    { top: "44%", left: "67%", label: "New York, USA" }, // Middle East
-    { top: "43%", left: "55%", label: "New York, USA" }, // Africa
-    { top: "42%", left: "78%", label: "New York, USA" }, // Asia (e.g. India)
+    { top: "43.5%", left: "67.6%", label: "UAE, Dubai: 4 Happy Clients" },
+    { top: "43.5%", left: "65%", label: "Saudi Arabia, Riyadh: 2 Happy Clients" }, 
+    { top: "15%", left: "15%", label: "Canada, Vancouver: 1 Happy Client" }, 
+    { top: "37%", left: "63.5%", label: "Syria, Damascus: 3 Happy Clients" }, 
+    { top: "38%", left: "64.5%", label: "Iraq, Erbil: 1 Happy Client" }, 
+    { top: "15%", left: "15%",  label: "Germany: 2 Happy Client" }, 
+    { top: "15%", left: "15%", label: "Serbia: Negotiations in progress" },
   ];
+
 
   return (
     <main className="relative">
@@ -20,11 +23,17 @@ export default function WorldMap() {
         {/* Left-side Gradient Background */}
         <div>
           <h2 className="text-3xl md:text-4xl font-medium text-center text-white">
-            OUR CLIENTS AROUND
+            CLIENTS AROUND
           </h2>
           <p className="text-3xl md:text-4xl text-center font-light text-white/80">
             THE WORLD
           </p>
+          <h3 className="p-5 w-[60%] mx-auto  text-center">
+            Make sure the pins in their actual location, and write in the info box the
+            country code + city if mentioned (Ex: UAE, Dubai) + the number of the
+            happy clients
+          </h3>
+
         </div>
 
         <div className="relative mt-12">
@@ -41,11 +50,11 @@ export default function WorldMap() {
           {pins.map((pin, idx) => (
             <div
               key={idx}
-              className="absolute z-20 group" // group for hover behavior
+              className="absolute group" // group for hover behavior
               style={{ top: pin.top, left: pin.left }}
             >
               {/* Tooltip text */}
-              <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white text-black text-xs font-bold px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <div className="absolute z-9999 bottom-full mb-2 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white text-black text-xs font-bold px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 {pin.label}
               </div>
 

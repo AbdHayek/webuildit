@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Get in touch with our team to discuss your project, join our team, or for general inquiries.",
 };
 
-export default  function ContactPage() {
+export default function ContactPage() {
 
   return (
     <div>
@@ -34,14 +34,17 @@ export default  function ContactPage() {
 
         <div className="w-full">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Let’s Talk About<span> :</span>
+            Joining our team <span>:</span>
           </h2>
           <p className="text-lg mb-12 text-gray-300">
-            Have a project in mind that you think we’d be a great fit for it? We’d love to know what you’re thinking
+            Our office is the internet, and our team is spread across
+            time zones. If you’re a developer, designer, or innovator who loves solving
+            problems (and maybe sipping coffee in your pajamas while doing it), we’d
+            love to meet you. Send us a message and let’s connect.
           </p>
         </div>
 
-        <Form  />
+        <Form />
 
       </section>
 
