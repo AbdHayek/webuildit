@@ -120,12 +120,10 @@ export default function Consultion() {
       }
     }
 
-
     if (sessionUri) {
       setEventSelected(eventType.find(e => e.uri === sessionUri));
       fetchAvablility();
     }
-
 
   }, [selectedDate, sessionUri]);
 
