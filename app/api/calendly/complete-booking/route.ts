@@ -40,7 +40,8 @@ export async function GET(req: NextRequest) {
     const result = await calendlyResponse.json();
     console.log("calendlyResponse:", result);
 
-    return NextResponse.redirect(new URL('/?success=true', req.nextUrl.origin));
+    return NextResponse.redirect(result?.resource?.booking_url);
+    
   } catch (err) {
     console.error('Error completing booking:', err);
     return NextResponse.redirect(new URL('/?payment_error=true', req.nextUrl.origin));

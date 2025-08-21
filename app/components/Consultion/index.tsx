@@ -113,6 +113,7 @@ export default function Consultion() {
 
         const avablilityData = await avablilityRes.json();
         setSlotsWithPayment(avablilityData.collection);
+        setTimeSlots(avablilityData.collection[0])
       } catch (error) {
         setError(error?.message || "Unknown error");
         console.error("Error fetching availability", error);
@@ -141,11 +142,13 @@ export default function Consultion() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name: name, email: email, phone: phone, sessionUri: sessionUri , time : getHourMinute(timeSlots.start_time)
+        name: name, email: email, phone: phone, sessionUri: sessionUri, time: getHourMinute(timeSlots.start_time)
       }),
     });
+
     const { sessionId } = await res.json();
     await stripe?.redirectToCheckout({ sessionId });
+
   };
 
 
@@ -204,7 +207,7 @@ export default function Consultion() {
         </h2>
 
         {eventType?.length > 0 ?
-          <Listbox value={sessionUri ?? ""} onChange={setSessionUri}>
+          <Listbox onChange={setSessionUri}>
             <div className="relative w-full">
               <label className="block mb-2 text-lg font-bold text-[#CB97FF]">
                 Consultation type
