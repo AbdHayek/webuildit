@@ -28,11 +28,6 @@ export default function WorldMap() {
           <p className="text-3xl md:text-4xl text-center font-light text-white/80">
             THE WORLD
           </p>
-          <h3 className="p-5 w-[60%] mx-auto  text-center">
-            Make sure the pins in their actual location, and write in the info box the
-            country code + city if mentioned (Ex: UAE, Dubai) + the number of the
-            happy clients
-          </h3>
 
         </div>
 
