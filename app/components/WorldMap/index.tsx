@@ -2,13 +2,13 @@ import Image from "next/image";
 
 export default function WorldMap() {
   const pins = [
-    { top: "43.5%", left: "67.6%", label: "UAE, Dubai: 4 Happy Clients" },
-    { top: "43.5%", left: "65%", label: "Saudi Arabia, Riyadh: 2 Happy Clients" }, 
+    { top: "43.5%", left: "67.8%", label: "UAE, Dubai: 4 Happy Clients" },
+    { top: "45.5%", left: "65%", label: "Saudi Arabia, Riyadh: 2 Happy Clients" }, 
     { top: "15%", left: "15%", label: "Canada, Vancouver: 1 Happy Client" }, 
-    { top: "37%", left: "63.5%", label: "Syria, Damascus: 3 Happy Clients" }, 
-    { top: "38%", left: "64.5%", label: "Iraq, Erbil: 1 Happy Client" }, 
-    { top: "15%", left: "15%",  label: "Germany: 2 Happy Client" }, 
-    { top: "15%", left: "15%", label: "Serbia: Negotiations in progress" },
+    { top: "37%", left: "63%", label: "Syria, Damascus: 3 Happy Clients" }, 
+    { top: "38%", left: "65%", label: "Iraq, Erbil: 1 Happy Client" }, 
+    { top: "27%", left: "56%",   label: "Germany: 2 Happy Client" }, 
+    { top: "31%", left: "58.5%",   label: "Serbia: Negotiations in progress" },
   ];
 
 
@@ -49,7 +49,7 @@ export default function WorldMap() {
               style={{ top: pin.top, left: pin.left }}
             >
               {/* Tooltip text */}
-              <div className="absolute z-9999 bottom-full mb-2 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white text-black text-xs font-bold px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <div className="absolute z-20  bottom-full mb-2 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white text-black text-xs font-bold px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 {pin.label}
               </div>
 
@@ -58,8 +58,8 @@ export default function WorldMap() {
 
               {/* Inner glowing dot */}
               <Image
-                width="50"
-                height="50"
+                width="10"
+                height="10"
                 src="/assets/World/pin_location.svg"
                 alt="World Map"
                 className="relative w-7 h-7"
