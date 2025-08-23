@@ -49,7 +49,7 @@ export default function WorldMap() {
               style={{ top: pin.top, left: pin.left }}
             >
               {/* Tooltip text */}
-              <div className="absolute bottom-full mb-18 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white text-black text-xs font-bold px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <div className="absolute w-[230px] z-20 mb-2 right-[0%] left-[90%] -translate-x-1/2 whitespace-nowrap bg-white text-black text-xs font-bold px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 {pin.label}
               </div>
 
