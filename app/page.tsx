@@ -18,7 +18,8 @@ export default function Home() {
       <Testimonial />
       <Partner />
       <WorldMap />
-      <Consultion />
+      {/* <Consultion /> */}
+      <div className="h-[25vh]">  </div>
     </div>
   );
 }

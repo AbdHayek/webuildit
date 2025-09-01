@@ -30,7 +30,7 @@ export const ImagesSection = ({
                 priority
               />
               <div className="absolute inset-0 flex flex-col justify-center items-center px-4 text-white text-center z-10">
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold uppercase tracking-wide">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl uppercase tracking-wide">
                   {title[0]}
                 </h2>
               </div>
@@ -57,14 +57,14 @@ export const ImagesSection = ({
                     src={image[i]}
                     alt={title[i]}
                     fill
-                    className={`object-cover object-${position[i]}`}
+                    className={`object-cover  object-${position[i]}`}
                     sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, (max-width: 1024px) 384px, (max-width: 1280px) 500px, (max-width: 1536px) 600px, 671px"
                     priority={i === 0}
                   />
                   <div
                     className={`absolute ${textPosition} flex flex-col justify-center items-center px-4 text-white text-center z-10`}
                   >
-                    <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold uppercase tracking-wide">
+                    <h2 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl ${i==2 ?"mb-[20%]" : "mb-0"}  uppercase tracking-wide`}>
                       {title[i]}
                     </h2>
                   </div>

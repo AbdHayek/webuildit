@@ -14,7 +14,7 @@ export default function index() {
 
   return (
     <div className="relative">
-      <footer className="relative  text-white pb-20 px-6 text-center  lg:text-left md:text-left rounded-b-full">
+      <footer className="relative text-white pb-20 px-6 text-center  lg:text-left md:text-left rounded-b-full">
         {/* Main Footer Content */}
         <div className="relative  rounded-b-[50px] border-b-[0.5px] border-transparent z-10 container mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10 text-white pb-[10%] lg:px-[10%]  md:px-[5%] ">
           {/* Logo & Socials */}
@@ -91,8 +91,9 @@ export default function index() {
             {/* Location */}
             <div className="mt-[20%]">
               <h3 className="text-xl font-semibold mb-4">Location</h3>
-              <p className="text-medium text-white/70">Location: Everywhere and Anywhere,</p>
-              <p className="text-medium text-white/70"> we don’t have walls, we have Wi-Fi (100% Remotely )</p>
+              <p className="text-medium text-white/70 whitespace-nowrap">Location: Everywhere and Anywhere,
+                we don’t   <br/>  have walls, we have Wi-Fi (100% Remotely)
+              </p>
             </div>
           </div>
         </div>

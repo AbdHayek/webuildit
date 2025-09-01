@@ -16,7 +16,7 @@ const servicesData = [
             [
                 {
                     number: "67",
-                    description: "of users will abandon an app after one bad experience. (Google UX Research, 2024)"
+                    description: "Of users will abandon an app after one bad experience. (Google UX Research, 2024)"
                 }, {
                     number: "70",
                     description: "Over 70% of web traffic now comes from mobile devices (StatCounter, 2025)"
@@ -25,7 +25,7 @@ const servicesData = [
                     description: "Users spend 88% of their mobile time inside apps (vs. browsers). (eMarketer, 2024)"
                 }, {
                     number: "70",
-                    description: <>of businesses say mobile apps improved customer engagement. (<a href="https://clutch.co/" className="underline" target="_blank" rel="noopener noreferrer">Clutch.co</a> Survey, 2024)</>
+                    description: <>Of businesses say mobile apps improved customer engagement. (<a href="https://clutch.co/" className="underline" target="_blank" rel="noopener noreferrer">Clutch.co</a> Survey, 2024)</>
                 }
             ]
     },
@@ -39,13 +39,13 @@ const servicesData = [
             [
                 {
                     number: "94",
-                    description: "of first impressions relate to your website’s design. (WebFX, 2024)"
+                    description: "Of first impressions relate to your website’s design. (WebFX, 2024)"
                 }, {
                     number: "70",
-                    description: "of small business websites are vulnerable to cyberattacks due to poor development practices. (Verizon Data Breach Report, 2024)"
+                    description: "Of small business websites are vulnerable to cyberattacks due to poor development practices. (Verizon Data Breach Report, 2024)"
                 }, {
                     number: "75",
-                    description: "of users judge a company’s credibility based on website design. (Stanford Web Credibility Research, 2024)"
+                    description: "Of users judge a company’s credibility based on website design. (Stanford Web Credibility Research, 2024)"
                 }
             ]
     },
@@ -60,13 +60,13 @@ const servicesData = [
             [
                 {
                     number: "94",
-                    description: "of users’ first impressions are design-related. (Stanford University, 2024)"
+                    description: "Of users’ first impressions are design-related. (Stanford University, 2024)"
                 }, {
                     number: "88",
-                    description: "of users are less likely to return after a bad user experience. (Adobe, 2024)"
+                    description: "Of users are less likely to return after a bad user experience. (Adobe, 2024)"
                 }, {
                     number: "70",
-                    description: "of online businesses fail due to poor UX (UXPIN, 2024)"
+                    description: "Of online businesses fail due to poor UX (UXPIN, 2024)"
                 }
             ]
     },
@@ -80,7 +80,7 @@ const servicesData = [
             [
                 {
                     number: "90",
-                    description: "of companies using the cloud experience improved security and compliance. (McAfee, 2024)"
+                    description: "Of companies using the cloud experience improved security and compliance. (McAfee, 2024)"
                 }, {
                     number: "99.9",
                     description: "High availability cloud architectures deliver 99.9% uptime or more. (AWS SLA, 2025)"
@@ -136,7 +136,7 @@ export default function ServiceList() {
                                     {service.title.includes("CONSULTATION") &&
                                         <>
                                             <div className="flex h-[300px] items-center gap-4">
-                                                <a
+                                                {/* <a
                                                     href="#consultation"
                                                     className="
                                                         px-[4%] py-[2%] 
@@ -153,7 +153,7 @@ export default function ServiceList() {
                                                     "
                                                 >
                                                     Book Now
-                                                </a>
+                                                </a> */}
 
                                             </div>
                                         </>

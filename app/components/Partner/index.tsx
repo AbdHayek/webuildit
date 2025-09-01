@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import "./Partners.scss";
 
 import "swiper/css";
 
@@ -29,7 +30,7 @@ export default function Partner() {
       </div>
 
       {/* Swiper Slider */}
-      <div className="px-6 max-w-7xl mx-auto">
+      <div className="px-6 max-w-7xl mx-auto swiper-partner">
         {loading ? (
           <div className="text-center py-10">Loading partners...</div>
         ) : error ? (
@@ -37,32 +38,35 @@ export default function Partner() {
         ) : partners.length === 0 ? (
           <div className="text-center py-10">No partners found.</div>
         ) : (
-          <Swiper
-            modules={[Autoplay]}
-            slidesPerView={2}
-            spaceBetween={40}
-            loop={true}
-            autoplay={{ delay: 2000, disableOnInteraction: false }}
-            breakpoints={{
-              640: { slidesPerView: 3 },
-              768: { slidesPerView: 4 },
-              1024: { slidesPerView: 5 },
-            }}
-          >
-            {partners.map((partner: any) => (
-              <SwiperSlide
-                key={partner.id}
-                className="flex justify-center items-center"
-              >
-                <Image
-                  src={partner.img}
-                  alt={partner.id}
-                  width={200}
-                  height={200}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          <div className="flex justify-center items-center w-full">
+            <Swiper
+              modules={[Autoplay]}
+              slidesPerView={2}
+              spaceBetween={40}
+              loop={true}
+              autoplay={{ delay: 2000, disableOnInteraction: false }}
+              breakpoints={{
+                640: { slidesPerView: 3 },
+                768: { slidesPerView: 4 },
+                1024: { slidesPerView: 5 },
+              }}
+              className="flex justify-center items-center"
+            >
+              {partners.map((partner: any) => (
+                <SwiperSlide
+                  key={partner.id}
+                  className="!flex justify-center items-center"
+                >
+                  <Image
+                    src={partner.img}
+                    alt={partner.id}
+                    width={200}
+                    height={200}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         )}
       </div>
 
