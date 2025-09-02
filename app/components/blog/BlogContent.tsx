@@ -1,5 +1,5 @@
 "use client";
-import DOMPurify from "dompurify";
+import DOMPurify from 'isomorphic-dompurify';
 
 export function BlogContent ({content}:any) {
     return( <div className="text-gray-300 text-[16px] mb-6"

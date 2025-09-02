@@ -33,6 +33,7 @@
     "formidable": "^3.5.4",
     "framer-motion": "^12.16.0",
     "html-to-text": "^9.0.5",
+    "isomorphic-dompurify": "^2.26.0",
     "jsdom": "^26.1.0",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.518.0",

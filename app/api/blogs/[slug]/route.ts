@@ -8,7 +8,7 @@ export async function GET(
   { params }: { params: { slug: string } } 
 ) {
   try {
-    const { slug } =  params;
+    const { slug } =  await params;
 
     if (!slug || slug.trim() === "") {
       return NextResponse.json({ error: 'Invalid blog slug' }, { status: 400 });
