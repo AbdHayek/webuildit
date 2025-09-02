@@ -18,6 +18,7 @@ type Testimonial = {
   title: string;
   author: string;
   content: string;
+  url: string;
   order_number: number;
 };
 
@@ -35,6 +36,7 @@ export default function TestimonialForm({ initialData, setEditData, setTestimoni
   const [author, setAuthor] = useState('');
   const [content, setContent] = useState(' <h3>Typing something...</h3>');
   const [loading, setLoading] = useState(false);
+  const [url, setUrl] = useState('')
   const [error, setError] = useState('');
   const [orderNumber, setOrderNumber] = useState<number | ''>('');
   const handleBackToDashboard = () => {
@@ -66,6 +68,7 @@ export default function TestimonialForm({ initialData, setEditData, setTestimoni
       setAuthor(initialData.author);
       setContent(initialData.content);
       setOrderNumber(initialData.order_number || '');
+      setUrl(initialData.url || '');
       if (editor) {
         editor.commands.setContent(initialData.content);
       }
@@ -91,6 +94,12 @@ export default function TestimonialForm({ initialData, setEditData, setTestimoni
       return;
     }
 
+    // URL validation (optional, must be valid if provided)
+    if (url && !/^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/.test(url)) {
+      setError("URL is invalid. Must start with http:// or https://");
+      return;
+    }
+
     const textContent = editor?.getText().trim();
     if (!textContent) {
       setError("Content is required.");
@@ -104,6 +113,7 @@ export default function TestimonialForm({ initialData, setEditData, setTestimoni
     formData.append('title', title);
     formData.append('author', author);
     formData.append('order_number', String(orderNumber));
+    formData.append('url', url);
     formData.append('created_at', new Date().toISOString());
     formData.append('updated_at', new Date().toISOString());
     if (editor) formData.append('content', editor.getHTML());
@@ -130,6 +140,7 @@ export default function TestimonialForm({ initialData, setEditData, setTestimoni
           author: result.testimonial.author,
           content: result.testimonial.content,
           order_number: result.testimonial.order_number,
+          url:result.testimonial.url,
           updatedAt: result.testimonial.updatedAt
         } : Testimonial));
       } else {
@@ -140,6 +151,7 @@ export default function TestimonialForm({ initialData, setEditData, setTestimoni
             author: result.testimonial.author,
             content: result.testimonial.content,
             order_number: result.testimonial.order_number,
+            url:result.testimonial.url,
             createdAt: result.testimonial.createdAt,
             updatedAt: result.testimonial.updatedAt
           },
@@ -179,6 +191,17 @@ export default function TestimonialForm({ initialData, setEditData, setTestimoni
           type="text"
           value={author}
           onChange={e => setAuthor(e.target.value)}
+          className="mt-1 w-full border rounded px-3 py-2"
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium">URL (optional)</label>
+        <input
+          type="text"
+          value={url}
+          onChange={e => setUrl(e.target.value)}
+          placeholder="https://example.com"
           className="mt-1 w-full border rounded px-3 py-2"
         />
       </div>

@@ -6,15 +6,15 @@ import { ArrowLeft } from "lucide-react";
 import {BlogContent} from "@/app/components/blog/BlogContent";
 
 type Props = {
-  params: { id: string };
+  params: { slug: string };
 };
 
 export async function generateMetadata({ params }: Props) {
-  const { id } =  params;
+  const { slug } = await params;
 
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE}/api/blogs/${id}`,
+     `${process.env.NEXT_PUBLIC_API_BASE}/api/blogs/${slug}`,
       { next: { revalidate: 60 } }
     );
 
@@ -51,13 +51,13 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function BlogDetailPage({ params }: Props) {
-  const { id } =  params;
+  const { slug } = await params;
 
   let blog: any = null;
 
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE}/api/blogs/${id}`,
+      `${process.env.NEXT_PUBLIC_API_BASE}/api/blogs/${slug}`,
       {
         next: { revalidate: 60 },
       }

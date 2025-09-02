@@ -41,6 +41,7 @@ export async function POST(req: Request) {
             author,
             content,
             order_number,
+            url,
             created_at,
             updated_at,
         } = fields
@@ -60,6 +61,7 @@ export async function POST(req: Request) {
             author: String(author) || null,
             order_number: parseInt(order_number),
             content: String(content),
+            url: url ? String(url) : null,
             updatedAt: updated_at ? new Date(updated_at) : new Date(),
             createdAt: created_at ? new Date(created_at) : new Date()
         }

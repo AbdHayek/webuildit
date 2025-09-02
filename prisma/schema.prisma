@@ -25,6 +25,7 @@ model Users {
 model Blogs {
   id        Int      @id @default(autoincrement())
   title     String
+  slug      String   @unique    
   sub_title String?
   content   String  @db.Text
   img       String?
@@ -50,6 +51,7 @@ model Testimonials {
   title     String
   content   String  @db.Text
   author    String
+  url          String? 
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt @default(now())

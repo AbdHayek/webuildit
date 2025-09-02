@@ -53,7 +53,7 @@ export default async function BlogPage({
           {blogs.length === 0 ? (
             <p className="text-center text-lg text-white-500">No blog posts found or failed to load.</p>
           ) : (blogs.map((blog: any) => (
-            <Link   href={`/blog/${blog.id}`} className="m-auto" key={blog.id}>
+            <Link href={`/blog/${blog.slug}`} key={blog.id} className="m-auto">
               <Image
                 src={blog.img || "/assets/Blog/default.png"}
                 alt={blog.title}

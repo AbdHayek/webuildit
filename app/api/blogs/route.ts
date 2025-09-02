@@ -5,6 +5,7 @@ import path from 'path'
 import { Readable } from 'stream'
 import jwt from 'jsonwebtoken'
 import { cookies } from 'next/headers'
+import slugify from "slugify";
 
 const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET as string;
@@ -128,9 +129,22 @@ export async function POST(req: Request) {
         const imageFile = files.image?.[0]
         const imagePath = imageFile ? `/uploads/blogs/${path.basename(imageFile.filepath)}` : null
 
+        // Generate slug from title
+        let slug = slugify(String(title), { lower: true, strict: true });
+
+         // Check if slug exists and make it unique
+         let existing = await prisma.blogs.findUnique({ where: { slug } });
+         let suffix = 1;
+         while (existing && (!id || existing.id !== parseInt(id))) {
+             slug = slugify(String(title), { lower: true, strict: true }) + `-${suffix}`;
+             existing = await prisma.blogs.findUnique({ where: { slug } });
+             suffix++;
+         }
+
         let data = {
             userId: userId,
             title: String(title),
+            slug,  
             sub_title: String(subtitle) || null,
             content: String(content),
             updatedAt: updated_at ? new Date(updated_at) : new Date(),

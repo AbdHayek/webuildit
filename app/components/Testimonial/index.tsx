@@ -79,10 +79,10 @@ export default function Testimonial() {
                   <div className="relative flex items-center">
                     <p className="text-lg mx-auto">{item.author}</p>
                     <a
-                      href={item.link}
+                      href={item.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="absolute right-0 flex items-center"
+                      className="absolute right-0 flex items-center p-5"
                     >
                       <img
                         src="/assets/testimonial/link.svg"
