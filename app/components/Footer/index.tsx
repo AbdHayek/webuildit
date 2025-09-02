@@ -91,7 +91,7 @@ export default function index() {
             {/* Location */}
             <div className="mt-[20%]">
               <h3 className="text-xl font-semibold mb-4">Location</h3>
-              <p className="text-medium text-white/70 whitespace-nowrap">Location: Everywhere and Anywhere,
+              <p className="text-medium text-white/70 whitespace-nowrap">Everywhere and Anywhere,
                 we don’t   <br/>  have walls, we have Wi-Fi (100% Remotely)
               </p>
             </div>

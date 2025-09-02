@@ -31,19 +31,6 @@ export default function ContactPage() {
             filter blur-3xl"
         ></div>
 
-
-        <div className="w-full">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Joining our team <span>:</span>
-          </h2>
-          <p className="text-lg mb-12 text-gray-300">
-            Our office is the internet, and our team is spread across
-            time zones. If you’re a developer, designer, or innovator who loves solving
-            problems (and maybe sipping coffee in your pajamas while doing it), we’d
-            love to meet you. Send us a message and let’s connect.
-          </p>
-        </div>
-
         <Form />
 
       </section>

@@ -76,7 +76,23 @@ export default function Testimonial() {
                     dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item.content || '') }}>
                   </p>
                   <hr className="border-gray-600 mb-4 w-1/2 mx-auto" />
-                  <p className="text-lg">{item.author}</p>
+                  <div className="relative flex items-center">
+                    <p className="text-lg mx-auto">{item.author}</p>
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="absolute right-0 flex items-center"
+                    >
+                      <img
+                        src="/assets/testimonial/link.svg"
+                        alt="link"
+                        className="w-5 h-5"
+                      />
+                    </a>
+                  </div>
+
+
                 </div>
               </SwiperSlide>
             ))}

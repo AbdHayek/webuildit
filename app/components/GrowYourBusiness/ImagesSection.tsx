@@ -41,7 +41,7 @@ export const ImagesSection = ({
               if (!image[i] || !title[i]) return null;
           
               const sectionStyles = [
-                'top-0 h-1/4',
+                'top-0 h-1/3',
                 'top-1/4 h-1/4',
                 'bottom-0 h-1/2',
               ];

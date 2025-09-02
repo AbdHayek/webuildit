@@ -25,7 +25,7 @@ const servicesData = [
                     description: "Users spend 88% of their mobile time inside apps (vs. browsers). (eMarketer, 2024)"
                 }, {
                     number: "70",
-                    description: <>Of businesses say mobile apps improved customer engagement. (<a href="https://clutch.co/" className="underline" target="_blank" rel="noopener noreferrer">Clutch.co</a> Survey, 2024)</>
+                    description: <>Of businesses say mobile apps improved customer engagement. (Clutch.co Survey, 2024)</>
                 }
             ]
     },
@@ -112,7 +112,8 @@ export default function ServiceList() {
                             position: "sticky",
                             top: service.top,  // use vh units or px
                             backgroundColor: "#070322",
-                            zIndex: 10 + index
+                            zIndex: 10 + index,
+                            height: index === 4 ? "500px" : "auto",
                         }}>
                         <GradientLine />
                         <div className="flex flex-col md:flex-row items-center md:justify-between gap-20 py-[2%] px-[5%]">
@@ -135,9 +136,9 @@ export default function ServiceList() {
 
                                     {service.title.includes("CONSULTATION") &&
                                         <>
-                                            <div className="flex h-[300px] items-center gap-4">
-                                                {/* <a
-                                                    href="#consultation"
+                                            <div className="flex  items-center gap-4">
+                                                <a
+                                                    href="/contact_us"
                                                     className="
                                                         px-[4%] py-[2%] 
                                                         bg-purple-600 hover:bg-purple-700 
@@ -153,7 +154,7 @@ export default function ServiceList() {
                                                     "
                                                 >
                                                     Book Now
-                                                </a> */}
+                                                </a>
 
                                             </div>
                                         </>
