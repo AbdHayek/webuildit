@@ -34,7 +34,7 @@ const servicesData = [
         description: "We design and develop fast, secure, and scalable websites tailored to your business needs. Custom built websites that boost conversions, performance, and brand trust.",
         image: "/assets/Service/web_development.png",
         imageAlt: "Web Development",
-        top: "14%",
+        top: "13%",
         facts:
             [
                 {
@@ -55,7 +55,7 @@ const servicesData = [
             "From wireframes to WOW. we design experiences your users will love and remember. Design isn’t just how it looks, it’s how it works. Let’s make it seamless.",
         image: "/assets/Service/ux_design.png",
         imageAlt: "UX Design",
-        top: "27%",
+        top: "26%",
         facts:
             [
                 {
@@ -75,7 +75,7 @@ const servicesData = [
         description: "We design, deploy, and manage secure cloud infrastructures that help your business scale, reduce costs, and stay competitive. Whether you're migrating, optimizing, or starting from scratch, we tailor cloud solutions that fit your needs.",
         image: "/assets/Service/cloud_solution.png",
         imageAlt: "Cloud Solutions",
-        top: "40%",
+        top: "39%",
         facts:
             [
                 {
