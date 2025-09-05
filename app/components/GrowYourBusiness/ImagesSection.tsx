@@ -64,7 +64,7 @@ export const ImagesSection = ({
                   <div
                     className={`absolute ${textPosition} flex flex-col justify-center items-center px-4 text-white text-center z-10`}
                   >
-                    <h2 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl ${i==2 ?"mb-[20%]" : "mb-0"}  uppercase tracking-wide`}>
+                    <h2 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl ${i==2 ?"mb-[30%]" : "mb-0"}  uppercase tracking-wide`}>
                       {title[i]}
                     </h2>
                   </div>

@@ -172,7 +172,7 @@ export default function GrowYourBusiness() {
       <div className="absolute bottom-[0%] left-0 w-full 2xl:h-1/4 h-[5%] z-[20] bg-gradient-to-t from-[#070322]/100 via-[#070322]/75 to-[#070322]/75  backdrop-blur-xl pointer-events-none" />
 
       {/* CONTAINER ADDED */}
-      <div className="text-center mb-30">
+      <div className="text-center mb-[10%]">
         <MainTitle children="Grow Your Business" className="mb-2" />
         <MainTitle children="With Us" className="text-gray-300" />
       </div>
