@@ -45,7 +45,7 @@ export default function WorldMap() {
           {pins.map((pin, idx) => (
             <div
               key={idx}
-              className="absolute group" // group for hover behavior
+              className="absolute group max-440-hidden" // group for hover behavior
               style={{ top: pin.top, left: pin.left }}
             >
               {/* Tooltip text */}

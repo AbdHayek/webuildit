@@ -13,7 +13,7 @@ export default function Video() {
                 Your browser does not support the video tag.
             </video>
 
-            <a href="#how_do_we_work" className="absolute top-[75%] left-0 w-full z-10 flex items-center justify-center text-center px-4">
+            <a href="#how_do_we_work" className="absolute top-[75%] left-0 w-full z-10 flex items-center justify-center text-center px-4 max-440-hidden">
                 <div className="mt-10 animate-bounce">
                     <svg
                         width="59"
