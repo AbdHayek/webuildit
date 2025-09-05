@@ -1,14 +1,15 @@
 import Image from "next/image";
+import MainTitle from "../Common/MainTitle";
 
 export default function WorldMap() {
   const pins = [
     { top: "43.5%", left: "67.8%", label: "UAE, Dubai: 4 Happy Clients" },
-    { top: "43%", left: "64%", label: "Saudi Arabia, Riyadh: 2 Happy Clients" }, 
-    { top: "15%", left: "15%", label: "Canada, Vancouver: 1 Happy Client" }, 
-    { top: "37%", left: "63%", label: "Syria, Damascus: 3 Happy Clients" }, 
-    { top: "38%", left: "65%", label: "Iraq, Erbil: 1 Happy Client" }, 
-    { top: "27%", left: "56%",   label: "Germany: 2 Happy Client" }, 
-    { top: "31%", left: "58.5%",   label: "Serbia: Negotiations in progress" },
+    { top: "43%", left: "64%", label: "Saudi Arabia, Riyadh: 2 Happy Clients" },
+    { top: "15%", left: "15%", label: "Canada, Vancouver: 1 Happy Client" },
+    { top: "37%", left: "63%", label: "Syria, Damascus: 3 Happy Clients" },
+    { top: "38%", left: "65%", label: "Iraq, Erbil: 1 Happy Client" },
+    { top: "27%", left: "56%", label: "Germany: 2 Happy Client" },
+    { top: "31%", left: "58.5%", label: "Serbia: Negotiations in progress" },
   ];
 
 
@@ -22,13 +23,8 @@ export default function WorldMap() {
       <div className="w-full max-w-7xl mx-auto">
         {/* Left-side Gradient Background */}
         <div>
-          <h2 className="text-3xl md:text-4xl font-medium text-center text-white">
-            CLIENTS AROUND
-          </h2>
-          <p className="text-3xl md:text-4xl text-center font-light text-white/80">
-            THE WORLD
-          </p>
-
+          <MainTitle children="CLIENTS AROUND" className="mb-2" />
+          <MainTitle children="THE WORLD" className="text-gray-300" />
         </div>
 
         <div className="relative mt-12">

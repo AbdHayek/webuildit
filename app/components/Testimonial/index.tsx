@@ -8,6 +8,7 @@ import "./Testimonial.scss";
 import BorderCard from "../Common/BorderCard";
 import { useRef, useEffect, useState } from "react";
 import DOMPurify from "dompurify";
+import MainTitle from "../Common/MainTitle";
 
 export default function Testimonial() {
   const swiperRef = useRef<any>(null);
@@ -29,8 +30,8 @@ export default function Testimonial() {
   return (
     <section className="text-white py-16 swiper-testimonial">
       <div className="text-center mb-12">
-        <h2 className="font-medium text-[40px]">HEAR FROM OUR</h2>
-        <p className="font-medium text-[40px] mt-2 text-gray-300">CUSTOMERS</p>
+        <MainTitle children="HEAR FROM OUR" className="mb-2" />
+        <MainTitle children="CUSTOMERS" className="text-gray-300" />
       </div>
 
       <div className="mx-auto relative ">

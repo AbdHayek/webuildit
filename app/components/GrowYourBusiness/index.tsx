@@ -6,6 +6,7 @@ import styles from "./GrowYourBusiness.module.scss";
 import Orbit from "./Orbit";
 import SmallBubbles from "./SmallBubbles";
 import { ImagesSection } from "./ImagesSection";
+import MainTitle from "../Common/MainTitle";
 
 const bubbles = [
   {
@@ -172,14 +173,14 @@ export default function GrowYourBusiness() {
 
       {/* CONTAINER ADDED */}
       <div className="text-center mb-30">
-        <h2 className="font-medium text-[40px]"> Grow Your Business</h2>
-        <p className="font-medium text-[40px] mt-2 text-gray-300">With Us</p>
+        <MainTitle children="Grow Your Business" className="mb-2" />
+        <MainTitle children="With Us" className="text-gray-300" />
       </div>
       <div className="h-screen relative">
 
         {/* Animate small bubbles */}
         <SmallBubbles centerId={centerId} />
-       
+
         <Orbit centerId={centerId} />
 
         {/* Animate bubbles */}

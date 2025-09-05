@@ -121,7 +121,7 @@ export default function ServiceList() {
                             {/* Text Content */}
                             <div className="md:w-3/4 mb-10 md:mb-0">
 
-                                <h3 className="text-xl sm:text-xl md:text-2xl lg:text-4xl font-bold mb-4 xl:mb-4 lg:mb-4 md:mb-1 sm:md-1">{service.title}</h3>
+                                <h3 className="text-xl sm:text-xl md:text-2xl lg:text-4xl font-bold mb-1 xl:mb-4 lg:mb-4 md:mb-4 sm:md-1">{service.title}</h3>
                                 <p className="mb-8 text-[#F6F3F8] text-base md:text-md lg:text-xl">
                                     {service.description}
                                 </p>

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import BorderCard from "../Common/BorderCard";
+import MainTitle from "../Common/MainTitle";
 
 const steps = [
   {
@@ -81,9 +82,7 @@ export default function HowWeWork() {
         className={`max-w-7xl mx-auto`}>
         {" "}
         {/* CONTAINER ADDED */}
-        <h2 className="text-center text-[40px] font-medium mb-16">
-          HOW DO WE WORK
-        </h2>
+        <MainTitle children="HOW DO WE WORK"  className="mb-16"/>
         <div ref={ref}
           className={`transition-opacity duration-2000 ease-in-out transform 
           ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"} 

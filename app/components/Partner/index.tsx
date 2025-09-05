@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "./Partners.scss";
+import MainTitle from "../Common/MainTitle";
 
 import "swiper/css";
 
@@ -23,10 +24,7 @@ export default function Partner() {
   return (
     <section className="pt-[10%] pb-[10%] text-white relative overflow-hidden">
       <div className="text-center mb-12">
-        <h2 className="text-[40px] font-medium md:text-4xl uppercase">
-          We are happy to deal with
-        </h2>
-
+        <MainTitle children="We are happy to deal with" className="text-gray-300" />  
       </div>
 
       {/* Swiper Slider */}
