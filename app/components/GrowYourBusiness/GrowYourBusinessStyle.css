@@ -1,0 +1,59 @@
+
+
+@media screen and (max-width: 1025px) {
+
+     .blur-responsive{
+        height: 15%;
+    }
+}
+
+
+@media screen and (min-width: 1025px) and (max-width: 1900px) {
+
+     .blur-responsive{
+        height: 0%;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+
+    .img-section-padding {
+       padding-top: 2%;
+    }
+
+     .blur-responsive{
+        height: 15%;
+    }
+}
+
+
+@media screen and (min-width: 2500px) {
+
+     .blur-responsive{
+        height: 5%;
+    }
+}
+
+@media screen and (min-width: 3200px) {
+
+     .blur-responsive{
+        height: 0%;
+    }
+}
+
+
+@media screen and (min-width: 3500px) {
+
+     .img-section-padding {
+       padding-top: 5%;
+    }
+    
+  
+    .h-screen-responsive {
+       height: 75vh;
+       width: 75%;
+       left: 12%;
+       align-items: center;
+    }
+  
+}

@@ -169,14 +169,14 @@ export default function GrowYourBusiness() {
       ></div>
 
       {/* bottom-side Gradient Background */}
-      <div className="absolute bottom-[0%] left-0 w-full 2xl:h-1/4 h-[5%] z-[20] bg-gradient-to-t from-[#070322]/100 via-[#070322]/75 to-[#070322]/75  backdrop-blur-xl pointer-events-none" />
+      <div className="absolute bottom-[0%] left-0 w-full 2xl:h-1/4 h-[5%] z-[20] bg-gradient-to-t from-[#070322]/100 via-[#070322]/75 to-[#070322]/75  backdrop-blur-xl pointer-events-none blur-responsive" />
 
       {/* CONTAINER ADDED */}
       <div className="text-center mb-[10%]">
         <MainTitle children="Grow Your Business" className="mb-2" />
         <MainTitle children="With Us" className="text-gray-300" />
       </div>
-      <div className="h-screen relative">
+      <div className="h-screen h-screen-responsive  relative">
 
         {/* Animate small bubbles */}
         <SmallBubbles centerId={centerId} />
