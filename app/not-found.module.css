@@ -1,0 +1,24 @@
+.notFoundContainer {
+  text-align: center;
+  padding: 200px 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.notFoundContainer h1 {
+  font-size: 3rem;
+  color: #ffffff;
+}
+
+.notFoundContainer p {
+  color: #a2a1a1;
+  margin-bottom: 20px;
+}
+
+.backHome {
+  background: #9810fa;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
