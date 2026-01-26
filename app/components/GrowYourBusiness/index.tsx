@@ -169,7 +169,7 @@ export default function GrowYourBusiness() {
       ></div>
 
       {/* bottom-side Gradient Background */}
-      <div className="absolute bottom-[0%] left-0 w-full 2xl:h-1/4 h-[5%] z-[20] bg-gradient-to-t from-[#070322]/100 via-[#070322]/75 to-[#070322]/75  backdrop-blur-xl pointer-events-none blur-responsive" />
+      <div className="absolute bottom-[0%] left-0 w-full 2xl:h-1/4 h-[5%] z-[20] bg-gradient-to-t from-[#070322]/100 via-[#070322]/75 to-[#070322]/75  backdrop-blur-xl pointer-events-none blur-responsive " />
 
       {/* CONTAINER ADDED */}
       <div className="text-center mb-[10%]">
@@ -222,14 +222,20 @@ export default function GrowYourBusiness() {
           >
             {centerId === "who" && (
               <ImagesSection
-                classes={"absolute inset-0 bg-gradient-to-b from-[#7647aedb] to-[#140526DB] z-10"}
-                position={["top", "center", "center"]}
+                sectionStyles= {[
+                  'top-0 h-[30%]',
+                  'top-[22%] h-[24%]',
+                  'bottom-0 h-[54%]',
+                ]}
+                classes={"absolute inset-0 bg-gradient-to-b from-[#9643d6b0] to-[#140526] z-10"}
+                position={["center", "transform scale-110 origin-[0%_90%]", "transform scale-140 origin-[0%_100%]"]}
                 title={["STARTUPS", "ENTERPRISES", "OUTSOURCING NEEDS"]}
                 image={["/assets/GrowYourBusiness/purple/3.jpg", "/assets/GrowYourBusiness/purple/2.jpg", "/assets/GrowYourBusiness/purple/1.jpg"]}
               />
             )}
             {centerId === "how" && (
               <ImagesSection
+                sectionStyles= {[]}
                 classes={"absolute inset-0 bg-gradient-to-b from-[#BD3E937D] to-[#4C022ED1] z-10"}
                 position={[]}
                 title={["STEP-BY-STEP PROCESS WITH VISUALS"]}
@@ -237,9 +243,14 @@ export default function GrowYourBusiness() {
               />
             )}
             {centerId === "why" && (
-              <ImagesSection
+                <ImagesSection
+                  sectionStyles= {[
+                    'top-0 h-1/4',
+                    'top-1/4 h-1/4',
+                    'bottom-0 h-1/2',
+                  ]}
                 classes={"absolute inset-0 bg-gradient-to-b from-[#0043994F] to-[#140526] z-10"}
-                position={["center", "center", "bottom"]}
+                position={["transform scale-100", "center", "bottom"]}
                 title={["SCALABILITY", "COST-EFFECTIVENESS", "EXPERTISE, NDA"]}
                 image={["/assets/GrowYourBusiness/blue/1.jpg", "/assets/GrowYourBusiness/blue/2.jpg", "/assets/GrowYourBusiness/blue/3.jpg"]}
               />

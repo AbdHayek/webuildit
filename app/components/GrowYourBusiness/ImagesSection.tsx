@@ -6,12 +6,14 @@ export const ImagesSection = ({
   title,
   image,
   position,
-  classes
+  classes,
+  sectionStyles = [],
 }: {
   title: string[];
   image: string[];
   position: string[];
   classes: string;
+  sectionStyles: string[];
 }) => {
   const isSingle = image.length === 1;
 
@@ -32,7 +34,7 @@ export const ImagesSection = ({
                 priority
               />
               <div className="absolute inset-0 flex flex-col justify-center items-center px-4 text-white text-center z-10">
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl uppercase tracking-wide">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-[50%] w-[80%] uppercase tracking-wide">
                   {title[0]}
                 </h2>
               </div>
@@ -41,12 +43,6 @@ export const ImagesSection = ({
             <>
             {title.map((t, i) => {
               if (!image[i] || !title[i]) return null;
-          
-              const sectionStyles = [
-                'top-0 h-1/3',
-                'top-1/4 h-1/4',
-                'bottom-0 h-1/2',
-              ];
           
               const textPosition =  'inset-0';
           
@@ -66,7 +62,7 @@ export const ImagesSection = ({
                   <div
                     className={`absolute ${textPosition} flex flex-col justify-center items-center px-4 text-white text-center z-10`}
                   >
-                    <h2 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl ${i==2 ?"mb-[30%]" : "mb-0"}  uppercase tracking-wide`}>
+                    <h2 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl ${i === 1 ? 'mt-[5%]' : ''} ${i === 2 ? 'mb-[30%]' : 'mb-0'} uppercase tracking-wide`}>
                       {title[i]}
                     </h2>
                   </div>
