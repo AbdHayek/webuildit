@@ -5,13 +5,13 @@ import './GrowYourBusinessStyle.css';
 export const ImagesSection = ({
   title,
   image,
-  position,
+  classImages,
   classes,
   sectionStyles = [],
 }: {
   title: string[];
   image: string[];
-  position: string[];
+  classImages: string[];
   classes: string;
   sectionStyles: string[];
 }) => {
@@ -55,7 +55,7 @@ export const ImagesSection = ({
                     src={image[i]}
                     alt={title[i]}
                     fill
-                    className={`object-cover  object-${position[i]}`}
+                    className={`${classImages[i]}`}
                     sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, (max-width: 1024px) 384px, (max-width: 1280px) 500px, (max-width: 1536px) 600px, 671px"
                     priority={i === 0}
                   />

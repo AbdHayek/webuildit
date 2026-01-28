@@ -227,8 +227,8 @@ export default function GrowYourBusiness() {
                   'top-[22%] h-[24%]',
                   'bottom-0 h-[54%]',
                 ]}
-                classes={"absolute inset-0 bg-gradient-to-b from-[#9643d6b0] to-[#140526] z-10"}
-                position={["center", "transform scale-110 origin-[0%_90%]", "transform scale-140 origin-[0%_100%]"]}
+                classes={"absolute inset-0 bg-gradient-to-b from-[#9643d6b0] to-[#140526] z-10 rounded-full border-2 border-[#9000FFEB]"}
+                classImages={["object-cover center", "object-cover transform scale-110 origin-[0%_90%]", "object-cover transform scale-140 origin-[0%_100%]"]}
                 title={["STARTUPS", "ENTERPRISES", "OUTSOURCING NEEDS"]}
                 image={["/assets/GrowYourBusiness/purple/3.jpg", "/assets/GrowYourBusiness/purple/2.jpg", "/assets/GrowYourBusiness/purple/1.jpg"]}
               />
@@ -236,8 +236,8 @@ export default function GrowYourBusiness() {
             {centerId === "how" && (
               <ImagesSection
                 sectionStyles= {[]}
-                classes={"absolute inset-0 bg-gradient-to-b from-[#BD3E937D] to-[#4C022ED1] z-10"}
-                position={[]}
+                classes={"absolute inset-0 bg-gradient-to-b from-[#BD3E937D] to-[#4C022ED1] z-10 rounded-full border-2 border-[#4C022ED1]"}
+                classImages={[]}
                 title={["STEP-BY-STEP PROCESS WITH VISUALS"]}
                 image={["/assets/GrowYourBusiness/pink/1.jpg"]}
               />
@@ -245,14 +245,14 @@ export default function GrowYourBusiness() {
             {centerId === "why" && (
                 <ImagesSection
                   sectionStyles= {[
-                    'top-0 h-1/4',
-                    'top-1/4 h-1/4',
-                    'bottom-0 h-1/2',
+                  'top-0 h-[25%] bg-[#0e1311]',
+                  'top-[24%] h-[24%] bg-[#1e2d34]',
+                  'bottom-0 h-[52%] bg-[#4b7091]',
                   ]}
-                classes={"absolute inset-0 bg-gradient-to-b from-[#0043994F] to-[#140526] z-10"}
-                position={["transform scale-100", "center", "bottom"]}
+                classes={"absolute inset-0 bg-gradient-to-b  from-[#0043994F] to-[#140526] z-10 rounded-full border-2 border-[#0043994F]"}
+                classImages={["object-contain", "object-contain", "object-cover"]}
                 title={["SCALABILITY", "COST-EFFECTIVENESS", "EXPERTISE, NDA"]}
-                image={["/assets/GrowYourBusiness/blue/1.jpg", "/assets/GrowYourBusiness/blue/2.jpg", "/assets/GrowYourBusiness/blue/3.jpg"]}
+                image={["/assets/GrowYourBusiness/blue/1.jpg", "/assets/GrowYourBusiness/blue/2.png", "/assets/GrowYourBusiness/blue/3.jpg"]}
               />
             )}
           </motion.div>
