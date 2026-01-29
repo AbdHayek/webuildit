@@ -227,7 +227,7 @@ export default function GrowYourBusiness() {
                   'top-[22%] h-[22%]',
                   'bottom-[16%] h-[40%]',
                 ]}
-                classes={"absolute inset-0 bg-gradient-to-b from-[#9643d6b0] to-[#140526] z-10 rounded-full border-t-3  border-t-[#9000FFEB] border-b-[#9254ec4d] border-r-[#9254ec4d] border-l-[#9254ec4d]"}
+                classes={"absolute inset-0 bg-gradient-to-b from-[#5d0e9b87] to-[#140526] z-10 rounded-full border-t-3  border-t-[#9000FFEB] border-b-[#9254ec4d] border-r-[#9254ec4d] border-l-[#9254ec4d]"}
                 classImages={["object-contain transform scale-180 transform  origin-[50%_45%]", "object-cover transform scale-110 origin-[0%_90%]", "object-cover transform scale-140 origin-[0%_100%]"]}
                 title={["STARTUPS", "ENTERPRISES", "OUTSOURCING NEEDS"]}
                 image={["/assets/GrowYourBusiness/purple/3.jpg", "/assets/GrowYourBusiness/purple/2.jpg", "/assets/GrowYourBusiness/purple/1.jpg"]}
@@ -236,7 +236,7 @@ export default function GrowYourBusiness() {
             {centerId === "how" && (
               <ImagesSection
                 sectionStyles= {[]}
-                classes={"absolute inset-0 bg-gradient-to-b from-[#BD3E937D] to-[#4C022ED1] z-10 rounded-full border-t-3  border-t-[#FF0084] border-b-[#ff008494] border-r-[#ff008494] border-l-[#ff008494]"}
+                classes={"absolute inset-0 bg-gradient-to-b from-[#b3097b7a] to-[#4c022e] z-10 rounded-full border-t-3  border-t-[#FF0084] border-b-[#ff008494] border-r-[#ff008494] border-l-[#ff008494]"}
                 classImages={[]}
                 title={["STEP-BY-STEP PROCESS WITH VISUALS"]}
                 image={["/assets/GrowYourBusiness/pink/1.jpg"]}
@@ -249,7 +249,7 @@ export default function GrowYourBusiness() {
                   'top-[24%] h-[23%] bg-[#1e2d34]',
                   'bottom-[15%] h-[40%] bg-[#4b7091]',
                   ]}
-                classes={"absolute inset-0 bg-gradient-to-b  from-[#0043994F] to-[#140526] z-10 rounded-full border-t-3   border-t-[#0043994F] border-b-[#00439921] border-r-[#00439921] border-l-[#00439921]"}
+                classes={"absolute inset-0 bg-gradient-to-b  from-[#0043994F] to-[#0e083fa1] z-10 rounded-full border-t-3   border-t-[#4E91E9] border-b-[#00439921] border-r-[#00439921] border-l-[#00439921]"}
                 classImages={["object-contain", "object-contain", "object-cover"]}
                 title={["SCALABILITY", "COST-EFFECTIVENESS", "EXPERTISE, NDA"]}
                 image={["/assets/GrowYourBusiness/blue/1.jpg", "/assets/GrowYourBusiness/blue/2.png", "/assets/GrowYourBusiness/blue/3.jpg"]}
