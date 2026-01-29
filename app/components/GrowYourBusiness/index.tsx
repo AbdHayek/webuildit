@@ -224,8 +224,8 @@ export default function GrowYourBusiness() {
               <ImagesSection
                 sectionStyles= {[
                   'top-0 h-[30%]',
-                  'top-[22%] h-[24%]',
-                  'bottom-0 h-[54%]',
+                  'top-[22%] h-[22%]',
+                  'bottom-[16%] h-[40%]',
                 ]}
                 classes={"absolute inset-0 bg-gradient-to-b from-[#9643d6b0] to-[#140526] z-10 rounded-full border-t-3  border-t-[#9000FFEB] border-b-[#9254ec4d] border-r-[#9254ec4d] border-l-[#9254ec4d]"}
                 classImages={["object-cover center", "object-cover transform scale-110 origin-[0%_90%]", "object-cover transform scale-140 origin-[0%_100%]"]}
@@ -245,9 +245,9 @@ export default function GrowYourBusiness() {
             {centerId === "why" && (
                 <ImagesSection
                   sectionStyles= {[
-                  'top-0 h-[25%] bg-[#0e1311]',
-                  'top-[24%] h-[24%] bg-[#1e2d34]',
-                  'bottom-0 h-[52%] bg-[#4b7091]',
+                  'top-0 h-[30%] bg-[#0e1311]',
+                  'top-[24%] h-[23%] bg-[#1e2d34]',
+                  'bottom-[15%] h-[40%] bg-[#4b7091]',
                   ]}
                 classes={"absolute inset-0 bg-gradient-to-b  from-[#0043994F] to-[#140526] z-10 rounded-full border-t-3   border-t-[#0043994F] border-b-[#00439921] border-r-[#00439921] border-l-[#00439921]"}
                 classImages={["object-contain", "object-contain", "object-cover"]}
@@ -261,3 +261,11 @@ export default function GrowYourBusiness() {
     </div >
   );
 }
+
+
+
+
+
+
+
+
