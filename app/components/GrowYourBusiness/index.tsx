@@ -169,7 +169,8 @@ export default function GrowYourBusiness() {
       ></div>
 
       {/* bottom-side Gradient Background */}
-      <div className="absolute bottom-[0%] left-0 w-full 2xl:h-1/4 h-[5%] z-[20] bg-gradient-to-t from-[#070322]/100 via-[#070322]/75 to-[#070322]/75  backdrop-blur-xl pointer-events-none blur-responsive " />
+      {/* <div className="absolute bottom-[0%] left-0 w-full 2xl:h-1/4 h-[5%] z-[20] bg-gradient-to-t from-[#070322]/100 via-[#070322]/75 to-[#070322]/75  backdrop-blur-xl pointer-events-none blur-responsive " /> */}
+      <div className="absolute z-20 bottom-0 left-0 w-full h-[50%] pointer-events-none bg-gradient-to-t from-[#070322] from-[17%] via-black/15 via-[50%] to-black/0 to-[70%]" />
 
       {/* CONTAINER ADDED */}
       <div className="text-center mb-[10%]">
