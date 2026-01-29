@@ -223,12 +223,12 @@ export default function GrowYourBusiness() {
             {centerId === "who" && (
               <ImagesSection
                 sectionStyles= {[
-                  'top-[.5%] h-[30%]',
+                  'h-[30%]',
                   'top-[22%] h-[22%]',
                   'bottom-[16%] h-[40%]',
                 ]}
                 classes={"absolute inset-0 bg-gradient-to-b from-[#9643d6b0] to-[#140526] z-10 rounded-full border-t-3  border-t-[#9000FFEB] border-b-[#9254ec4d] border-r-[#9254ec4d] border-l-[#9254ec4d]"}
-                classImages={["object-cover center", "object-cover transform scale-110 origin-[0%_90%]", "object-cover transform scale-140 origin-[0%_100%]"]}
+                classImages={["object-contain transform scale-180 transform  origin-[50%_45%]", "object-cover transform scale-110 origin-[0%_90%]", "object-cover transform scale-140 origin-[0%_100%]"]}
                 title={["STARTUPS", "ENTERPRISES", "OUTSOURCING NEEDS"]}
                 image={["/assets/GrowYourBusiness/purple/3.jpg", "/assets/GrowYourBusiness/purple/2.jpg", "/assets/GrowYourBusiness/purple/1.jpg"]}
               />
