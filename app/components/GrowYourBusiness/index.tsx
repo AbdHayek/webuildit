@@ -223,7 +223,7 @@ export default function GrowYourBusiness() {
             {centerId === "who" && (
               <ImagesSection
                 sectionStyles= {[
-                  'top-0 h-[30%]',
+                  'top-[.5%] h-[30%]',
                   'top-[22%] h-[22%]',
                   'bottom-[16%] h-[40%]',
                 ]}

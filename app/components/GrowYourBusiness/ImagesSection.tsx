@@ -19,7 +19,7 @@ export const ImagesSection = ({
 
   return (
     <section className="relative w-full flex items-center justify-center overflow-hidden py-12 px-4 img-section-padding">
-      <div className="relative rounded-full overflow-hidden w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[500px] lg:h-[550px] xl:w-[600px] xl:h-[650px] 2xl:w-[671px] 2xl:h-[718px]">
+      <div className="relative rounded-full overflow-hidden w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[500px] lg:h-[550px] xl:w-[600px] xl:h-[620px] 2xl:w-[671px] 2xl:h-[718px]">
         <div className="relative w-full h-full">
           {/* Overlay */}
           <div className={classes} />
