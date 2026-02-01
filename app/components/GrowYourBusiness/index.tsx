@@ -111,7 +111,9 @@ export default function GrowYourBusiness() {
       const tolerance = 80;
       const wDiff = Math.abs(window.innerWidth - screen.width);
       const hDiff = Math.abs(window.innerHeight - screen.height);
-      setIsFullscreen(wDiff < tolerance && hDiff < tolerance);
+
+      if (wDiff === 0 && hDiff === 0) setIsFullscreen(false);
+      else setIsFullscreen(wDiff < tolerance && hDiff < tolerance);
     };
 
     handleResize(); // run on first open
@@ -156,9 +158,9 @@ export default function GrowYourBusiness() {
     }));
 
 
-  }, [centerId, prevCenterId, screenWidth,isFullscreen]);
+  }, [centerId, prevCenterId, screenWidth, isFullscreen]);
 
-  
+
   useEffect(() => {
 
     if (lastPostion.now === null) return;
@@ -203,8 +205,7 @@ export default function GrowYourBusiness() {
 
   return (
     <div className={`mt-[20%] mb-[10%]  2xl:mb-[5%] xl:mb-[10%] lg:mb-[10%] 2xl:h-[1450px] xl:h-[1150px] lg:h-[900px] h-[800px] overflow-y-hidden relative`}>
-    
-    <div> {isFullscreen ? "Fullscreen" : "Not Fullscreen"} </div>
+      
       {/* Right-side Gradient Background */}
       <div
         className="absolute right-0 top-[5%] h-[40%] w-[6%] 
