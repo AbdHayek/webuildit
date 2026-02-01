@@ -60,18 +60,30 @@ export default function GrowYourBusiness() {
   };
 
 
-  const getTopOffset = () => {
+  const getTopOffset = (current: boolean) => {
 
-    if(screenWidth === null) return 0;
-    if (screenWidth <= 768) return 15;
-    if (screenWidth <= 1250) return 15;
-    if (screenWidth >= 1250) return 0;
+    if (screenWidth === null) return 0;
+
+    if (current) {
+      if (screenWidth <= 768) return 15;
+      if (screenWidth <= 1000) return 12;
+      if (screenWidth <= 1250) return 10;
+      if (screenWidth <= 1500) return 0;
+      if (screenWidth > 1500) return 0;
+    } else {
+      if (screenWidth <= 500) return 45;
+      if (screenWidth <= 768) return 30;
+      if (screenWidth <= 1000) return 25;
+      if (screenWidth <= 1250) return 15;
+      if (screenWidth <= 1500) return 2;
+       if (screenWidth > 1500) return 0;
+    }
 
     return 0;
   };
 
 
-  const calculatePosition = (id: string) => {
+  const calculatePosition = (id: string, current: boolean) => {
     const angle = getAngle(id);
     const x = CENTER.x + RADIUS * Math.cos(angle);
     const y = CENTER.y + RADIUS * Math.sin(angle);
@@ -82,7 +94,7 @@ export default function GrowYourBusiness() {
 
     return {
       left: `${leftPercent}%`,
-      top: `${topPercent - getTopOffset()}%`, // add 15% to the top if the width is less than 1024 for better UI
+      top: `${topPercent - getTopOffset(current)}%`, // add 15% to the top if the width is less than 1024 for better UI
     };
   };
 
@@ -110,7 +122,7 @@ export default function GrowYourBusiness() {
 
     const prevElement = document.getElementById(prevCenterId);
     if (prevElement) {
-      const pos = calculatePosition(prevCenterId);
+      const pos = calculatePosition(prevCenterId, false);
       activePrevElement.current = prevElement;
 
       activePrevElement.current.style.left = pos.left;
@@ -119,14 +131,14 @@ export default function GrowYourBusiness() {
 
     const currentElement = document.getElementById(centerId);
     if (currentElement) {
-      const pos = calculatePosition(centerId);
+      const pos = calculatePosition(centerId, true);
       activeCurrentElement.current = currentElement;
 
       activeCurrentElement.current.style.left = pos.left;
       activeCurrentElement.current.style.top = pos.top;
     }
 
-    const newPos = calculatePosition(targetBubble.id);
+    const newPos = calculatePosition(targetBubble.id, false);
     setLastPostion(() => ({
       now: newPos
     }));
