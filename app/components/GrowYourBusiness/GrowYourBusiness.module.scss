@@ -219,6 +219,29 @@
   }
 }
 
+
+@media screen and (min-width: 1000px) {
+  .first_smallBub {
+    top: 0px;
+    left: 180px;
+  }
+
+  .second_smallBub {
+    top: 220px;
+    left: 90px;
+  }
+
+  .third_smallBub {
+    top: 3px;
+    right: 180px;
+  }
+
+  .forth_smallBub {
+    top: 220px;
+    right: 90px;
+  }
+}
+
 @media screen and (min-width: 1024px) {
   .first_smallBub {
     top: 0px;
