@@ -49,6 +49,7 @@ export default function GrowYourBusiness() {
   const [centerId, setCenterId] = useState("who");
   const [prevCenterId, setPrevCenterId] = useState("why");
   const [lastPostion, setLastPostion] = useState<Postion>({ now: null });
+  const [screenWidth, setScreenWidth] = useState<number | null>(null);
 
   const getAngle = (id: string) => {
     const centerIndex = ids.indexOf(centerId);
@@ -66,15 +67,27 @@ export default function GrowYourBusiness() {
     // Convert to percentage
     const leftPercent = (x / CONTAINER_WIDTH) * 100;
     const topPercent = (y / CONTAINER_HEIGHT) * 100;
+    const offset = (screenWidth !== null && screenWidth <= 1250) ? 15 : 0;
 
     return {
       left: `${leftPercent}%`,
-      top: `${topPercent - (window.innerWidth <= 1250 ? 15 : 0)}%`, // add 15% to the top if the width is less than 1024 for better UI
+      top: `${topPercent - offset}%`, // add 15% to the top if the width is less than 1024 for better UI
     };
   };
 
 
   useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+
+    handleResize(); // set immediately on first open
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+
+    if (screenWidth === null) return; //  wait until screenWidth is ready
 
     const targetBubble = getLastNode(); // Remove await since getLastNode is not async
     if (!targetBubble) return;
@@ -108,7 +121,7 @@ export default function GrowYourBusiness() {
     }));
 
 
-  }, [centerId, prevCenterId]);
+  }, [centerId, prevCenterId, screenWidth]);
 
   useEffect(() => {
 
@@ -169,7 +182,6 @@ export default function GrowYourBusiness() {
       ></div>
 
       {/* bottom-side Gradient Background */}
-      {/* <div className="absolute bottom-[0%] left-0 w-full 2xl:h-1/4 h-[5%] z-[20] bg-gradient-to-t from-[#070322]/100 via-[#070322]/75 to-[#070322]/75  backdrop-blur-xl pointer-events-none blur-responsive " /> */}
       <div className="absolute z-20 bottom-0 left-0 w-full h-[50%] pointer-events-none bg-gradient-to-t from-[#070322] from-[17%] via-black/15 via-[50%] to-black/0 to-[70%]" />
 
       {/* CONTAINER ADDED */}
@@ -223,7 +235,7 @@ export default function GrowYourBusiness() {
           >
             {centerId === "who" && (
               <ImagesSection
-                sectionStyles= {[
+                sectionStyles={[
                   'h-[30%]',
                   'top-[22%] h-[22%]',
                   'bottom-[16%] h-[40%]',
@@ -236,7 +248,7 @@ export default function GrowYourBusiness() {
             )}
             {centerId === "how" && (
               <ImagesSection
-                sectionStyles= {[]}
+                sectionStyles={[]}
                 classes={"absolute inset-0 bg-gradient-to-b from-[#b3097b7a] to-[#4c022e] z-10 rounded-full border-t-3  border-t-[#FF0084] border-b-[#ff008494] border-r-[#ff008494] border-l-[#ff008494]"}
                 classImages={[]}
                 title={["STEP-BY-STEP PROCESS WITH VISUALS"]}
@@ -244,12 +256,12 @@ export default function GrowYourBusiness() {
               />
             )}
             {centerId === "why" && (
-                <ImagesSection
-                  sectionStyles= {[
+              <ImagesSection
+                sectionStyles={[
                   'top-0 h-[30%] bg-[#0e1311]',
                   'top-[24%] h-[23%] bg-[#1e2d34]',
                   'bottom-[15%] h-[40%] bg-[#4b7091]',
-                  ]}
+                ]}
                 classes={"absolute inset-0 bg-gradient-to-b  from-[#0043994F] to-[#0e083fa1] z-10 rounded-full border-t-3   border-t-[#4E91E9] border-b-[#00439921] border-r-[#00439921] border-l-[#00439921]"}
                 classImages={["object-contain", "object-contain", "object-cover"]}
                 title={["SCALABILITY", "COST-EFFECTIVENESS", "EXPERTISE, NDA"]}
