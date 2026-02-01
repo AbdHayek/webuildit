@@ -59,6 +59,18 @@ export default function GrowYourBusiness() {
     return -Math.PI / 2 + relativeIndex * angleStep;
   };
 
+
+  const getTopOffset = () => {
+
+    if(screenWidth === null) return 0;
+    if (screenWidth <= 768) return 15;
+    if (screenWidth <= 1250) return 15;
+    if (screenWidth >= 1250) return 0;
+
+    return 0;
+  };
+
+
   const calculatePosition = (id: string) => {
     const angle = getAngle(id);
     const x = CENTER.x + RADIUS * Math.cos(angle);
@@ -67,11 +79,10 @@ export default function GrowYourBusiness() {
     // Convert to percentage
     const leftPercent = (x / CONTAINER_WIDTH) * 100;
     const topPercent = (y / CONTAINER_HEIGHT) * 100;
-    const offset = (screenWidth !== null && screenWidth <= 1250) ? 15 : 0;
 
     return {
       left: `${leftPercent}%`,
-      top: `${topPercent - offset}%`, // add 15% to the top if the width is less than 1024 for better UI
+      top: `${topPercent - getTopOffset()}%`, // add 15% to the top if the width is less than 1024 for better UI
     };
   };
 
@@ -182,7 +193,7 @@ export default function GrowYourBusiness() {
       ></div>
 
       {/* bottom-side Gradient Background */}
-<div className="absolute z-20 bottom-0 left-0 w-full h-[50%] pointer-events-none bg-gradient-to-t from-[#070322] from-[17%] via-black/15 via-[50%] to-black/0 to-[70%] [@media(min-width:2500px)]:hidden" />
+      <div className="absolute z-20 bottom-0 left-0 w-full h-[50%] pointer-events-none bg-gradient-to-t from-[#070322] from-[17%] via-black/15 via-[50%] to-black/0 to-[70%] [@media(min-width:2500px)]:hidden" />
 
       {/* CONTAINER ADDED */}
       <div className="text-center mb-[10%]">
