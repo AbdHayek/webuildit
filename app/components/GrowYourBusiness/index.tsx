@@ -156,7 +156,7 @@ export default function GrowYourBusiness() {
     }));
 
 
-  }, [centerId, prevCenterId, screenWidth]);
+  }, [centerId, prevCenterId, screenWidth,isFullscreen]);
 
   
   useEffect(() => {
@@ -203,6 +203,8 @@ export default function GrowYourBusiness() {
 
   return (
     <div className={`mt-[20%] mb-[10%]  2xl:mb-[5%] xl:mb-[10%] lg:mb-[10%] 2xl:h-[1450px] xl:h-[1150px] lg:h-[900px] h-[800px] overflow-y-hidden relative`}>
+    
+    <div> {isFullscreen ? "Fullscreen" : "Not Fullscreen"} </div>
       {/* Right-side Gradient Background */}
       <div
         className="absolute right-0 top-[5%] h-[40%] w-[6%] 
