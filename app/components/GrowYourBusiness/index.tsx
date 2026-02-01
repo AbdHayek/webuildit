@@ -50,6 +50,7 @@ export default function GrowYourBusiness() {
   const [prevCenterId, setPrevCenterId] = useState("why");
   const [lastPostion, setLastPostion] = useState<Postion>({ now: null });
   const [screenWidth, setScreenWidth] = useState<number | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState<boolean | null>(null);
 
   const getAngle = (id: string) => {
     const centerIndex = ids.indexOf(centerId);
@@ -67,16 +68,17 @@ export default function GrowYourBusiness() {
     if (current) {
       if (screenWidth <= 768) return 15;
       if (screenWidth <= 1000) return 12;
-      if (screenWidth <= 1250) return 10;
+      if (screenWidth <= 1275) return 10;
       if (screenWidth <= 1500) return 0;
       if (screenWidth > 1500) return 0;
     } else {
       if (screenWidth <= 500) return 45;
       if (screenWidth <= 768) return 30;
       if (screenWidth <= 1000) return 25;
-      if (screenWidth <= 1250) return 15;
+      if (screenWidth <= 1275) return 15;
+      if (screenWidth <= 1500 && isFullscreen) return 12; // added condition for fullscreen
       if (screenWidth <= 1500) return 2;
-       if (screenWidth > 1500) return 0;
+      if (screenWidth > 1500) return 0;
     }
 
     return 0;
@@ -100,9 +102,19 @@ export default function GrowYourBusiness() {
 
 
   useEffect(() => {
-    const handleResize = () => setScreenWidth(window.innerWidth);
+    const handleResize = () => {
 
-    handleResize(); // set immediately on first open
+      const w = window.innerWidth;
+      setScreenWidth(w);
+
+      // Detect Mac green fullscreen (tolerance method)
+      const tolerance = 80;
+      const wDiff = Math.abs(window.innerWidth - screen.width);
+      const hDiff = Math.abs(window.innerHeight - screen.height);
+      setIsFullscreen(wDiff < tolerance && hDiff < tolerance);
+    };
+
+    handleResize(); // run on first open
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
@@ -110,7 +122,7 @@ export default function GrowYourBusiness() {
 
   useEffect(() => {
 
-    if (screenWidth === null) return; //  wait until screenWidth is ready
+    if (screenWidth === null || isFullscreen === null) return; //  wait until screenWidth is ready
 
     const targetBubble = getLastNode(); // Remove await since getLastNode is not async
     if (!targetBubble) return;
@@ -146,6 +158,7 @@ export default function GrowYourBusiness() {
 
   }, [centerId, prevCenterId, screenWidth]);
 
+  
   useEffect(() => {
 
     if (lastPostion.now === null) return;
