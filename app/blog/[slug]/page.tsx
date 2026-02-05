@@ -3,12 +3,12 @@ import { notFound } from "next/navigation";
 import { format } from "date-fns";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { BlogContent } from "@/app/components/blog/BlogContent";
+import { BlogContent } from "@/app/components/Blog/BlogContent";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-type Props = { params: { slug: string } };
+type Props = { params: { slug: strinFg } };
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;

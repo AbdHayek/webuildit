@@ -95,8 +95,14 @@ export default function TestimonialForm({ initialData, setEditData, setTestimoni
     }
 
     // URL validation (optional, must be valid if provided)
-    if (url && !/^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/.test(url)) {
-      setError("URL is invalid. Must start with http:// or https://");
+    try {
+      const parsed = new URL(url);
+
+      if (!["http:", "https:"].includes(parsed.protocol)) {
+        throw new Error();
+      }
+    } catch {
+      setError("URL must start with http:// or https://");
       return;
     }
 
@@ -140,7 +146,7 @@ export default function TestimonialForm({ initialData, setEditData, setTestimoni
           author: result.testimonial.author,
           content: result.testimonial.content,
           order_number: result.testimonial.order_number,
-          url:result.testimonial.url,
+          url: result.testimonial.url,
           updatedAt: result.testimonial.updatedAt
         } : Testimonial));
       } else {
@@ -151,7 +157,7 @@ export default function TestimonialForm({ initialData, setEditData, setTestimoni
             author: result.testimonial.author,
             content: result.testimonial.content,
             order_number: result.testimonial.order_number,
-            url:result.testimonial.url,
+            url: result.testimonial.url,
             createdAt: result.testimonial.createdAt,
             updatedAt: result.testimonial.updatedAt
           },

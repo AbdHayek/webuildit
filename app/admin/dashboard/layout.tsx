@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Navbar from "@/app/components/admin/Navbar";
-import Sidebar from "@/app/components/admin/Sidebar"; // <-- import Sidebar
+import Navbar from "@/app/components/Admin/Navbar";
+import Sidebar from "@/app/components/Admin/Sidebar"; // <-- import Sidebar
 
 export const metadata: Metadata = {
   title: "WeBuildIt",

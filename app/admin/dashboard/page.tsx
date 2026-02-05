@@ -1,4 +1,4 @@
-import BlogTable from "@/app/components/admin/blog/BlogTable";
+import BlogTable from "@/app/components/Admin/blog/BlogTable";
 export default function Dashboard() {
   return (
      <div>
